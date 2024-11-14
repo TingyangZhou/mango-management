@@ -1,0 +1,60 @@
+.profile-dropdown {
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+}
+
+.robinhood-logo-home {
+  font-size: 50px;
+}
+
+.robinhood-logo-home:hover {
+  color: #fb641c;
+
+}
+
+.logo-home-container {
+  margin: 10px;
+  margin-left: 30px;
+}
+
+.dark-mode .robinhood-logo-home {
+  color:white;
+}
+
+.dark-mode .robinhood-logo-home:hover{
+  color:#fb641c;
+}
+
+.nav-bar-main {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+
+.hidden-profile-button, .hidden-home-link {
+  display: none;
+}
+
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(126, 126, 126);
+  border-radius: 5px;
+  height: 32px;
+  width: 30%;
+}
+
+.search-bar-container svg {
+  margin-left: 5px;
+  color: grey;
+  font-size: 20px;
+}
+
+.search-bar-container input {
+  border: none;
+  height: 20px;
+  margin-bottom: 5px;
+  outline: none;
+}

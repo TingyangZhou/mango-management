@@ -1,0 +1,58 @@
+*{
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+}
+
+/* for profile button drop down menu*/
+.dark-mode .profile-list-item-with-icon *{
+    background-color: black;
+}
+.dark-mode .profile-list-item-with-icon button:hover{
+    background-color: black;
+    color:#fb641c
+}
+
+.profile-button{
+    border: 1px rgb(126, 126, 126) solid;
+    background-color: rgba(255, 255, 255, 0.955);
+    border-radius: 5px;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: large;
+}
+
+.profile-button:hover{
+    color:#fb641c
+}
+
+
+.profile-dropdown{
+    border: 1px  #cecece solid;
+    border-radius: 5px;
+    padding:0.5rem 1rem;
+    background-color: white;
+}
+
+.profile-dropdown > li {
+    list-style-type: none;
+    padding: 0.25rem;
+}
+
+.profile-list-item-with-icon:hover{
+    color:#fb641c
+}
+
+.profile-list-item-with-icon>button:hover{
+    color:#fb641c
+}
+
+.profile-list-item-with-icon{
+    border-top: 1px #cecece solid;
+    display:flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.profile-list-item-with-icon * {
+    background-color: white;
+}
