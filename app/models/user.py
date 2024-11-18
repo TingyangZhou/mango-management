@@ -1,8 +1,7 @@
 from flask_login import UserMixin
+from .db import SCHEMA, add_prefix_for_prod, db, environment
 from werkzeug.security import check_password_hash, generate_password_hash
-
-from .db import SCHEMA, db, environment
-# from .likes import likes
+from datetime import datetime, timezone
 
 
 class User(db.Model, UserMixin):
@@ -12,18 +11,16 @@ class User(db.Model, UserMixin):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    cash_balance = db.Column(db.Float(precision=2), default=0.00)
+    created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc))
 
-    user_stocks = db.relationship("UserStock", backref="users", cascade="all, delete-orphan")
-    watchlist_stocks = db.relationship("WatchlistStock", backref="users", cascade="all, delete-orphan")
-
-    # Related data
-    # tweets = db.relationship("Tweet", back_populates="author")
-    # liked_tweets = db.relationship("Tweet", back_populates="liked_by", secondary=likes)
-
+    properties = db.relationship("Property", backref = "user", cascade="all, delete-orphan")
+    invoices = db.relationship("Invoice", backref = "user", cascade="all, delete-orphan")
+   
     @property
     def password(self):
         return self.hashed_password
@@ -36,11 +33,12 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict_basic(self):
-        return {"id": self.id, "username": self.username, "email": self.email}
-
-    def to_dict(self):
         return {
-            **self.to_dict_basic()
-            # "Tweets": [tweet.to_dict_basic() for tweet in self.tweets],
-            # "LikedTweets": [tweet.to_dict_basic() for tweet in self.liked_tweets],
-        }
+            "id": self.id, 
+            "first_name":self.first_name, 
+            "last_name": self.last_name, 
+            "username": self.username, 
+            "email": self.email
+            }
+
+ 

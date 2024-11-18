@@ -6,4 +6,4 @@ __pycache__/
 .vscode/
 .Pipfile
 .Pipfile.lock
-.dev.db
+instance/.dev.db

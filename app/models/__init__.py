@@ -1,6 +1,7 @@
 from .db import SCHEMA, db, environment
 # from .likes import likes
-from .stock import Stock
+from .property import Property
 from .user import User
-from .userStock import UserStock
-from .watchlistStock import WatchlistStock
+from .lease import Lease
+from .invoice import Invoice
+from .tenant import Tenant
