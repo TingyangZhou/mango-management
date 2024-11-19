@@ -2,7 +2,8 @@ from flask import Blueprint, request, make_response, jsonify
 from flask_login import login_required, current_user
 # from app.api.aws import get_unique_filename, upload_file_to_s3
 from app.models import User, Property, Lease, Tenant, db
-
+from app.forms import CreatePropertyForm
+from sqlalchemy.exc import IntegrityError
 property_routes = Blueprint("portfolio", __name__, url_prefix="/api/properties")
 
 
@@ -49,7 +50,7 @@ def get_all_properties():
 @property_routes.route("/<int:propertyId>", methods=['GET'])
 @login_required
 def get_a_property(propertyId):
-    user = User.query.get(current_user.id)
+    
     property = Property.query.get(propertyId)
 
     if (property == None):
@@ -76,8 +77,83 @@ def get_a_property(propertyId):
     return jsonify(property_data), 200
 
 
-# Edit A Property
+# Create A Property
+@property_routes.route("/", methods=['POST'])
+@login_required
+def add_property():
+   user = User.query.get(current_user.id)
+   try:
+    form = CreatePropertyForm()
+    form['csrf_token'].data = request.cookies.get('csrf_token')
+    if form.validate_on_submit():
+        new_property = Property(
+                                    user_id = user.id,
+                                    address = form.address.data,
+                                    property_type = form.property_type.data,
+                                    bedrooms = form.bedrooms.data,
+                                    bathrooms = form.bathrooms.data,
+                                    square_feet = form.sqft.data
+
+                                ) 
+        db.session.add(new_property)
+        db.session.commit()
+
+        new_property_dict =new_property.to_dict_basic()
+        return jsonify(new_property_dict), 201
+   except IntegrityError as e:
+        db.session.rollback()  # Rollback the session to handle the exception cleanly
+
+        # Check if the error is related to the unique constraint on address
+        if "UNIQUE constraint failed: properties.address" in str(e.orig):
+            return jsonify({"message": "The address already exists. Please use a different address."}), 400
+   
+   return form.errors, 400
+
+
+
+# Update A Property
 @property_routes.route("/<int:propertyId>", methods=['PATCH'])
 @login_required
-def edit_property(propertyId):
-    
+def update_property(propertyId):
+   
+   try:
+    form = CreatePropertyForm()
+    form['csrf_token'].data = request.cookies.get('csrf_token')
+    if form.validate_on_submit():
+        property = Property.query.get(propertyId)
+        if not property:
+            return jsonify({"message": "Property couldn't be found"}), 404
+            
+        property.address = form.address.data
+        property.property_type = form.property_type.data
+        property.bedrooms = form.bedrooms.data
+        property.bathrooms = form.bathrooms.data
+        property.square_feet = form.sqft.data
+
+        db.session.commit()
+
+        property_dict =property.to_dict_basic()
+        return jsonify(property_dict), 200
+   except IntegrityError as e:
+        db.session.rollback()  # Rollback the session to handle the exception cleanly
+
+        # Check if the error is related to the unique constraint on address
+        if "UNIQUE constraint failed: properties.address" in str(e.orig):
+            return jsonify({"message": "The address already exists. Please use a different address."}), 400
+   
+   return form.errors, 400
+
+
+
+
+# Remove A Property
+@property_routes.route("/<int:propertyId>", methods=['DELETE'])
+@login_required
+def remove_property(propertyId):
+    property = Property.query.get(propertyId)
+    if not property:
+        return jsonify({"message": "Property couldn't be found"}), 404
+    db.session.delete(property)
+    db.session.commit()
+
+    return jsonify(	{"message": "Successfully deleted"}), 200

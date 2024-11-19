@@ -17,9 +17,9 @@ class Property(db.Model):
         nullable=False
         )
     property_type = db.Column(db.String(), nullable=False)
-    bedrooms = db.Column(db.Integer(), nullable=False)
-    bathrooms = db.Column(db.Integer(), nullable=False)
-    square_feet = db.Column(db.Integer(), nullable=False)
+    bedrooms = db.Column(db.Integer(), nullable=True)
+    bathrooms = db.Column(db.Integer(), nullable=True)
+    square_feet = db.Column(db.Integer(), nullable=True)
     created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc), 
     onupdate=lambda: datetime.now(timezone.utc)
