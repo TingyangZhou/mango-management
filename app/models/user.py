@@ -32,7 +32,7 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def to_dict_basic(self):
+    def to_dict(self):
         return {
             "id": self.id, 
             "first_name":self.first_name, 

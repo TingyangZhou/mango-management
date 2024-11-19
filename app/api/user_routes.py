@@ -1,25 +1,11 @@
 from flask import Blueprint, jsonify, make_response, request
 from flask_login import login_required, current_user
+from datetime import datetime
 
-
-from app.models import User, Invoice, db
+from app.models import User, Property, Invoice, Lease, db
 
 
 user_routes = Blueprint("users", __name__, url_prefix="/api/users")
-
-
-
-
-def user_to_dict(user):
-    return {
-        "id": user.id,
-        "username": user.username,
-        "email": user.email,
-        "cash_balance": user.cash_balance,
-        "createdAt": "2021-11-19 20:39:36"
-        }
-
-
 
 
 # @user_routes.route("/")
@@ -52,21 +38,52 @@ def user_to_dict(user):
 
 
 @user_routes.route("/current")
+@login_required
 def currUserInfo():
     if current_user.is_authenticated:
         user = User.query.get(current_user.id)
-        all_invoices = [invoice.to_dict_basic() for invoice in Invoice.query.all()]
-        total = 0
-        for invoice in all_invoices:
-            total += invoice.amount
+        
+        total = db.session.query(db.func.sum(Invoice.amount)).filter(
+                                        Invoice.user_id == user.id).scalar() or 0
+        
+        collected = db.session.query(db.func.sum(Invoice.amount)).filter(
+                                        db.and_(Invoice.user_id == user.id,
+                                                Invoice.payment_date != None)
+                                        ).scalar() or 0
+        
+        outstanding = db.session.query(db.func.sum(Invoice.amount)).filter(
+                                        db.and_(Invoice.user_id == user.id,
+                                        Invoice.payment_date == None,
+                                        Invoice.due_date > datetime.now())).scalar() or 0
         
 
+        overdue = db.session.query(db.func.sum(Invoice.amount)).filter(
+                                        db.and_(Invoice.user_id == user.id,
+                                        Invoice.payment_date == None,
+                                        Invoice.due_date < datetime.now())).scalar() or 0
 
+        all_properties_count = Property.query.filter(Property.user_id == user.id).count()
+        occupied_properties_count = Property.query.join(Lease).filter(db.and_(Property.user_id == user.id,
+                                                                      Lease.is_active == 1)).count()
+        vacant_property_count = all_properties_count - occupied_properties_count
+       
 
+        user_data = {
+            "id": user.id,
+			"first_name": user.first_name,
+			"last_name": user.last_name,
+			"username": user.username,
+			"email": user.email,
+			"total": total, 
+		    "collected": collected,
+			"outstanding": outstanding,
+			"overdue": overdue,
+			"num_vacanct_properties": vacant_property_count,
+			"num_occupied_properties": occupied_properties_count
 
-        response_body = jsonify(user_to_dict(user))
-        response = make_response(response_body,200)
-        response.headers["Content-Type"] = "application/json"
+        }
+        return jsonify(user_data), 200
+    
     else:
         return jsonify({ "message": "Authentication required"}), 401
 

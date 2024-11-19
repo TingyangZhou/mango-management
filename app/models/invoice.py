@@ -15,22 +15,20 @@ class Invoice(db.Model):
     description = db.Column(db.String(), nullable = True)
     due_date = db.Column(db.Date, nullable = False)
     amount = db.Column(db.Numeric(precision=10, scale=2), nullable = False) #precision is the total number of digits allowed in the number, including digits before and after the decimal point.
-    payment_date = db.Column(db.Date, nullable = True)
+    payment_date = db.Column(db.Date, default = None)
     created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc))
 
     
-
-
     def to_dict_basic(self):
-            return {
-                "id": self.id,
-                "lease_id": self.lease_id,
-                "invoice_number": self.invoice_number,
-                "item": self.item,
-                "description": self.description,
-                "due_date": self.due_date,
-                "amount": self.amount,
-                "payment_date": self.payment_date,
-                "created_at": self.created_at,
-                
-            }
+        return {
+            "id": self.id,
+            "lease_id": self.lease_id,
+            "invoice_number": self.invoice_number,
+            "item": self.item,
+            "description": self.description,
+            "due_date": self.due_date,
+            "amount": self.amount,
+            "payment_date": self.payment_date,
+            "created_at": self.created_at,
+            
+        }
