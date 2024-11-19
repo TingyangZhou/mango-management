@@ -21,6 +21,9 @@ class Property(db.Model):
     bathrooms = db.Column(db.Integer(), nullable=False)
     square_feet = db.Column(db.Integer(), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc))
+    updated_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc), 
+    onupdate=lambda: datetime.now(timezone.utc)
+)
     
     leases = db.relationship("Lease", backref = "property", cascade="all, delete-orphan")
     
@@ -35,6 +38,7 @@ class Property(db.Model):
             "bathrooms": self.bathrooms,
             "square_feet": self.square_feet,
             "created_at": self.created_at,
+            "updated_at": self.updated_at
             
         }
 
