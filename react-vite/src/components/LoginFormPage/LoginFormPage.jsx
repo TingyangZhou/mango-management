@@ -43,7 +43,7 @@ function LoginFormPage() {
     <div className='login-page'>
       <div className='login-section'>
         
-      <h1 className='login-title'>Log in to RobinhoodClone</h1>
+      <h1 className='login-title'>Log in to MangoManager</h1>
         {errors.length > 0 &&
           errors.map((message) => <p key={message}>{message}</p>)}
           <form className = 'login-form' onSubmit={handleSubmit}>
