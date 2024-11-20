@@ -1,46 +1,22 @@
 import { Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
-import { getAllStocksThunk } from '../../redux/stocks';
+import { getUserInfoThunk } from '../../redux/users';
 import { useEffect } from 'react';
-import AllStocksList from '../AllStocksList';
-import WatchlistStocksList from '../WatchlistStocksList';
+
 import "./indexHome.css"
 
-import { getAllWatchlistThunk } from '../../redux/watchlist';
+
 
 export default function Home() {
-    // const data = useLoaderData();
     const dispatch = useDispatch()
     const sessionUser = useSelector((state) => state.session.user);
-    const allStocks = useSelector((state) => state.stocks.stocks);
-
-
-    // useEffect(() => {
-    //     dispatch(getAllStocksThunk())
-    // }, [dispatch])
-
-
-
+    const userInfo = useSelector((state) => state.userInfo);
+    console.log(userInfo)
 
     useEffect(() => {
-        dispatch(getAllWatchlistThunk())
-        dispatch(getAllStocksThunk())
+        dispatch(getUserInfoThunk())
     }, [dispatch])
-
-
-    // useEffect(() => {
-    //     async function testDeleteToWatchlist() {
-    //         try {
-    //             const result = await dispatch(removeFromWatchlistThunk(9));
-    //         } catch (error) {
-    //             console.error("Error adding to watchlist:", error);
-    //         }
-    //     }
-    //     testDeleteToWatchlist();
-    // }, [dispatch]);
-
-
 
 
     if (!sessionUser) {
@@ -49,10 +25,24 @@ export default function Home() {
 
 
     return (
-        <main>
-            <AllStocksList stocks={allStocks} pageSize={11} heightPx={675}/>
-            <WatchlistStocksList/>
-        </main>
+        <div className="user-info-container">
+            <div className="info-section">
+                <div className="info-header">Collection</div>
+                <ul className="info-list">
+                    <li>Total Collected: {userInfo.collected}</li>
+                    <li>Outstanding: {userInfo.outstanding}</li>
+                    <li>Overdue: {userInfo.overdue}</li>
+                </ul>
+            </div>
+            <div className="info-section">
+                <div className="info-header">Occupancy</div>
+                <ul className="info-list">
+                    <li>Vacant: {userInfo.num_vacanct_properties}</li>
+                    <li>Occupied: {userInfo.num_occupied_properties}</li>
+                </ul>
+            </div>
+        </div>
     );
+    
 }
 

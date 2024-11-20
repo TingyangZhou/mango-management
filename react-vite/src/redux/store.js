@@ -8,14 +8,14 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
-import stocksReducer from './stocks';
+import propertyReducer from './properties';
 import watchlistReducer from './watchlist';
 import userInfoReducer from './users';
 import portfolioReducer from './portfolio';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
-    stocks: stocksReducer,
+    properties: propertyReducer,
     watchlist: watchlistReducer,
     userInfo: userInfoReducer,
     portfolio: portfolioReducer

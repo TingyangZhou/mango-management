@@ -1,9 +1,9 @@
 import { Navigate} from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
-// // import { getAllStocksThunk } from '../../redux/stocks';
+
 import { useEffect } from 'react';
-import AllStocksList from '../AllStocksList';
+
 import WatchlistStocksList from '../WatchlistStocksList';
 
 
