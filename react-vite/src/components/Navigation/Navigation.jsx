@@ -1,9 +1,9 @@
 import "./Navigation.css";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { useNavigate, NavLink, useLocation } from "react-router-dom";
+// import { useEffect, useState } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton.jsx"
-import { FaFeather, FaSearch } from "react-icons/fa"
+
 
 
 function Navigation() {
@@ -20,8 +20,8 @@ function Navigation() {
               <img src="/images/mango_logo.jpg" alt="Mango Logo" width="70" height="70" />
           </NavLink>
           </li>
-          <li><NavLink className='nav-propreties' activeClassName = "active" to="/">Properties</NavLink></li>
-          <li><NavLink className='nav-invoices' activeClassName = "active" to="/">Invoices</NavLink></li>
+          <li><NavLink className='nav-propreties' to="properties">Properties</NavLink></li>
+          <li><NavLink className='nav-invoices' to="/">Invoices</NavLink></li>
       </ul>
       <div>
         <ProfileButton/>

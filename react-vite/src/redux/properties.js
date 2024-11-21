@@ -50,11 +50,13 @@ const deleteProperty = (propertyId) => {
 /** Thunk Action Creators: */
 
 // get all properties 
-export const getAllPropertiesThunk = () => async (dispatch) => {
-    const res = await fetch('/api/properties');
+export const getAllPropertiesThunk = (page, per_page) => async (dispatch) => {
+    // console.log("==========================")
+    const res = await fetch(`/api/properties?page=${page}&per_page=${per_page}`);
+        
     if (res.ok) {
         const data = await res.json();
-        dispatch(getAllProperties(data.properties));
+        dispatch(getAllProperties(data));
     } else {
         const errors = await res.json();
         return errors;
@@ -138,9 +140,13 @@ let initialState = {
 export default function propertyReducer(state = initialState, { type, payload }) {
     switch (type) {
         case GET_ALL_PROPERTIES:
-            return {currentProperty: state.currentProperty, properties: normalizer(payload)}
+            return {...state,
+                currentProperty: state.currentProperty, 
+                properties: normalizer(payload.properties), 
+                num_properties:payload.num_properties
+            };
         case GET_ONE_PROPERTY:
-            return {currentProperty: payload, properties: state.properties}
+            return {...state, currentProperty: payload, properties: state.properties}
         case CREATE_PROPERTY:
             return {
                 currentProperty:null,

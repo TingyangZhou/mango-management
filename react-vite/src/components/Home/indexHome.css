@@ -7,6 +7,13 @@
     width: 80%;
 }
 
+.info-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+ 
+}
+
 /* Each section (Collection, Occupancy) */
 .info-section {
     width: 45%;
@@ -33,14 +40,22 @@
 .info-list {
     list-style-type: none; /* Adds bullet points */
     text-align: left;
-    padding-left: 20px; /* Indents bullet points */
-    margin: 0;
+    padding-left: 0px; /* Indents bullet points */
+    margin-top:20px;
+    /* border: solid 1px red; */
    
 }
 
 /* List item styling */
 .info-list li {
-    margin: 5px 0;
-    font-size: 14px;
+    margin-right: 30px;
+    padding: 5px;
     font-size: 20px;
+}
+
+
+.pie-chart-container {
+    width: 40%;
+    margin: 0 auto;
+    /* border: solid 1px red; */
 }

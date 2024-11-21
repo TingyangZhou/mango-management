@@ -8,14 +8,17 @@ property_routes = Blueprint("portfolio", __name__, url_prefix="/api/properties")
 
 
 # Get all properties
-@property_routes.route("/", methods=['GET'])
+@property_routes.route("", methods=['GET'])
 @login_required
 def get_all_properties():
     user = User.query.get(current_user.id)
-    all_properties = Property.query.filter(Property.user_id == user.id).all()
+    page = request.args.get('page', 1, type=int)  # Default to page 1
+    per_page = request.args.get('per_page', 10, type=int)  # Default to 10 items per page
+    num_properties = Property.query.filter(Property.user_id == user.id).count()
+    pagination = Property.query.filter(Property.user_id == user.id).paginate(page=page, per_page=per_page, error_out=False)
 
     response = []
-    for property in all_properties:
+    for property in pagination.items:
         property_dict = property.to_dict_basic()
 
         current_lease = Lease.query.filter(db.and_(property.id == Lease.property_id,
@@ -43,7 +46,7 @@ def get_all_properties():
         
         response.append(property_data)
     
-    return jsonify({"properties":response}), 200
+    return jsonify({"properties":response, "num_properties": num_properties}), 200
 
 
 # Get Property details from an id

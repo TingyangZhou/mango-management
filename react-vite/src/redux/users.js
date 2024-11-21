@@ -13,7 +13,7 @@ export const getUserInfoThunk= () => async (dispatch) => {
       // console.log("==========================")
       dispatch(getUserInfo(data));
   } else {
-      console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeee")
+      // console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeee")
       const errors = await res.json();
       throw errors;
   }

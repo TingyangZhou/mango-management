@@ -51,7 +51,7 @@ def currUserInfo():
 		    "collected": collected,
 			"outstanding": outstanding,
 			"overdue": overdue,
-			"num_vacanct_properties": vacant_property_count,
+			"num_vacant_properties": vacant_property_count,
 			"num_occupied_properties": occupied_properties_count
 
         }

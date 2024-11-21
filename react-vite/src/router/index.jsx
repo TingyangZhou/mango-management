@@ -3,9 +3,8 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import Home from '../components/Home';
-
-// import StockDetailsPage from '../components/StockDetailsPage/StockDetailsPage';
-import SearchHome from '../components/SearchHome';
+import Properties from '../components/Properties';
+import PropertyDetail from '../components/PropertyDetailsPage';
 // import Profile from '../components/Profile';
 // import GenericError from '../components/Error';
 // import * as api from './api';
@@ -29,10 +28,13 @@ export const router = createBrowserRouter([
                 element: <SignupFormPage />,
             },
             
-          
             {
-                path: '/search',
-                element: <SearchHome />,
+                path: '/properties',
+                element: <Properties />,
+            },
+            {
+                path: '/properties/:propertyId',
+                element: <PropertyDetail />,
             }
             // {
             //     path: 'profile/:userId',
