@@ -22,7 +22,7 @@ def get_all_properties():
         property_dict = property.to_dict_basic()
 
         current_lease = Lease.query.filter(db.and_(property.id == Lease.property_id,
-                                                    Lease.is_active == 1)).first()
+                                                    Lease.is_active == True)).first()
                                                     
         if (current_lease != None):
             property_dict['rent'] = current_lease.rent
@@ -60,7 +60,7 @@ def get_a_property(propertyId):
           return jsonify({ "message": "Property couldn't be found"}), 404
 
     current_lease = Lease.query.filter(db.and_(property.id == Lease.property_id,
-                                                    Lease.is_active == 1)).first()
+                                                    Lease.is_active == True)).first()
     
     if (current_lease != None):
         property.is_vacant = False

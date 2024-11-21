@@ -37,7 +37,7 @@ def currUserInfo():
 
         all_properties_count = Property.query.filter(Property.user_id == user.id).count()
         occupied_properties_count = Property.query.join(Lease).filter(db.and_(Property.user_id == user.id,
-                                                                      Lease.is_active == 1)).count()
+                                                                      Lease.is_active == True)).count()
         vacant_property_count = all_properties_count - occupied_properties_count
        
 
