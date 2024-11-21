@@ -31,7 +31,7 @@ export default function Properties (){
     return (
         <div className='properties--page'>
             <div className='new-property-container'>
-                <button className='new-property-button'>New Property</button>
+                <button className='create-property-button-listPage'>New Property</button>
             </div>
            
             <table>

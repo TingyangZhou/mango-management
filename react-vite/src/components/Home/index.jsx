@@ -142,8 +142,8 @@ export default function Home() {
                         <Pie data={pieData_vacancy} options={pieOptions_vacancy} />
                     </div>
                     <ul className="info-list">
-                        <li>Vacant: {userInfo?.num_vacant_properties}</li>
                         <li>Occupied: {userInfo?.num_occupied_properties}</li>
+                        <li>Vacant: {userInfo?.num_vacant_properties}</li>
                     </ul>
                 </div>
                 

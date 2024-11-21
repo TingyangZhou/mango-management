@@ -1,0 +1,96 @@
+.property-detail-page {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.property-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; /* Align items to the top */
+    border: 1px solid #ddd; /* Light border around the container */
+    border-radius: 10px; /* Rounded corners for the container */
+    padding: 20px; /* Add padding for spacing */
+    margin-top: 20px; /* Add spacing from the top */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+    background-color: #f9f9f9; /* Softer background color for contrast */
+}
+
+.property-buttons {
+    display: flex;
+    font-size: 16px;
+    flex-direction: column; /* Stack buttons vertically */
+    justify-content: flex-start; /* Align buttons to the top */
+    align-items: center; /* Center buttons horizontally */
+    gap: 15px; /* Add spacing between buttons */
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+    margin-left: 20px; /* Add spacing between buttons and table */
+}
+
+/* General button styling */
+.edit-property-button,
+.delete-property-button,
+.new-property-button {
+    padding: 10px 15px;
+    font-size: 16px; /* Updated font size */
+    border-radius: 8px; /* Slightly less rounded corners for a professional look */
+    border: none;
+    cursor: pointer;
+    font-weight: 500; /* Medium font-weight for a clean appearance */
+    transition: all 0.3s ease;
+    width: 170px;
+    text-align: center;
+    background-color: #666; /* Default muted gray background */
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* New Property Button */
+.new-property-button {
+    background-color: #4CAF50; /* Professional green */
+}
+
+.new-property-button:hover {
+    background-color: #388E3C; /* Slightly darker green on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    transform: translateY(-1px); /* Subtle lift effect */
+}
+
+/* Edit Property Button */
+.edit-property-button {
+    background-color: #4A90E2; /* Muted blue for edit */
+}
+
+.edit-property-button:hover {
+    background-color: #357ABD; /* Slightly darker blue on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Delete Property Button */
+.delete-property-button {
+    background-color: #D9534F; /* Muted red for delete */
+}
+
+.delete-property-button:hover {
+    background-color: #C9302C; /* Slightly darker red on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Styling for the property-info table */
+.property-info-table {
+    width: 60%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 16px;
+    background-color: #fff; /* White background for the table */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the table */
+    border-radius: 8px; /* Rounded corners for a clean look */
+}
+
+.property-info-table td {
+    padding: 15px;
+    vertical-align: middle;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
