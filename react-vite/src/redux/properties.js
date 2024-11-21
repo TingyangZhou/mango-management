@@ -118,7 +118,7 @@ export const updatePropertyThunk = (propertyData, propertyId) => async(dispatch)
 
 // Delete a property
 export const deletePropertyThunk = (propertyId) => async(dispatch) => {
-    res = await fetch(`/api/properties/${propertyId}`, {
+    const res = await fetch(`/api/properties/${propertyId}`, {
         method: 'DELETE'
     })
     if (res.ok){
@@ -157,13 +157,14 @@ export default function propertyReducer(state = initialState, { type, payload })
                 currentProperty:null,
                 properties: {...state.properties, [payload.id]:payload}
             }
-        case DELETE_PROPERTY:
+        case DELETE_PROPERTY: {
             let new_properties = {...state.properties};
             delete new_properties[payload]
             return {
                 currentProperty:null,
                 properties: new_properties
             }
+        }
         default:
             return state;
     }

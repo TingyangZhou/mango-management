@@ -15,7 +15,8 @@ import { MdOutlineBathroom } from "react-icons/md";
 const StockDetailsPage = () => {
     const dispatch = useDispatch();
     const { propertyId } = useParams();
-    const [ errors, setErrors ] = useState({});
+    const [ errors, setErrors ] = useState({})
+ 
 
     const currentProperty = useSelector(state => state.properties.currentProperty)
     
@@ -27,6 +28,8 @@ const StockDetailsPage = () => {
     }, [dispatch, propertyId])
 
     return (
+        <>
+        {Object.keys(errors).length !== 0 ? (<p className='hint'>{errors.message}</p>):
         <div className="property-detail-page">
             <div className='property-container'>
                 <h3 className="property-details-title">Property Details</h3>
@@ -55,9 +58,9 @@ const StockDetailsPage = () => {
 
 
         </div>
-        
+        }
             
-        
+    </>
     )
 }
 

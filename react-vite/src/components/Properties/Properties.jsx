@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import './Properties.css'
 import { getAllPropertiesThunk } from '../../redux/properties'
 import { useDispatch } from 'react-redux'

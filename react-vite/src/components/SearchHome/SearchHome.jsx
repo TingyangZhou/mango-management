@@ -16,7 +16,7 @@ export default function SearchHome() {
     // const navigate = useNavigate()
     const dispatch = useDispatch()
     const sessionUser = useSelector((state) => state.session.user);
-    const allStocks = useSelector((state) => state.stocks.stocks);
+
 
     useEffect(() => {
         dispatch(getAllWatchlistThunk())
@@ -32,7 +32,7 @@ export default function SearchHome() {
 
     return (
         <main>
-            <AllStocksList stocks={allStocks} pageSize={11} heightPx={675}/>
+            {/* <AllStocksList stocks={allStocks} pageSize={11} heightPx={675}/> */}
             <WatchlistStocksList/>
         </main>
     );

@@ -1,14 +1,14 @@
 import "./Navigation.css";
 import { useSelector } from "react-redux";
 // import { useEffect, useState } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton.jsx"
 
 
 
 function Navigation() {
   const sessionUser = useSelector((state) => state.session.user);
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
 
   const navClassName = sessionUser ? "nav-bar-main": "hidden-home-link"
