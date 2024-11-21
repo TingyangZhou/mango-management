@@ -1,3 +1,7 @@
+.hint {
+    color: red;
+}
+
 /* Dark mode styles */
 .dark-mode body {
     background-color: black;

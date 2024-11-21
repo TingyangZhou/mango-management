@@ -41,25 +41,3 @@
 .hidden-profile-button, .hidden-home-link {
   display: none;
 }
-/* 
-.search-bar-container {
-  display: flex;
-  align-items: center;
-  border: 1px solid rgb(126, 126, 126);
-  border-radius: 5px;
-  height: 32px;
-  width: 30%;
-}
-
-.search-bar-container svg {
-  margin-left: 5px;
-  color: grey;
-  font-size: 20px;
-}
-
-.search-bar-container input {
-  border: none;
-  height: 20px;
-  margin-bottom: 5px;
-  outline: none;
-} */

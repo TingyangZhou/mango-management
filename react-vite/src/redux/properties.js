@@ -71,8 +71,9 @@ export const getOnePropertyThunk = (propertyId) => async (dispatch) => {
         const data = await res.json();
         dispatch(getOneProperty(data));
     } else {
+        
         const errors = await res.json();
-        return errors;
+        throw errors;
     }
 };
 
