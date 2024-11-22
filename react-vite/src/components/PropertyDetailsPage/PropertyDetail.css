@@ -155,7 +155,7 @@
   
   /* No (Keep Spot) button styling */
   .no-button {
-    background-color: #4d4d4d; /* Dark grey background for keep spot */
+    background-color: green; /* Dark grey background for keep spot */
     color: white;
   
   }

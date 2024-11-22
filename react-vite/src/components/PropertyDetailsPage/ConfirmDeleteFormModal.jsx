@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deletePropertyThunk } from '../../redux/properties';
 import { useModal } from '../../context/Modal';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function ConfirmDeleteFormModal({propertyId}) {
     const dispatch=useDispatch();
+    const navigate = useNavigate();
     const { closeModal } = useModal();
     const [ errors, setErrors ]=useState({});
 
@@ -12,9 +14,11 @@ function ConfirmDeleteFormModal({propertyId}) {
         setErrors({});
         e.preventDefault();
 
-        return dispatch(deletePropertyThunk(propertyId))
+        dispatch(deletePropertyThunk(propertyId))
         .then(closeModal)
         .catch(error => setErrors(error));
+        
+        return navigate('/properties');
         
     }
     

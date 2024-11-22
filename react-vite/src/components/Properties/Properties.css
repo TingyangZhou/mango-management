@@ -19,8 +19,7 @@ a {
 
 .create-property-button-listPage {
   padding: 10px 15px;
-  font-size: 18px;
-  font-weight: bold; 
+  font-size: 16px; /* Updated font size */
   border-radius: 8px; /* Slightly less rounded corners for a professional look */
   border: none;
   cursor: pointer;
@@ -28,9 +27,10 @@ a {
   transition: all 0.3s ease;
   width: 170px;
   text-align: center;
-  background-color: #4CAF50; /* Default muted gray background */
+  background-color: #666; /* Default muted gray background */
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background-color: #4CAF50; /* Default muted gray background */
   margin-right:10%;
 }
 

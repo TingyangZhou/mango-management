@@ -15,9 +15,18 @@ const PropertyForm = ({property, formType}) =>{
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleCancel = () => {
-        navigate(`/properties`)
+    let handleCancel;
+
+    if (formType === "Create Property") {
+        handleCancel = () => {
+            navigate(`/properties`)
+        }
+    } else if (formType === "Update Property"){
+        handleCancel = () => {
+            navigate(`/properties/${property.id}`)
+        }
     }
+    
     
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -30,7 +39,7 @@ const PropertyForm = ({property, formType}) =>{
             } else if(formType === 'Create Property'){
                 const newProperty = await dispatch(createPropertyThunk(updatedProperty))
                 
-                navigate(`/properties/${newProperty.id}`)
+                navigate(`/properties`)
             } 
         } catch(error){
             setErrors(error);
@@ -67,6 +76,7 @@ const PropertyForm = ({property, formType}) =>{
                         id="propertyType"
                         name="property_type"
                         value={property_type}
+                        required
                         onChange={(e) => setProperty_type(e.target.value)}
                     >
                         <option value="" disabled>
