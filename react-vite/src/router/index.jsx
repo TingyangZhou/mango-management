@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
+import UpdatePropertyForm from '../components/PropertyForm/UpdatePropertyForm.jsx'
+import CreatePropertyForm from '../components/PropertyForm/CreatePropertyForm.jsx'
 import Layout from './Layout';
 import Home from '../components/Home';
 import Properties from '../components/Properties';
@@ -35,7 +37,18 @@ export const router = createBrowserRouter([
             {
                 path: '/properties/:propertyId',
                 element: <PropertyDetail />,
+            },
+            {
+                path: '/properties/:propertyId/edit',
+                element: <UpdatePropertyForm />
+            },
+            {
+                path: '/properties/new',
+                element: <CreatePropertyForm />
             }
+
+
+
             // {
             //     path: 'profile/:userId',
             //     element: <Profile />,

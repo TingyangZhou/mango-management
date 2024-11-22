@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 
 #modal-background {
@@ -20,14 +21,5 @@
 
 #modal-content {
   position: absolute;
-
-  width: 400px;
-  max-width: 90%;
-  background-color: #ffffff;
-  border-radius: 0.3125rem; /* Consistent border radius with other pages */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  /* margin: 1.25rem auto;  */
-  font-family: Arial, sans-serif;
-
+  background-color: white;
 }

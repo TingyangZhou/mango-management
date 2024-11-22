@@ -80,6 +80,7 @@ export const getOnePropertyThunk = (propertyId) => async (dispatch) => {
 
 // create a new property
 export const createPropertyThunk = (propertyData) => async(dispatch) =>{
+
     const res = await fetch(`/api/properties`, {
         method: 'POST',
         headers: {
@@ -91,6 +92,7 @@ export const createPropertyThunk = (propertyData) => async(dispatch) =>{
     if (res.ok) {
         const newProperty = await res.json();
         dispatch(createProperty(newProperty));
+        return newProperty;
     } else{
         const error = await res.json();
         throw error;

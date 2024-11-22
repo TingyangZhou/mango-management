@@ -2,8 +2,11 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import {  getOnePropertyThunk } from "../../redux/properties";
+import OpenModalButton from '../OpenModalButton';
+import ConfirmDeleteFormModal from './ConfirmDeleteFormModal.jsx'
+
 // import { useTheme } from '../../context/ThemeContext';
 import './PropertyDetail.css';
 import { FaMapMarkerAlt} from "react-icons/fa";
@@ -14,6 +17,7 @@ import { MdOutlineBathroom } from "react-icons/md";
 
 const StockDetailsPage = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { propertyId } = useParams();
     const [ errors, setErrors ] = useState({})
  
@@ -21,14 +25,23 @@ const StockDetailsPage = () => {
     const currentProperty = useSelector(state => state.properties.currentProperty)
     
     useEffect(()=>{
+
         dispatch(getOnePropertyThunk(propertyId))
             .catch((error) => {
-                console.log("Error from thunk:", error); // Debugging
+                // console.log("Error from thunk:", error); // Debugging
                 setErrors(error);
             })
     }, [dispatch, propertyId])
-
  
+    
+
+    const handleEditProperty =() =>{
+        navigate(`/properties/${propertyId}/edit`)
+    }
+
+    const handleCreateProperty =() =>{
+        navigate(`/properties/new`)
+    }
 
     return (
         <>
@@ -51,9 +64,23 @@ const StockDetailsPage = () => {
                 </table>
 
                 <div className = "property-buttons">
-                    <button className='new-property-button'>New Property</button>
-                    <button className='edit-property-button'>Edit Property</button>
-                    <button className='delete-property-button'>Remove Property</button>
+                    <button 
+                        className='new-property-button'
+                        onClick={handleCreateProperty}>
+                            New Property
+                    </button>
+
+                    <button 
+                        className='edit-property-button'
+                        onClick={handleEditProperty}>
+                            Edit Property
+                    </button>
+                    <OpenModalButton
+                        className = "open-modal-button"
+                        buttonText = 'Remove Property'
+                        modalComponent={<ConfirmDeleteFormModal propertyId = {propertyId}/>}
+                        onModalClose = {()=> navigate(`/properties/${propertyId}`)}
+                    />
                 </div>
             
             </div>

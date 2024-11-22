@@ -81,7 +81,7 @@ def get_a_property(propertyId):
 
 
 # Create A Property
-@property_routes.route("/", methods=['POST'])
+@property_routes.route("", methods=['POST'])
 @login_required
 def add_property():
    user = User.query.get(current_user.id)

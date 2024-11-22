@@ -94,3 +94,68 @@
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
+
+.confirm-delete-form {
+    background-color: white;
+    padding: 20px;
+   
+    border-radius: 10px;
+    border: 3px solid #888; /* Border around the form */
+    width: 350px;
+    height: 250px;
+    margin: 0 auto; /* Center the form horizontally */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  
+.confirm-delete-form h1{
+    margin-bottom: 0px;
+   
+  }
+  
+  /* Paragraph styling */
+  .confirm-delete-form p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: left;
+    margin-top: 0px;
+    /* border: solid 1px red; */
+  }
+  
+  
+  
+  
+  /* Button styles */
+.yes-button, .no-button {
+    display: block;
+    width: 100%; /* Full width button */
+    padding: 10px;
+    margin-bottom: 15px; /* Spacing between buttons */
+    font-size: 16px;
+    border: 2px solid black; /* Black border */
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Yes (Delete Spot) button styling */
+  .yes-button {
+    background-color: #ff4d4d; /* Red background for delete */
+    color: white;
+  }
+  
+  
+  
+  /* No (Keep Spot) button styling */
+  .no-button {
+    background-color: #4d4d4d; /* Dark grey background for keep spot */
+    color: white;
+  
+  }

@@ -8,7 +8,7 @@ const CreatePropertyForm = ()=>{
     return (
         <PropertyForm
             property={property}
-            formType="Create Form"
+            formType="Create Property"
         />
     );
 

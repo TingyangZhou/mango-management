@@ -17,6 +17,19 @@ export default function Properties (){
     const properties_arr = Object.values(properties);
     // console.log("property array:", properties_arr);
 
+    const sortedProperties = properties_arr.sort((a, b) => {
+        const dateA = new Date(a.created_at);
+        const dateB = new Date(b.created_at);
+    
+        // Sort in ascending order (earliest to latest)
+        return dateB - dateA;
+
+    });
+    
+    
+    const handleCreateProperty =() =>{
+        navigate(`/properties/new`)
+    }
    
     const page = searchParams.get('page') || 1;
     const per_page = searchParams.get('per_page') || 10;
@@ -31,7 +44,11 @@ export default function Properties (){
     return (
         <div className='properties--page'>
             <div className='new-property-container'>
-                <button className='create-property-button-listPage'>New Property</button>
+                <button  
+                    onClick={handleCreateProperty}
+                    className='create-property-button-listPage'>
+                        New Property
+                    </button>
             </div>
            
             <table>
@@ -44,7 +61,7 @@ export default function Properties (){
                     </tr>
                 </thead>
                 <tbody>
-                    {properties_arr.map((property, index) => (
+                    {sortedProperties.map((property, index) => (
                         <tr key={index}
                             onClick={() => navigate(`/properties/${property.id}`)}>
                             <td>{property.address}</td>
