@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from app.models import User, Property, Lease, Tenant, db
 from app.forms import CreatePropertyForm
 from sqlalchemy.exc import IntegrityError
+
 property_routes = Blueprint("portfolio", __name__, url_prefix="/api/properties")
 
 

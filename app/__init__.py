@@ -10,7 +10,7 @@ from .api.auth_routes import auth_routes
 # from .api.stock_routes import stock_routes
 from .api.user_routes import user_routes
 from .api.property_routes import property_routes
-# from .api.watchlist_routes import watchlist_routes
+from .api.lease_routes import lease_routes
 # from .api.stock_detail_routes import stock_detail_routes
 # from .api.search_routes import search_routes
 
@@ -36,7 +36,7 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes)
 app.register_blueprint(auth_routes)
-# app.register_blueprint(stock_routes, url_prefix="/api/stocks")
+app.register_blueprint(lease_routes)
 app.register_blueprint(property_routes)
 # app.register_blueprint(watchlist_routes, url_prefix="/api/watchlist")
 # app.register_blueprint(stock_detail_routes, url_prefix="/api/stocks")

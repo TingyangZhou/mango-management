@@ -1,3 +1,4 @@
 from .login_form import LoginForm
 from .signup_form import SignUpForm
 from .property_form import CreatePropertyForm
+from .lease_form import CreateLeaseForm

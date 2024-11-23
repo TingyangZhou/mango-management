@@ -1,5 +1,6 @@
 from .db import SCHEMA, add_prefix_for_prod, db, environment
 from datetime import datetime, timezone
+import uuid
 
 class Lease(db.Model):
     __tablename__ = "leases"
@@ -8,7 +9,7 @@ class Lease(db.Model):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    lease_number = db.Column(db.Integer, nullable = False, unique=True)
+    lease_number = db.Column(db.String, nullable = False, unique=True, default=lambda: uuid.uuid4().hex[:8])
     property_id = db.Column(
         db.Integer, 
         db.ForeignKey(add_prefix_for_prod('properties.id'), ondelete="CASCADE"), 

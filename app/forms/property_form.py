@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileAllowed, FileField, FileRequired
+# from flask_wtf.file import FileAllowed, FileField, FileRequired
 from wtforms import IntegerField, StringField
 from wtforms.validators import DataRequired, InputRequired, NumberRange, ValidationError
 
-from app.api.aws import ALLOWED_EXTENSIONS
+# from app.api.aws import ALLOWED_EXTENSIONS
 
 
 class CreatePropertyForm(FlaskForm):
