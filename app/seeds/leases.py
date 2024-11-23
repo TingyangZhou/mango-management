@@ -6,7 +6,7 @@ from datetime import datetime
 # # Adds demo tweets
 def seed_leases():
     lease1 = Lease(
-        lease_number=1001,
+  
         property_id=1,
         start_date=datetime(2024, 1, 1).date(),
         end_date=datetime(2024, 12, 31).date(),
@@ -17,7 +17,7 @@ def seed_leases():
         is_active=True
     )
     lease2 = Lease(
-        lease_number=1002,
+
         property_id=2,
         start_date=datetime(2024, 2, 1).date(),
         end_date=datetime(2024, 12, 31).date(),
@@ -28,7 +28,7 @@ def seed_leases():
         is_active=True
     )
     lease3 = Lease(
-        lease_number=1003,
+  
         property_id=3,
         start_date=datetime(2024, 3, 1).date(),
         end_date=datetime(2024, 12, 31).date(),
@@ -39,7 +39,7 @@ def seed_leases():
         is_active=True
     )
     lease4 = Lease(
-        lease_number=1004,
+    
         property_id=4,
         start_date=datetime(2024, 4, 1).date(),
         end_date=datetime(2025, 4, 1).date(),
@@ -51,7 +51,7 @@ def seed_leases():
     )
 
     lease5 = Lease(
-        lease_number=1005,
+
         property_id=1,
         start_date=datetime(2022, 2, 1).date(),
         end_date=datetime(2023, 2, 1).date(),

@@ -1,9 +1,9 @@
-.property-detail-page {
+.active-lease-page {
     width: 80%;
     margin: 0 auto;
 }
 
-.property-container {
+.active-lease-container {
     display: flex;
     justify-content: space-around;
     align-items: center; /* Align items to the top */
@@ -15,7 +15,7 @@
     background-color: #f9f9f9; /* Softer background color for contrast */
 }
 
-.property-buttons {
+.active-lease-buttons {
     display: flex;
     font-size: 18px;
     flex-direction: column; /* Stack buttons vertically */
@@ -27,9 +27,9 @@
 }
 
 /* General button styling */
-.edit-property-button,
-.delete-property-button,
-.new-property-button {
+.edit-lease-button,
+.delete-lease-button,
+.new-lease-button {
     padding: 10px 15px;
     font-size: 18px; /* Updated font size */
     border-radius: 8px; /* Slightly less rounded corners for a professional look */
@@ -45,40 +45,40 @@
 }
 
 /* New Property Button */
-.new-property-button {
+.new-lease-button {
     background-color: #4CAF50; /* Professional green */
 }
 
-.new-property-button:hover {
+.new-lease-button:hover {
     background-color: #388E3C; /* Slightly darker green on hover */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     transform: translateY(-1px); /* Subtle lift effect */
 }
 
 /* Edit Property Button */
-.edit-property-button {
+.edit-lease-button {
     background-color: #4A90E2; /* Muted blue for edit */
 }
 
-.edit-property-button:hover {
+.edit-lease-button:hover {
     background-color: #357ABD; /* Slightly darker blue on hover */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transform: translateY(-1px);
 }
 
 /* Delete Property Button */
-.delete-property-button {
+.delete-lease-button {
     background-color: #D9534F; /* Muted red for delete */
 }
 
-.delete-property-button:hover {
+.delete-lease-button:hover {
     background-color: #C9302C; /* Slightly darker red on hover */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transform: translateY(-1px);
 }
 
 /* Styling for the property-info table */
-.property-info-table {
+.lease-info-table {
     width: 65%;
     margin: 0;
     border-collapse: collapse;
@@ -88,7 +88,7 @@
     border-radius: 8px; /* Rounded corners for a clean look */
 }
 
-.property-info-table td {
+.lease-info-table td {
     padding: 15px;
     vertical-align: middle;
     text-align: left;

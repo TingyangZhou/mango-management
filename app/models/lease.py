@@ -9,7 +9,6 @@ class Lease(db.Model):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    lease_number = db.Column(db.String, nullable = False, unique=True, default=lambda: uuid.uuid4().hex[:8])
     property_id = db.Column(
         db.Integer, 
         db.ForeignKey(add_prefix_for_prod('properties.id'), ondelete="CASCADE"), 
@@ -31,14 +30,13 @@ class Lease(db.Model):
     def to_dict_basic(self):
         return {
             "id": self.id,
-            "lease_number": self.lease_number,
             "property_id": self.property_id,
-            "start_date": self.start_date,
-            "end_date": self.end_date,
+            "start_date": self.start_date.strftime('%Y-%m-%d') if self.start_date else None,
+            "end_date": self.end_date.strftime('%Y-%m-%d') if self.end_date else None,
             "rent": self.rent,
             "rent_due_day": self.rent_due_day,
             "deposit": self.deposit,
-            "deposit_due_date": self.deposit_due_date,
+            "deposit_due_date":self.deposit_due_date.strftime('%Y-%m-%d') if self.deposit_due_date else None,
             "is_active": self.is_active,
             "created_at": self.created_at,
             

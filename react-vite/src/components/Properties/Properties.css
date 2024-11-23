@@ -64,7 +64,7 @@ th {
   text-align: left; /* Aligns text to the left */
   padding: 10px; /* Adds padding for better spacing */
   border: none; 
-  font-size:18px;
+  font-size:22px;
 }
 
 /* Cell styling */
@@ -72,7 +72,7 @@ td {
   padding: 15px; /* Adds padding to table cells */
   text-align: left; /* Aligns text to the left */
   vertical-align: middle;
-  font-size:18px;
+  font-size:22px;
 
 }
 

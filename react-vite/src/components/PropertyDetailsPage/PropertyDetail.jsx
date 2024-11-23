@@ -6,6 +6,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import {  getOnePropertyThunk } from "../../redux/properties";
 import OpenModalButton from '../OpenModalButton';
 import ConfirmDeleteFormModal from './ConfirmDeleteFormModal.jsx'
+import LeaseDetail from './LeaseDetail.jsx'
 
 // import { useTheme } from '../../context/ThemeContext';
 import './PropertyDetail.css';
@@ -48,7 +49,7 @@ const StockDetailsPage = () => {
         {Object.keys(errors).length !== 0 ? (<p className='hint'>{errors.message}</p>):
         <div className="property-detail-page">
             <div className='property-container'>
-                <h3 className="property-details-title">Property Details</h3>
+                <h2 className="property-details-title">Property Details</h2>
                 <table className="property-info-table">
                     
                     <tr>
@@ -89,6 +90,8 @@ const StockDetailsPage = () => {
 
         </div>
         }
+
+        <LeaseDetail propertyId={propertyId} />
             
     </>
     )

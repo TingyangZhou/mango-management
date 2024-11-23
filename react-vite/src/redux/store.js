@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
     properties: propertyReducer,
     watchlist: watchlistReducer,
     userInfo: userInfoReducer,
-    lease: leaseReducer
+    leases: leaseReducer
 });
 
 let enhancer;
