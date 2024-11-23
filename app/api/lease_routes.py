@@ -7,10 +7,10 @@ from datetime import datetime, timedelta
 from app.models import Lease, Property, db
 from app.forms import CreateLeaseForm
 
-lease_routes = Blueprint('leases', __name__, url_prefix="/api/properties")
+lease_routes = Blueprint('leases', __name__, url_prefix="/api")
 
 # Get all active leases
-@lease_routes.route('/<int:propertyId>/leases/active', methods=['GET'])
+@lease_routes.route('/properties/<int:propertyId>/leases/active', methods=['GET'])
 @login_required
 def get_active_lease(propertyId):
 
@@ -32,7 +32,7 @@ def get_active_lease(propertyId):
 
 
 # Get all expired leases
-@lease_routes.route('/<int:propertyId>/leases/expired', methods=['GET'])
+@lease_routes.route('/properties/<int:propertyId>/leases/expired', methods=['GET'])
 @login_required
 def get_expired_leases(propertyId):
 
@@ -56,7 +56,7 @@ def get_expired_leases(propertyId):
 
 
 # Create a lease
-@lease_routes.route('/<int:propertyId>/leases', methods=['POST'])
+@lease_routes.route('/properties/<int:propertyId>/leases', methods=['POST'])
 @login_required
 def create_lease(propertyId):
     property = Property.query.get(propertyId)
@@ -94,7 +94,7 @@ def create_lease(propertyId):
 
 
 # Update a lease
-@lease_routes.route('/<int:propertyId>/leases/active', methods=['PATCH'])
+@lease_routes.route('/properties/<int:propertyId>/leases/active', methods=['PATCH'])
 @login_required
 def update_lease(propertyId):
     property = Property.query.get(propertyId)
@@ -123,7 +123,7 @@ def update_lease(propertyId):
 
 
 # Terminate A Lease
-@lease_routes.route('/<int:propertyId>/leases/terminate', methods=['PATCH'])
+@lease_routes.route('/properties/<int:propertyId>/leases/terminate', methods=['PATCH'])
 @login_required
 def terminate_lease(propertyId):
     property = Property.query.get(propertyId)
@@ -150,10 +150,14 @@ def terminate_lease(propertyId):
     
 
 # Delete a lease
-@lease_routes.route("/<int:propertyId>/leases", methods=['DELETE'])
+@lease_routes.route("/leases/<int:leaseId>", methods=['DELETE'])
 @login_required
-def delete_lease(propertyId):
-    property = Property.query.get(propertyId)
-    if not property:
-        return jsonify({"message": "Property couldn't be found"}), 404
+def delete_lease(leaseId):
+    lease = Lease.query.get(leaseId)
+    if not lease:
+        return jsonify(	{"message": "Lease couldn't be found"}), 200
     
+    db.session.delete(lease)
+    db.session.commit()
+
+    return jsonify(	{"message": "Successfully deleted"}), 200

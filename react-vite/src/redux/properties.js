@@ -51,7 +51,6 @@ const deleteProperty = (propertyId) => {
 
 // get all properties 
 export const getAllPropertiesThunk = (page, per_page) => async (dispatch) => {
-    // console.log("==========================")
     const res = await fetch(`/api/properties?page=${page}&per_page=${per_page}`);
         
     if (res.ok) {

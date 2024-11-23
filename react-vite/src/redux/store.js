@@ -11,14 +11,14 @@ import sessionReducer from './session';
 import propertyReducer from './properties';
 import watchlistReducer from './watchlist';
 import userInfoReducer from './users';
-import portfolioReducer from './portfolio';
+import leaseReducer from './leases';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     properties: propertyReducer,
     watchlist: watchlistReducer,
     userInfo: userInfoReducer,
-    portfolio: portfolioReducer
+    lease: leaseReducer
 });
 
 let enhancer;
