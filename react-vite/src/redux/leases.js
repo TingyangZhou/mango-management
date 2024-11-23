@@ -38,9 +38,10 @@ export const updateLease = (lease) => {
     };
 };
 
-export const terminateLease = () => {
+export const terminateLease = (lease) => {
     return {
         type: TERMINATE_LEASE,
+        payload: lease
     };
 };
 
@@ -66,6 +67,7 @@ export const getActiveLeaseThunk = (propertyId) => async (dispatch) => {
         throw errors;
     }
 };
+
 
 // get expired leases
 export const getExpiredLeaseThunk = (propertyId) => async (dispatch) => {
@@ -126,7 +128,7 @@ export const terminateLeaseThunk = (propertyId) => async (dispatch) => {
     });
     if (res.ok) {
         const updated_lease = await res.json();
-        dispatch(terminateLease(terminateLease(updated_lease)));
+        dispatch((terminateLease(updated_lease)));
     } else {
         const error = await res.json();
         throw error;
@@ -135,11 +137,14 @@ export const terminateLeaseThunk = (propertyId) => async (dispatch) => {
 
  //remove lease thunk
 export const removeLeaseThunk = (leaseId) => async (dispatch) => {
+   
     const res = await fetch(`/api/leases/${leaseId}`, {
         method: 'DELETE'
     });
     if (res.ok){
-        dispatch(deleteLease(leaseId))
+        
+        dispatch(removeLease(leaseId))
+        
     } else {
         const error = await res.json();
         throw error;
@@ -167,20 +172,18 @@ const leaseReducer = (state = initialState, {type, payload}) => {
         case TERMINATE_LEASE:
             return {
                 ...state,
-                activeLease: {},
-                expiredLeases:{...state.expiredLeases, [payload.id]: payload}
+                activeLease: null,
+                expiredLeases:{...(state.expiredLeases), [payload.id]: payload}
             };
         case REMOVE_LEASE:
             return {
                 ...state,
-                activeLease: state.activeLease[id] === payload ? {} : state.activeLease,
-                expiredLeases: 
-                    normalizer(
-                        Object.values(state.expiredLeases)
-                        .filter(lease => lease.id !== payload)
-                    )
-                
-            }
+                activeLease: state.activeLease.id === Number(payload) ? null : state.activeLease, // Update activeLease
+                expiredLeases: normalizer(
+                    Object.values(state.expiredLeases).filter(lease => lease.id !== Number(payload)) // Normalize filtered leases
+                ),
+            };
+        
 
         default:
             return state;

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import {  getOnePropertyThunk } from "../../redux/properties";
 import OpenModalButton from '../OpenModalButton';
-import ConfirmDeleteFormModal from './ConfirmDeleteFormModal.jsx'
+import ConfirmDeleteFormModal from './ConfirmDeletePropertyModal.jsx'
 import LeaseDetail from './LeaseDetail.jsx'
 
 // import { useTheme } from '../../context/ThemeContext';
@@ -78,7 +78,7 @@ const StockDetailsPage = () => {
                     </button>
                     <OpenModalButton
                         className = "open-modal-button"
-                        buttonText = 'Remove Property'
+                        buttonText = 'Remove'
                         modalComponent={<ConfirmDeleteFormModal propertyId = {propertyId}/>}
                         onModalClose = {()=> navigate(`/properties/${propertyId}`)}
                     />

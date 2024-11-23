@@ -24,6 +24,7 @@
     gap: 15px; /* Add spacing between buttons */
     flex-shrink: 0; /* Prevent buttons from shrinking */
     margin-left: 20px; /* Add spacing between buttons and table */
+    font-weight: bold;
 }
 
 /* General button styling */
@@ -31,37 +32,29 @@
 .delete-lease-button,
 .new-lease-button {
     padding: 10px 15px;
-    font-size: 18px; /* Updated font size */
+    font-weight:800;
+    font-size: 16px; /* Updated font size */
     border-radius: 8px; /* Slightly less rounded corners for a professional look */
-    border: none;
+    border: #FF8C00 solid 2px;
     cursor: pointer;
-    font-weight: 500; /* Medium font-weight for a clean appearance */
     transition: all 0.3s ease;
     width: 170px;
     text-align: center;
-    background-color: #666; /* Default muted gray background */
-    color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: transparent;
+    color: #FF8C00;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
-/* New Property Button */
-.new-lease-button {
-    background-color: #4CAF50; /* Professional green */
-}
 
 .new-lease-button:hover {
-    background-color: #388E3C; /* Slightly darker green on hover */
+   
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     transform: translateY(-1px); /* Subtle lift effect */
 }
 
-/* Edit Property Button */
-.edit-lease-button {
-    background-color: #4A90E2; /* Muted blue for edit */
-}
 
 .edit-lease-button:hover {
-    background-color: #357ABD; /* Slightly darker blue on hover */
+  
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transform: translateY(-1px);
 }
@@ -82,7 +75,7 @@
     width: 65%;
     margin: 0;
     border-collapse: collapse;
-    font-size: 18px;
+    font-size: 16px;
     background-color: #fff; /* White background for the table */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the table */
     border-radius: 8px; /* Rounded corners for a clean look */

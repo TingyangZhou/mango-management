@@ -123,7 +123,7 @@ def update_lease(propertyId):
 
 
 # Terminate A Lease
-@lease_routes.route('/properties/<int:propertyId>/leases/terminate', methods=['PATCH'])
+@lease_routes.route('/properties/<int:propertyId>/lease/terminate', methods=['PATCH'])
 @login_required
 def terminate_lease(propertyId):
     property = Property.query.get(propertyId)

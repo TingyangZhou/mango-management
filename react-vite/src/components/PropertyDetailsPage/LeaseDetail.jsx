@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { getActiveLeaseThunk } from "../../redux/leases.js";
 import OpenModalButton from '../OpenModalButton';
-import ConfirmDeleteFormModal from './ConfirmDeleteFormModal.jsx'
+import ConfirmDeleteLeaseModal from './ConfirmDeleteLeaseModal.jsx'
+import ConfirmTerminateLeaseModal from './ConfirmTerminateLeaseModal.jsx'
 import './LeaseDetail.css'
 
 // import { useTheme } from '../../context/ThemeContext';
@@ -98,8 +99,19 @@ const LeaseDetail = ({propertyId}) => {
                     {!activeLease? "" :
                     <OpenModalButton
                         className = "open-modal-button"
-                        buttonText = 'Remove Lease'
-                        modalComponent={<ConfirmDeleteFormModal propertyId = {propertyId}/>}
+                        buttonText = 'Terminate'
+                        modalComponent={<ConfirmTerminateLeaseModal propertyId = {propertyId}/>}
+                        onModalClose = {()=> navigate(`/properties/${propertyId}`)}
+                    />
+                    }
+
+                    {!activeLease? "" :
+                    <OpenModalButton
+                        className = "open-modal-button"
+                        buttonText = 'Remove'
+                        modalComponent={<ConfirmDeleteLeaseModal 
+                                        propertyId = {propertyId}
+                                        leaseId = {activeLease.id}/>}
                         onModalClose = {()=> navigate(`/properties/${propertyId}`)}
                     />
                     }

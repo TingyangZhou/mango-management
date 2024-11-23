@@ -17,7 +17,7 @@
 
 .property-buttons {
     display: flex;
-    font-size: 18px;
+    font-size: 16px;
     flex-direction: column; /* Stack buttons vertically */
     justify-content: flex-start; /* Align buttons to the top */
     align-items: center; /* Center buttons horizontally */
@@ -26,50 +26,47 @@
     margin-left: 20px; /* Add spacing between buttons and table */
 }
 
+h2{
+    font-size: 20px;
+}
+
 /* General button styling */
 .edit-property-button,
 .delete-property-button,
 .new-property-button {
     padding: 10px 15px;
-    font-size: 18px; /* Updated font size */
-    border-radius: 8px; /* Slightly less rounded corners for a professional look */
-    border: none;
+    font-size: 16px; /* Updated font size */
+    font-weight:800;
+    border-radius: 8px; 
+    border: 2px solid #FF8C00;
     cursor: pointer;
-    font-weight: 500; /* Medium font-weight for a clean appearance */
     transition: all 0.3s ease;
-    width: 170px;
+    width: 100%;
     text-align: center;
-    background-color: #666; /* Default muted gray background */
-    color: white;
+    background-color: white;
+    color: #FF8C00;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-/* New Property Button */
-.new-property-button {
-    background-color: #4CAF50; /* Professional green */
-}
 
 .new-property-button:hover {
-    background-color: #388E3C; /* Slightly darker green on hover */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     transform: translateY(-1px); /* Subtle lift effect */
 }
 
 /* Edit Property Button */
-.edit-property-button {
-    background-color: #4A90E2; /* Muted blue for edit */
-}
+
 
 .edit-property-button:hover {
-    background-color: #357ABD; /* Slightly darker blue on hover */
+   
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transform: translateY(-1px);
 }
 
 /* Delete Property Button */
-.delete-property-button {
+/* .delete-property-button {
     background-color: #D9534F; /* Muted red for delete */
-}
+} */
 
 .delete-property-button:hover {
     background-color: #C9302C; /* Slightly darker red on hover */
@@ -82,7 +79,7 @@
     width: 65%;
     margin: 0;
     border-collapse: collapse;
-    font-size: 18px;
+    font-size: 16px;
     background-color: #fff; /* White background for the table */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the table */
     border-radius: 8px; /* Rounded corners for a clean look */

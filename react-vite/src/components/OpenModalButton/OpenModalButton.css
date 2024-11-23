@@ -2,19 +2,19 @@
 .open-modal-button {
     padding: 10px 20px;
     font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
+    width: 175px;
+    border:#FF8C00 solid 2px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background-color: #D9534F; /* Red background */
-    color: white; /* White text for contrast */
+    background-color:white;
+    color: #FF8C00; 
+    font-weight:800;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 /* Hover effect for red button */
 .open-modal-button:hover {
-    background-color: #C9302C; /* Darker red on hover */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     transform: translateY(-2px); /* Slight lift effect */
 }
