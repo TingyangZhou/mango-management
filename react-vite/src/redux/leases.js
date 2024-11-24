@@ -71,11 +71,13 @@ export const getActiveLeaseThunk = (propertyId) => async (dispatch) => {
 
 // get expired leases
 export const getExpiredLeaseThunk = (propertyId) => async (dispatch) => {
+   
     const res = await fetch(`/api/properties/${propertyId}/leases/expired`);
     if (res.ok) {
         const data = await res.json();
-        dispatch(getExpiredLease(data.expired_lease));
+        dispatch(getExpiredLease(data.expired_leases));
     } else {
+        
         const errors = await res.json();
         throw errors;
     }
@@ -84,7 +86,7 @@ export const getExpiredLeaseThunk = (propertyId) => async (dispatch) => {
 
 // create a lease
 export const addLeaseThunk = (propertyId, leaseData) => async (dispatch) => {
-    const res = await fetch(`/api/properties/${propertyId}/lease`, {
+    const res = await fetch(`/api/properties/${propertyId}/leases`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -113,7 +115,7 @@ export const updateLeaseThunk = (propertyId, leaseData) => async (dispatch) => {
     });
     if (res.ok) {
         const updated_lease = await res.json();
-        dispatch(updateLease(updated_lease(leaseData)));
+        dispatch(updateLease(leaseData));
     } else {
         const error = await res.json();
         throw error;
@@ -178,7 +180,7 @@ const leaseReducer = (state = initialState, {type, payload}) => {
         case REMOVE_LEASE:
             return {
                 ...state,
-                activeLease: state.activeLease.id === Number(payload) ? null : state.activeLease, // Update activeLease
+                activeLease: state.activeLease?.id === Number(payload) ? null : state.activeLease, // Update activeLease
                 expiredLeases: normalizer(
                     Object.values(state.expiredLeases).filter(lease => lease.id !== Number(payload)) // Normalize filtered leases
                 ),

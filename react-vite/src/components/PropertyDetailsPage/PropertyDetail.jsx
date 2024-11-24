@@ -24,6 +24,7 @@ const StockDetailsPage = () => {
  
 
     const currentProperty = useSelector(state => state.properties.currentProperty)
+    const activeLease = useSelector(state => state.leases.activeLease)
     
     useEffect(()=>{
 
@@ -32,7 +33,7 @@ const StockDetailsPage = () => {
                 // console.log("Error from thunk:", error); // Debugging
                 setErrors(error);
             })
-    }, [dispatch, propertyId])
+    }, [dispatch, propertyId, activeLease])
  
     
 

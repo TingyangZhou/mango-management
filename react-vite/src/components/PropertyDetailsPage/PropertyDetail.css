@@ -30,6 +30,10 @@ h2{
     font-size: 20px;
 }
 
+
+.property-details-title{
+    font-weight: bold;
+}
 /* General button styling */
 .edit-property-button,
 .delete-property-button,
@@ -47,6 +51,21 @@ h2{
     color: #FF8C00;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
+
+.expired-lease-table-header th {
+    vertical-align: middle; /* Vertically center text */
+    text-align: center; /* Horizontally center text */
+    padding: 10px; /* Adds spacing for readability */
+    background-color: #f4f4f4; /* Optional: Light gray background for the header */
+    font-weight: bold; /* Optional: Bold font for headers */
+}
+
+.expired-lease-table-body td {
+    vertical-align: middle; /* Aligns text vertically in the middle */
+    text-align: center; /* Optional: Aligns text horizontally to the center */
+    padding: 10px; /* Optional: Adds padding for better spacing */
+}
+
 
 
 .new-property-button:hover {

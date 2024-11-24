@@ -20,9 +20,7 @@ export default function Properties (){
     const sortedProperties = properties_arr.sort((a, b) => {
         const dateA = new Date(a.created_at);
         const dateB = new Date(b.created_at);
-    
-        // Sort in ascending order (earliest to latest)
-        return dateB - dateA;
+            return dateB - dateA;
 
     });
     

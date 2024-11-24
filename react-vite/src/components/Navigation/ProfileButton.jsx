@@ -12,12 +12,12 @@ import { MdOutlineLogout } from "react-icons/md";
 import { BsLightbulbFill } from "react-icons/bs";
 
 // import { toggleTheme } from '../../themeUtils';
-import { useTheme } from '../../context/ThemeContext';
+// import { useTheme } from '../../context/ThemeContext';
 
 function ProfileButton() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isDarkMode, toggleTheme } = useTheme();
+  // const { isDarkMode, toggleTheme } = useTheme();
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
@@ -63,9 +63,9 @@ function ProfileButton() {
     closeMenu()
   }
 
-  const handleModeChange = () => {
-    toggleTheme();
-  };
+  // const handleModeChange = () => {
+  //   toggleTheme();
+  // };
 
   return (
     <>

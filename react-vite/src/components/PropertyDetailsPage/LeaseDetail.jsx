@@ -3,11 +3,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
-import { getActiveLeaseThunk } from "../../redux/leases.js";
+import { getActiveLeaseThunk, getExpiredLeaseThunk } from "../../redux/leases.js";
 import OpenModalButton from '../OpenModalButton';
 import ConfirmDeleteLeaseModal from './ConfirmDeleteLeaseModal.jsx'
 import ConfirmTerminateLeaseModal from './ConfirmTerminateLeaseModal.jsx'
+
 import './LeaseDetail.css'
+import { TbCalendarDue } from "react-icons/tb";
+import { AiFillDollarCircle } from "react-icons/ai";
+import { CiCalendarDate } from "react-icons/ci";
+import { RiExpandUpDownLine } from "react-icons/ri";
 
 // import { useTheme } from '../../context/ThemeContext';
 
@@ -19,6 +24,20 @@ const LeaseDetail = ({propertyId}) => {
  
 
     const activeLease = useSelector(state => state.leases.activeLease)
+    const expiredLeases = useSelector(state => state.leases.expiredLeases)
+    const expiredLeases_arr = Object.values(expiredLeases)
+    const sortedExpiredLeases = expiredLeases_arr.sort((a, b) => {
+        const dateA = new Date(a.created_at);
+        const dateB = new Date(b.created_at);
+            return dateB - dateA;
+
+    });
+
+    const [isExpanded, setIsExpanded] = useState(false);
+    const toggleExpand = () => {
+        setIsExpanded(!isExpanded);
+    };
+
     
     useEffect(()=>{
         dispatch(getActiveLeaseThunk(propertyId))
@@ -26,6 +45,14 @@ const LeaseDetail = ({propertyId}) => {
                 // console.log("Error from thunk:", error); // Debugging
                 setErrors(error);
             })
+    }, [dispatch, propertyId])
+
+    useEffect(()=>{
+        dispatch(getExpiredLeaseThunk(propertyId))
+        .catch((error) => {
+            // console.log("Error from thunk:", error); // Debugging
+            setErrors(error);
+        })
     }, [dispatch, propertyId])
  
     function getOrdinalSuffix(day) {
@@ -35,34 +62,42 @@ const LeaseDetail = ({propertyId}) => {
         return "th";
       }
 
-    // const handleEditProperty =() =>{
-    //     navigate(`/properties/${propertyId}/edit`)
-    // }
+    
+    const handleCreateLease = (e) =>{
+        navigate(`/properties/${propertyId}/leases/new`);
+    }
 
-    // const handleCreateProperty =() =>{
-    //     navigate(`/properties/new`)
-    // }
+    const handleEditLease = (e) =>{
+        navigate(`/properties/${propertyId}/leases/edit`);
+    }
 
     return (
         <>
         {Object.keys(errors).length !== 0 ? (<p className='hint'>{errors.message}</p>):
+        <>
         <div className="active-lease-page">
             <div className='active-lease-container'>
-                <h2 className="current-lease-title">Current Lease</h2>
+            {activeLease?<h2 className="current-lease-title">Current Lease ID: {activeLease?.id}</h2>
+            :<h2 className="current-lease-title">Current Lease: </h2>}
 
-            {!activeLease? <h2>No active lease is found for this property</h2> : 
+            {!activeLease? 
+                <table className="lease-info-table">
+                    <tr>
+                        <td style={{ textAlign: "center"}}>No active lease is found for this property</td>
+                    </tr>
+                </table> : 
                 <table className="lease-info-table">
                
                     <tr>
                         
-                        <td> Start Date: {activeLease?.start_date}</td>
-                        <td> End Date: {activeLease?.end_date}</td>
+                        <td> <CiCalendarDate /> Start: {activeLease?.start_date}</td>
+                        <td> <CiCalendarDate /> End: {activeLease?.end_date}</td>
                     </tr>
 
                     <tr>
-                        <td> Rent: ${activeLease?.rent} </td>
+                        <td> <AiFillDollarCircle /> Rent: ${activeLease?.rent} </td>
                         <td>
-                            Rent Due:{" "}
+                            <TbCalendarDue /> Rent Due:{" "}
                             {activeLease?.rent_due_day === 1
                                 ? "1st of every month"
                                 : `${activeLease?.rent_due_day}${getOrdinalSuffix(activeLease?.rent_due_day)} of every month`}
@@ -73,8 +108,8 @@ const LeaseDetail = ({propertyId}) => {
                     
                     
                     <tr>
-                        <td> Deposit ${activeLease?.deposit} </td>
-                        <td> Deposit Due: {activeLease?.deposit_due_date}</td>
+                        <td> <AiFillDollarCircle /> Deposit: ${activeLease?.deposit} </td>
+                        <td> <TbCalendarDue /> Deposit Due: {activeLease?.deposit_due_date}</td>
                        
                     </tr>
                    
@@ -83,15 +118,15 @@ const LeaseDetail = ({propertyId}) => {
 
                 <div className = "active-lease-buttons">
                     <button 
-                        className='new-lease-button'
-                        // onClick={handleCreateLease}
+                        className={activeLease? 'hidden':'new-lease-button'}
+                        onClick={handleCreateLease}
                         >
                             New Lease
                     </button>
 
                     {!activeLease? "" : <button 
                         className='edit-lease-button'
-                        // onClick={handleEditLease}
+                        onClick={handleEditLease}
                         >
                             Edit Lease
                     </button> }
@@ -111,7 +146,7 @@ const LeaseDetail = ({propertyId}) => {
                         buttonText = 'Remove'
                         modalComponent={<ConfirmDeleteLeaseModal 
                                         propertyId = {propertyId}
-                                        leaseId = {activeLease.id}/>}
+                                        leaseId = {activeLease?.id}/>}
                         onModalClose = {()=> navigate(`/properties/${propertyId}`)}
                     />
                     }
@@ -123,6 +158,53 @@ const LeaseDetail = ({propertyId}) => {
 
 
         </div>
+        
+        {sortedExpiredLeases.length !== 0 && 
+        <button 
+            className = "toggle-expand-button"
+            onClick={toggleExpand}>
+                {isExpanded ? "Hide Expired Leases" : "Show Expired Leases"} <RiExpandUpDownLine />
+        </button> }
+        
+        {isExpanded && (
+            <div className="expired-lease-container">
+                <table className = 'expired-lease-table'>
+                    <thead  className = 'expired-lease-table-header'>
+                        <tr>
+                            <th>Lease ID</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Rent ($/month)</th>
+                            <th>Deposit ($)</th>
+                            <th>Remove Lease</th>
+                        </tr>
+                    </thead>
+                    <tbody  className = 'expired-lease-table-body'>
+                        {sortedExpiredLeases.map((lease, index) => (
+                            <tr key={index}>
+                                <td>{lease.id}</td>
+                                <td>{lease.start_date}</td>
+                                <td>{lease.end_date}</td>
+                                <td>{lease.rent}</td>
+                                <td>{lease.deposit}</td>
+                                <td><OpenModalButton
+                                    className = "open-modal-button"
+                                    buttonText = 'Remove'
+                                    modalComponent={<ConfirmDeleteLeaseModal 
+                                                    propertyId = {propertyId}
+                                                    leaseId = {lease?.id}/>}
+                                    onModalClose = {()=> navigate(`/properties/${propertyId}`)}
+                                    />
+                                </td>
+
+
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        )}
+        </>     
         }
             
     </>

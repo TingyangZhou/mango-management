@@ -13,6 +13,7 @@
     margin-top: 20px; /* Add spacing from the top */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
     background-color: #f9f9f9; /* Softer background color for contrast */
+ 
 }
 
 .active-lease-buttons {
@@ -88,10 +89,31 @@
     border-bottom: 1px solid #ddd;
 }
 
+
+.toggle-expand-button {
+    padding: 10px 15px;
+    font-weight:600;
+    font-size: 16px; /* Updated font size */
+    border-radius: 8px; /* Slightly less rounded corners for a professional look */
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 20%;
+    text-align: center;
+    background-color: transparent;
+    color: black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    margin-left:70%;
+}
+
+.current-lease-title{
+    text-align: center;
+    font-weight: bold;
+}
+
 .confirm-delete-form {
     background-color: white;
     padding: 20px;
-   
     border-radius: 10px;
     border: 3px solid #888; /* Border around the form */
     width: 350px;

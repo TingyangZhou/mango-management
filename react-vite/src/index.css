@@ -1,5 +1,14 @@
 .hint {
-    color: red;
+    color: #D9534F; /* Muted red for a professional look */
+    font-size: 16px; /* Slightly smaller font size for emphasis */
+    padding-left: 4px; /* Slight padding for alignment */
+    display: block; /* Ensures it occupies its own line */
+
+}
+
+
+.hidden {
+    display: none;
 }
 
 /* Dark mode styles */

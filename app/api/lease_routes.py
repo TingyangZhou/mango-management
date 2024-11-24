@@ -94,7 +94,7 @@ def create_lease(propertyId):
 
 
 # Update a lease
-@lease_routes.route('/properties/<int:propertyId>/leases/active', methods=['PATCH'])
+@lease_routes.route('/properties/<int:propertyId>/lease', methods=['PATCH'])
 @login_required
 def update_lease(propertyId):
     property = Property.query.get(propertyId)

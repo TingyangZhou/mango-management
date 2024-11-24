@@ -10,7 +10,6 @@ function ConfirmDeleteLeaseModal({propertyId, leaseId}) {
     const { closeModal } = useModal();
     const [ errors, setErrors ]=useState({});
     
-
     const handleDeleteClick = (e) => {
         setErrors({});
         e.preventDefault();

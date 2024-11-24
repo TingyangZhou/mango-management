@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
 import { getUserInfoThunk } from '../../redux/users';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2'; 
 import 'chart.js/auto';
 
@@ -14,16 +14,21 @@ export default function Home() {
     const dispatch = useDispatch()
     const sessionUser = useSelector((state) => state.session.user);
     const userInfo = useSelector((state) => state.userInfo);
-    console.log(userInfo)
+    
 
     useEffect(() => {
         dispatch(getUserInfoThunk())
     }, [dispatch])
 
 
+    const [allZero_collection, setAllZero_collection] = useState(0);
+    const [allZero_vacancy, setAllZero_vacancy] = useState(0);
+
     if (!sessionUser) {
         return <Navigate to='/login'></Navigate>
     }
+
+
 
     const pieData_collection = {
         labels: ['Total Collected', 'Outstanding', 'Overdue'],
@@ -49,6 +54,12 @@ export default function Home() {
         ]
     };
 
+    useEffect(()=>{
+        setAllZero_collection(pieData_collection.datasets[0].data.every((value) => value === 0));
+        setAllZero_vacancy(pieData_vacancy.datasets[0].data.every((value) => value === 0));
+    })
+
+   
 
     const pieOptions_collection = {
         plugins: {
@@ -95,6 +106,8 @@ export default function Home() {
         ]
     };
 
+   
+
     const pieOptions_vacancy = {
         plugins: {
             legend: {
@@ -123,7 +136,10 @@ export default function Home() {
                 <div className="info-header">Collection</div>
                 <div className="info-container">
                     <div className="pie-chart-container">
-                        <Pie data={pieData_collection} options={pieOptions_collection} />
+                    {allZero_collection ? (
+                        <img style= {{width:"100%"}} src= 'images/no_data.jpg' alt="No data available to display"/>
+                        ) : (
+                        <Pie data={pieData_collection} options={pieOptions_collection} />)}
                     </div>
                     <ul className="info-list">
                         <li>Total Collected: ${userInfo?.collected}</li>
@@ -139,7 +155,11 @@ export default function Home() {
                 <div className="info-header">Occupancy</div>
                 <div className="info-container">
                     <div className="pie-chart-container">
+                    {allZero_vacancy ? (
+                        <img style= {{width:"100%"}} src= 'images/no_data.jpg' alt="No data available to display"/>
+                    ) : (
                         <Pie data={pieData_vacancy} options={pieOptions_vacancy} />
+                    )}
                     </div>
                     <ul className="info-list">
                         <li>Occupied: {userInfo?.num_occupied_properties}</li>
