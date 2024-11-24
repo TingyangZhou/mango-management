@@ -52,6 +52,7 @@ export default function Properties (){
             <table>
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Address</th>
                         <th>Rent ($ per month)</th>
                         <th>Tenants</th>
@@ -62,6 +63,7 @@ export default function Properties (){
                     {sortedProperties.map((property, index) => (
                         <tr key={index}
                             onClick={() => navigate(`/properties/${property.id}`)}>
+                            <td>{property.id}</td>
                             <td>{property.address}</td>
                             <td>{property.rent}</td>
                             <td>{property.num_tenants}</td>

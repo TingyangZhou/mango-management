@@ -78,7 +78,7 @@ const LeaseDetail = ({propertyId}) => {
         <div className="active-lease-page">
             <div className='active-lease-container'>
             {activeLease?<h2 className="current-lease-title">Current Lease ID: {activeLease?.id}</h2>
-            :<h2 className="current-lease-title">Current Lease: </h2>}
+            :<h2 className="current-lease-title">Current Lease </h2>}
 
             {!activeLease? 
                 <table className="lease-info-table">

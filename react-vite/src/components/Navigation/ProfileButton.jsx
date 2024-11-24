@@ -63,9 +63,9 @@ function ProfileButton() {
     closeMenu()
   }
 
-  // const handleModeChange = () => {
-  //   toggleTheme();
-  // };
+  const handleModeChange = () => {
+    toggleTheme();
+  };
 
   return (
     <>
@@ -81,10 +81,10 @@ function ProfileButton() {
                 <FaBriefcase />
                 <button className='profile-my-portfolio' onClick={handlePortfolioClick}>My Portfolio</button>
               </li>
-              <li className='profile-list-item-with-icon'>
+              {/* <li className='profile-list-item-with-icon'>
                 <BsLightbulbFill />
                 <button className='profile-mode-button' id="change-mode-button" onClick={handleModeChange}>{isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}</button>
-              </li>
+              </li> */}
               <li className='profile-list-item-with-icon'>
                 <MdOutlineLogout />
                 <button className='profile-log-out' onClick={logout}>Log Out</button>

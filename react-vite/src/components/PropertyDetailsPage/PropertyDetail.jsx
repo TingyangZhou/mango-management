@@ -16,7 +16,7 @@ import { MdOutlineBedroomParent } from "react-icons/md";
 import { MdOutlineBathroom } from "react-icons/md";
 
 
-const StockDetailsPage = () => {
+const PropertyDetailsPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { propertyId } = useParams();
@@ -50,7 +50,7 @@ const StockDetailsPage = () => {
         {Object.keys(errors).length !== 0 ? (<p className='hint'>{errors.message}</p>):
         <div className="property-detail-page">
             <div className='property-container'>
-                <h2 className="property-details-title">Property Details</h2>
+                <h2 className="property-details-title">Property ID: {currentProperty?.id}</h2>
                 <table className="property-info-table">
                     
                     <tr>
@@ -98,4 +98,4 @@ const StockDetailsPage = () => {
     )
 }
 
-    export default StockDetailsPage;
+    export default PropertyDetailsPage;
