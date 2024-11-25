@@ -2,7 +2,7 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { getActiveLeaseThunk, getExpiredLeaseThunk } from "../../redux/leases.js";
 import OpenModalButton from '../OpenModalButton';
 import ConfirmDeleteLeaseModal from './ConfirmDeleteLeaseModal.jsx'
@@ -32,6 +32,14 @@ const LeaseDetail = ({propertyId}) => {
             return dateB - dateA;
 
     });
+
+    const currentDate = new Date(); // Get the current date
+    const endDate = new Date(activeLease?.end_date);
+    let daysRemaining = 0;
+    if (activeLease?.end_date){
+        const timeDifference = endDate - currentDate; // Difference in milliseconds
+        daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+    }
 
     const [isExpanded, setIsExpanded] = useState(false);
     const toggleExpand = () => {
@@ -63,11 +71,11 @@ const LeaseDetail = ({propertyId}) => {
       }
 
     
-    const handleCreateLease = (e) =>{
+    const handleCreateLease = () =>{
         navigate(`/properties/${propertyId}/leases/new`);
     }
 
-    const handleEditLease = (e) =>{
+    const handleEditLease = () =>{
         navigate(`/properties/${propertyId}/leases/edit`);
     }
 
@@ -77,44 +85,48 @@ const LeaseDetail = ({propertyId}) => {
         <>
         <div className="active-lease-page">
             <div className='active-lease-container'>
-            {activeLease?<h2 className="current-lease-title">Current Lease ID: {activeLease?.id}</h2>
-            :<h2 className="current-lease-title">Current Lease </h2>}
+                {activeLease?
+                <div className="current-lease-section">
+                    <h2 className="current-lease-title">Current Lease ID: {activeLease?.id}</h2>
+                    <h2 className="days-remaining">Days Remaining: {daysRemaining}</h2>
+                </div>
+                :<h2 className="current-lease-title">Current Lease </h2>}
 
-            {!activeLease? 
-                <table className="lease-info-table">
-                    <tr>
-                        <td style={{ textAlign: "center"}}>No active lease is found for this property</td>
-                    </tr>
-                </table> : 
-                <table className="lease-info-table">
-               
-                    <tr>
+                {!activeLease? 
+                    <table className="lease-info-table">
+                        <tr>
+                            <td style={{ textAlign: "center"}}>No active lease is found for this property</td>
+                        </tr>
+                    </table> : 
+                    <table className="lease-info-table">
+                
+                        <tr>
+                            
+                            <td> <CiCalendarDate /> Start: {activeLease?.start_date}</td>
+                            <td> <CiCalendarDate /> End: {activeLease?.end_date}</td>
+                        </tr>
+
+                        <tr>
+                            <td> <AiFillDollarCircle /> Rent: ${activeLease?.rent} </td>
+                            <td>
+                                <TbCalendarDue /> Rent Due:{" "}
+                                {activeLease?.rent_due_day === 1
+                                    ? "1st of every month"
+                                    : `${activeLease?.rent_due_day}${getOrdinalSuffix(activeLease?.rent_due_day)} of every month`}
+                            </td>
+
                         
-                        <td> <CiCalendarDate /> Start: {activeLease?.start_date}</td>
-                        <td> <CiCalendarDate /> End: {activeLease?.end_date}</td>
-                    </tr>
-
-                    <tr>
-                        <td> <AiFillDollarCircle /> Rent: ${activeLease?.rent} </td>
-                        <td>
-                            <TbCalendarDue /> Rent Due:{" "}
-                            {activeLease?.rent_due_day === 1
-                                ? "1st of every month"
-                                : `${activeLease?.rent_due_day}${getOrdinalSuffix(activeLease?.rent_due_day)} of every month`}
-                        </td>
-
-                       
-                    </tr>
+                        </tr>
+                        
+                        
+                        <tr>
+                            <td> <AiFillDollarCircle /> Deposit: ${activeLease?.deposit} </td>
+                            <td> <TbCalendarDue /> Deposit Due: {activeLease?.deposit_due_date}</td>
+                        
+                        </tr>
                     
-                    
-                    <tr>
-                        <td> <AiFillDollarCircle /> Deposit: ${activeLease?.deposit} </td>
-                        <td> <TbCalendarDue /> Deposit Due: {activeLease?.deposit_due_date}</td>
-                       
-                    </tr>
-                   
-                </table>
-            }
+                    </table>
+                }
 
                 <div className = "active-lease-buttons">
                     <button 
@@ -209,6 +221,6 @@ const LeaseDetail = ({propertyId}) => {
             
     </>
     )
-}
+};
 
-    export default LeaseDetail;
+export default LeaseDetail;

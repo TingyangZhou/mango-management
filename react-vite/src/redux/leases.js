@@ -4,7 +4,7 @@ import { normalizer } from './utils';
 const GET_ACTIVE_LEASE = 'leases/getActiveLease';
 const GET_EXPIRED_LEASES = 'leases/getExpiredLeases';
 const ADD_LEASE = 'leases/addLease';
-const UPDATE_LEASE = 'leases/updateUserStock';
+const UPDATE_LEASE = 'leases/updateLease';
 const TERMINATE_LEASE = 'leases/terminateLease';
 const REMOVE_LEASE = 'leases/removeLease';
 

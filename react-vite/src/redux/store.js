@@ -12,13 +12,15 @@ import propertyReducer from './properties';
 import watchlistReducer from './watchlist';
 import userInfoReducer from './users';
 import leaseReducer from './leases';
+import tenantReducerReducer from './tenants';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     properties: propertyReducer,
     watchlist: watchlistReducer,
     userInfo: userInfoReducer,
-    leases: leaseReducer
+    leases: leaseReducer,
+    tenants:tenantReducer,
 });
 
 let enhancer;
