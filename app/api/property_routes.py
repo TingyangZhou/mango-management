@@ -54,11 +54,15 @@ def get_all_properties():
 @property_routes.route("/<int:propertyId>", methods=['GET'])
 @login_required
 def get_a_property(propertyId):
-    
+    user = User.query.get(current_user.id)
     property = Property.query.get(propertyId)
 
     if (property == None):
           return jsonify({ "message": "Property couldn't be found"}), 404
+
+     # Check if the user is authorized to access the property
+    if property.user_id != user.id:
+        return jsonify({"message": "You are not authorized to access this property"}), 403
 
     current_lease = Lease.query.filter(db.and_(property.id == Lease.property_id,
                                                     Lease.is_active == True)).first()

@@ -4,7 +4,7 @@ from flask import Blueprint, request, jsonify
 from sqlalchemy import and_
 from flask_login  import login_required, current_user
 from datetime import datetime, timedelta
-from app.models import Lease, Property, db
+from app.models import Lease, Property, User, db
 from app.forms import CreateLeaseForm
 
 lease_routes = Blueprint('leases', __name__, url_prefix="/api")
@@ -13,10 +13,14 @@ lease_routes = Blueprint('leases', __name__, url_prefix="/api")
 @lease_routes.route('/properties/<int:propertyId>/leases/active', methods=['GET'])
 @login_required
 def get_active_lease(propertyId):
-
+    user = User.query.get(current_user.id)
     property = Property.query.get(propertyId)
     if not property:
         return jsonify({"message": "Property couldn't be found"}), 404
+    
+    if property.user_id != user.id:
+        return jsonify({"message": "You are not authorized to access this property"}), 403
+        
     
     active_lease = Lease.query.filter(db.and_(Lease.property_id == propertyId,
                                 Lease.end_date >= datetime.now().date())).first()
@@ -35,10 +39,14 @@ def get_active_lease(propertyId):
 @lease_routes.route('/properties/<int:propertyId>/leases/expired', methods=['GET'])
 @login_required
 def get_expired_leases(propertyId):
-
+    user = User.query.get(current_user.id)
     property = Property.query.get(propertyId)
     if not property:
         return jsonify({"message": "Property couldn't be found"}), 404
+    
+     # Check if the user is authorized to access the property
+    if property.user_id != user.id:
+        return jsonify({"message": "You are not authorized to access this property"}), 403
     
     expired_leases = Lease.query.filter(db.and_(Lease.property_id == propertyId,
                                 Lease.end_date < datetime.now().date())).all()    
@@ -59,9 +67,15 @@ def get_expired_leases(propertyId):
 @lease_routes.route('/properties/<int:propertyId>/leases', methods=['POST'])
 @login_required
 def create_lease(propertyId):
+    user = User.query.get(current_user.id)
     property = Property.query.get(propertyId)
     if not property:
         return jsonify({"message": "Property couldn't be found"}), 404
+    
+   # Check if the user is authorized to access the property
+    if property.user_id != user.id:
+        return jsonify({"message": "You are not authorized to access this property"}), 403
+    
     
     current_active_lease = Lease.query.filter(db.and_(Lease.property_id == propertyId,
                                 Lease.is_active == True)).first()
@@ -97,9 +111,14 @@ def create_lease(propertyId):
 @lease_routes.route('/properties/<int:propertyId>/lease', methods=['PATCH'])
 @login_required
 def update_lease(propertyId):
+    user = User.query.get(current_user.id)
     property = Property.query.get(propertyId)
     if not property:
         return jsonify({"message": "Property couldn't be found"}), 404
+    
+    # Check if the user is authorized to access the property
+    if property.user_id != user.id:
+        return jsonify({"message": "You are not authorized to access this property"}), 403
     
     current_active_lease = Lease.query.filter(db.and_(Lease.property_id == propertyId,
                                 Lease.end_date >= datetime.now().date())).first()
@@ -126,9 +145,14 @@ def update_lease(propertyId):
 @lease_routes.route('/properties/<int:propertyId>/lease/terminate', methods=['PATCH'])
 @login_required
 def terminate_lease(propertyId):
+    user = User.query.get(current_user.id)
     property = Property.query.get(propertyId)
     if not property:
         return jsonify({"message": "Property couldn't be found"}), 404
+    
+     # Check if the user is authorized to access the property
+    if property.user_id != user.id:
+        return jsonify({"message": "You are not authorized to access this property"}), 403
     
     current_active_lease = Lease.query.filter(db.and_(Lease.property_id == propertyId,
                                 Lease.end_date >= datetime.now().date())).first()
@@ -153,9 +177,19 @@ def terminate_lease(propertyId):
 @lease_routes.route("/leases/<int:leaseId>", methods=['DELETE'])
 @login_required
 def delete_lease(leaseId):
+    user = User.query.get(current_user.id)  
+
     lease = Lease.query.get(leaseId)
     if not lease:
-        return jsonify(	{"message": "Lease couldn't be found"}), 200
+        return jsonify(	{"message": "Lease couldn't be found"}), 404
+    
+    property = lease.property
+    if not property:
+        return jsonify({"message": "Property couldn't be found"}), 404
+    
+    # Check if the user is authorized to access the property
+    if property.user_id != user.id:
+        return jsonify({"message": "You are not authorized to access this property"}), 403
     
     db.session.delete(lease)
     db.session.commit()

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, DateField, FloatField
-from wtforms.validators import DataRequired, InputRequired, NumberRange, ValidationError
+from wtforms.validators import DataRequired, NumberRange, ValidationError
 
 from datetime import date
 
