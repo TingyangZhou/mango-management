@@ -42,7 +42,7 @@ const LeaseForm = ({lease, propertyId, formType}) =>{
     }, [lease]);
 
     const handleCancel = () => {
-        navigate(`/properties/propertyId`)
+        navigate(`/properties/${propertyId}`)
     }
     
     const handleSubmit = async (e) =>{

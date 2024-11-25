@@ -60,7 +60,7 @@ def get_a_property(propertyId):
     if (property == None):
           return jsonify({ "message": "Property couldn't be found"}), 404
 
-     # Check if the user is authorized to access the property
+    # Check if the user is authorized to access the property
     if property.user_id != user.id:
         return jsonify({"message": "You are not authorized to access this property"}), 403
 
@@ -123,33 +123,42 @@ def add_property():
 @property_routes.route("/<int:propertyId>", methods=['PATCH'])
 @login_required
 def update_property(propertyId):
+    user = User.query.get(current_user.id)
    
-   try:
-    form = CreatePropertyForm()
-    form['csrf_token'].data = request.cookies.get('csrf_token')
-    if form.validate_on_submit():
-        property = Property.query.get(propertyId)
-        if not property:
-            return jsonify({"message": "Property couldn't be found"}), 404
-            
-        property.address = form.address.data
-        property.property_type = form.property_type.data
-        property.bedrooms = form.bedrooms.data
-        property.bathrooms = form.bathrooms.data
-        property.square_feet = form.sqft.data
+    #Check if the property exists
+    property = Property.query.get(propertyId)
+    if not property:
+        return jsonify({"message": "Property couldn't be found"}), 404
+     
+    # Check if the user is authorized to access this property
+    if property.user_id != user.id:
+        return jsonify({"message": "You are not authorized to access this property"}), 403
+    
+    try:
+    
+        form = CreatePropertyForm()
+        form['csrf_token'].data = request.cookies.get('csrf_token')
+        if form.validate_on_submit():
+        
+                
+            property.address = form.address.data
+            property.property_type = form.property_type.data
+            property.bedrooms = form.bedrooms.data
+            property.bathrooms = form.bathrooms.data
+            property.square_feet = form.sqft.data
 
-        db.session.commit()
+            db.session.commit()
 
-        property_dict =property.to_dict_basic()
-        return jsonify(property_dict), 200
-   except IntegrityError as e:
+            property_dict =property.to_dict_basic()
+            return jsonify(property_dict), 200
+    except IntegrityError as e:
         db.session.rollback()  # Rollback the session to handle the exception cleanly
 
         # Check if the error is related to the unique constraint on address
         if "UNIQUE constraint failed: properties.address" in str(e.orig):
             return jsonify({"message": "The address already exists. Please use a different address."}), 400
    
-   return form.errors, 400
+        return form.errors, 400
 
 
 
@@ -158,9 +167,17 @@ def update_property(propertyId):
 @property_routes.route("/<int:propertyId>", methods=['DELETE'])
 @login_required
 def remove_property(propertyId):
+    user = User.query.get(current_user.id)
+   
+    #Check if the property exists
     property = Property.query.get(propertyId)
     if not property:
         return jsonify({"message": "Property couldn't be found"}), 404
+     
+    # Check if the user is authorized to access this property
+    if property.user_id != user.id:
+        return jsonify({"message": "You are not authorized to access this property"}), 403
+    
     db.session.delete(property)
     db.session.commit()
 

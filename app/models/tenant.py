@@ -11,8 +11,8 @@ class Tenant(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     lease_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('leases.id'), ondelete="CASCADE"), nullable=False)
-    first_name = db.Column(db.String(50), nullable=False)
-    last_name = db.Column(db.String(50), nullable=False)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String, nullable=False, unique = True)
     mobile = db.Column(db.String(20), nullable=False)
    
