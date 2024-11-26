@@ -131,7 +131,7 @@ def update_tenant(propertyId, tenantId):
             tenant.first_name = form.first_name.data
             tenant.last_name = form.last_name.data
             tenant.email = form.email.data
-            tenant.mobile = form.email.data
+            tenant.mobile = form.mobile.data
             
             db.session.commit()
             # Return updated list of tenants

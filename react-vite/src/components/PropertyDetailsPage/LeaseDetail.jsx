@@ -1,4 +1,4 @@
-// react-vite/src/components/PropertyDetailPage.jsx
+// react-vite/src/components/LeaseDetail.jsx
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -85,85 +85,96 @@ const LeaseDetail = ({propertyId}) => {
         <>
         <div className="active-lease-page">
             <div className='active-lease-container'>
-                {activeLease?
-                <div className="current-lease-section">
-                    <h2 className="current-lease-title">Current Lease ID: {activeLease?.id}</h2>
-                    <h2 className="days-remaining">Days Remaining: {daysRemaining}</h2>
-                </div>
-                :<h2 className="current-lease-title">Current Lease </h2>}
-
-                {!activeLease? 
-                    <table className="lease-info-table">
-                        <tr>
-                            <td style={{ textAlign: "center"}}>No active lease is found for this property</td>
-                        </tr>
-                    </table> : 
-                    <table className="lease-info-table">
-                
-                        <tr>
+                {!activeLease?
+                <div className="no-active-lease-container">
+                    <h2 className="current-lease-title">Current Lease </h2>
+                    <table className="no-lease-info-table">
+                        <tbody>
+                            <tr>
+                                <td style={{ textAlign: "center"}}>No active lease is found for this property</td>
+                            </tr>
+                        </tbody>
                             
-                            <td> <CiCalendarDate /> Start: {activeLease?.start_date}</td>
-                            <td> <CiCalendarDate /> End: {activeLease?.end_date}</td>
-                        </tr>
-
-                        <tr>
-                            <td> <AiFillDollarCircle /> Rent: ${activeLease?.rent} </td>
-                            <td>
-                                <TbCalendarDue /> Rent Due:{" "}
-                                {activeLease?.rent_due_day === 1
-                                    ? "1st of every month"
-                                    : `${activeLease?.rent_due_day}${getOrdinalSuffix(activeLease?.rent_due_day)} of every month`}
-                            </td>
-
-                        
-                        </tr>
-                        
-                        
-                        <tr>
-                            <td> <AiFillDollarCircle /> Deposit: ${activeLease?.deposit} </td>
-                            <td> <TbCalendarDue /> Deposit Due: {activeLease?.deposit_due_date}</td>
-                        
-                        </tr>
-                    
-                    </table>
-                }
-
-                <div className = "active-lease-buttons">
+                    </table> 
                     <button 
                         className={activeLease? 'hidden':'new-lease-button'}
                         onClick={handleCreateLease}
                         >
                             New Lease
                     </button>
-
-                    {!activeLease? "" : <button 
-                        className='edit-lease-button'
-                        onClick={handleEditLease}
-                        >
-                            Edit Lease
-                    </button> }
-
-                    {!activeLease? "" :
-                    <OpenModalButton
-                        className = "open-modal-button"
-                        buttonText = 'Terminate'
-                        modalComponent={<ConfirmTerminateLeaseModal propertyId = {propertyId}/>}
-                        onModalClose = {()=> navigate(`/properties/${propertyId}`)}
-                    />
-                    }
-
-                    {!activeLease? "" :
-                    <OpenModalButton
-                        className = "open-modal-button"
-                        buttonText = 'Remove'
-                        modalComponent={<ConfirmDeleteLeaseModal 
-                                        propertyId = {propertyId}
-                                        leaseId = {activeLease?.id}/>}
-                        onModalClose = {()=> navigate(`/properties/${propertyId}`)}
-                    />
-                    }
-                   
                 </div>
+                :
+                <div className="have-active-lease-container">
+                    <div className="current-lease-section">
+                        <h2 className="current-lease-title">Current Lease ID: {activeLease?.id}</h2>
+                        <h2 className="days-remaining">Days Remaining: {daysRemaining}</h2>
+                    </div>
+
+                    <div className="table-button-container">
+                                
+                        <table className="lease-info-table">
+                    
+                            <tr>
+                                
+                                <td> <CiCalendarDate /> Start: {activeLease?.start_date}</td>
+                                <td> <CiCalendarDate /> End: {activeLease?.end_date}</td>
+                            </tr>
+
+                            <tr>
+                                <td> <AiFillDollarCircle /> Rent: ${activeLease?.rent} </td>
+                                <td>
+                                    <TbCalendarDue /> Rent Due:{" "}
+                                    {activeLease?.rent_due_day === 1
+                                        ? "1st of every month"
+                                        : `${activeLease?.rent_due_day}${getOrdinalSuffix(activeLease?.rent_due_day)} of every month`}
+                                </td>
+
+                            
+                            </tr>
+                            
+                            
+                            <tr>
+                                <td> <AiFillDollarCircle /> Deposit: ${activeLease?.deposit} </td>
+                                <td> <TbCalendarDue /> Deposit Due: {activeLease?.deposit_due_date}</td>
+                            
+                            </tr>
+                        
+                        </table>
+
+                        <div className = "active-lease-buttons">
+                            
+
+                            <button 
+                                className='edit-lease-button'
+                                onClick={handleEditLease}
+                                >
+                                    Edit Lease
+                            </button> 
+
+                        
+                            <OpenModalButton
+                                className = "open-modal-button"
+                                buttonText = 'Terminate'
+                                modalComponent={<ConfirmTerminateLeaseModal propertyId = {propertyId}/>}
+                                onModalClose = {()=> navigate(`/properties/${propertyId}`)}
+                            />
+                            
+                        
+                            <OpenModalButton
+                                className = "open-modal-button"
+                                buttonText = 'Remove'
+                                modalComponent={<ConfirmDeleteLeaseModal 
+                                                propertyId = {propertyId}
+                                                leaseId = {activeLease?.id}/>}
+                                onModalClose = {()=> navigate(`/properties/${propertyId}`)}
+                            />
+                    
+                    </div>
+                    </div>
+                </div>
+                }
+
+                
             
             </div>
 

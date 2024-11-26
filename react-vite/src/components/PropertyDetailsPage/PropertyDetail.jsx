@@ -7,6 +7,7 @@ import {  getOnePropertyThunk } from "../../redux/properties";
 import OpenModalButton from '../OpenModalButton';
 import ConfirmDeleteFormModal from './ConfirmDeletePropertyModal.jsx'
 import LeaseDetail from './LeaseDetail.jsx'
+import TenantDetail from './TenantDetail.jsx'
 
 // import { useTheme } from '../../context/ThemeContext';
 import './PropertyDetail.css';
@@ -50,40 +51,51 @@ const PropertyDetailsPage = () => {
         {Object.keys(errors).length !== 0 ? (<p className='hint'>{errors.message}</p>):
         <div className="property-detail-page">
             <div className='property-container'>
-                <h2 className="property-details-title">Property ID: {currentProperty?.id}</h2>
-                <table className="property-info-table">
+                <div className="property-title-new-property-button-container">
+                    <h2 className="property-details-title">Property ID: {currentProperty?.id}</h2>
+                    <div className="new-property-button-container"> 
+                        <button 
+                            className='new-property-button'
+                            onClick={handleCreateProperty}>
+                                New Property
+                        </button>
+                    </div>
                     
-                    <tr>
-                        <td> <FaMapMarkerAlt /> {currentProperty?.address}</td>
-                        <td> <BiBuildingHouse /> {currentProperty?.property_type}</td>
-                        <td> <span className={currentProperty?.is_vacant? 'vacant': 'occupied'}> {currentProperty?.is_vacant? 'Vacant': 'Occupied'}</span></td>
-                    </tr>
-                    <tr>
-                        <td> <MdOutlineBedroomParent /> Bedrooms: {currentProperty?.bedrooms}</td>
-                        <td> <MdOutlineBathroom /> Bathrooms: {currentProperty?.bathrooms}</td>
-                        <td> Sqft: {currentProperty?.sqft} </td>
-                    </tr>
-                </table>
-
-                <div className = "property-buttons">
-                    <button 
-                        className='new-property-button'
-                        onClick={handleCreateProperty}>
-                            New Property
-                    </button>
-
-                    <button 
-                        className='edit-property-button'
-                        onClick={handleEditProperty}>
-                            Edit Property
-                    </button>
-                    <OpenModalButton
-                        className = "open-modal-button"
-                        buttonText = 'Remove'
-                        modalComponent={<ConfirmDeleteFormModal propertyId = {propertyId}/>}
-                        onModalClose = {()=> navigate(`/properties/${propertyId}`)}
-                    />
                 </div>
+                
+
+                <div className= "property-table-button-container">
+                    <table className="property-info-table">
+                        <tbody>
+                        <tr>
+                            <td> <FaMapMarkerAlt /> {currentProperty?.address}</td>
+                            <td> <BiBuildingHouse /> {currentProperty?.property_type}</td>
+                            <td> <span className={currentProperty?.is_vacant? 'vacant': 'occupied'}> {currentProperty?.is_vacant? 'Vacant': 'Occupied'}</span></td>
+                        </tr>
+                        <tr>
+                            <td> <MdOutlineBedroomParent /> Bedrooms: {currentProperty?.bedrooms}</td>
+                            <td> <MdOutlineBathroom /> Bathrooms: {currentProperty?.bathrooms}</td>
+                            <td> Sqft: {currentProperty?.sqft} </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div className = "property-buttons">
+                        
+                        <button 
+                            className='edit-property-button'
+                            onClick={handleEditProperty}>
+                                Edit Property
+                        </button>
+                        <OpenModalButton
+                            className = "open-modal-button"
+                            buttonText = 'Remove'
+                            modalComponent={<ConfirmDeleteFormModal propertyId = {propertyId}/>}
+                            onModalClose = {()=> navigate(`/properties/${propertyId}`)}
+                        />
+                    </div>
+                </div>
+                
             
             </div>
 
@@ -93,6 +105,7 @@ const PropertyDetailsPage = () => {
         }
 
         <LeaseDetail propertyId={propertyId} />
+        <TenantDetail propertyId={propertyId} />
             
     </>
     )

@@ -12,7 +12,7 @@ import propertyReducer from './properties';
 import watchlistReducer from './watchlist';
 import userInfoReducer from './users';
 import leaseReducer from './leases';
-import tenantReducerReducer from './tenants';
+import tenantReducer from './tenants';
 
 const rootReducer = combineReducers({
     session: sessionReducer,

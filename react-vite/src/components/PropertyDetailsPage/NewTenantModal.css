@@ -1,0 +1,93 @@
+.new-tenant-form-label{
+    color:black;
+}
+
+/* Form container */
+.new-tenant-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between form elements */
+    background-color: #f9f9f9; /* Light background color */
+    padding: 10px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 500px; /* Limit form width */
+    margin: 0 auto; /* Center the form horizontally */
+    font-family: Arial, sans-serif;
+}
+
+/* Form title */
+.new-tenant-form h3 {
+    text-align: center;
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Label styling */
+.new-tenant-form-label {
+    font-size: 1rem;
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Input fields */
+.new-tenant-form input[type="text"],
+.new-tenant-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px; /* Space between label and input */
+}
+
+/* Highlight input on focus */
+.new-tenant-form input[type="text"]:focus,
+.new-tenant-form input[type="email"]:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+
+/* Buttons container */
+.property-form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Cancel button */
+.cancel-change-button {
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-change-button:hover {
+    background-color: #e60000; /* Darker red on hover */
+}
+
+/* Submit button */
+.property-form-submit-button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.property-form-submit-button:hover {
+    background-color: #388e3c; /* Darker green on hover */
+}

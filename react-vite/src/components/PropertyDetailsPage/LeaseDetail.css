@@ -9,7 +9,7 @@
     align-items: center; /* Align items to the top */
     border: 1px solid #ddd; /* Light border around the container */
     border-radius: 10px; /* Rounded corners for the container */
-    padding: 20px; /* Add padding for spacing */
+    padding: 10px; 
     margin-top: 20px; /* Add spacing from the top */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
     background-color: #f9f9f9; /* Softer background color for contrast */
@@ -24,8 +24,24 @@
     align-items: center; /* Center buttons horizontally */
     gap: 15px; /* Add spacing between buttons */
     flex-shrink: 0; /* Prevent buttons from shrinking */
-    margin-left: 20px; /* Add spacing between buttons and table */
+    margin-left: 20px; 
     font-weight: bold;
+}
+
+.have-active-lease-container{
+    width:100%;
+}
+
+.no-active-lease-container{
+    width: 100%;
+    display:flex;
+    justify-content: space;
+    align-items: center;
+}
+
+.no-lease-info-table{
+    width:60%;
+    background-color: white;
 }
 
 /* General button styling */
@@ -34,14 +50,14 @@
 .new-lease-button {
     padding: 10px 15px;
     font-weight:800;
-    font-size: 16px; /* Updated font size */
-    border-radius: 8px; /* Slightly less rounded corners for a professional look */
+    font-size: 16px; 
+    border-radius: 8px; 
     border: #FF8C00 solid 2px;
     cursor: pointer;
     transition: all 0.3s ease;
     width: 170px;
     text-align: center;
-    background-color: transparent;
+    background-color: white;
     color: #FF8C00;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
@@ -51,6 +67,11 @@
    
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     transform: translateY(-1px); /* Subtle lift effect */
+}
+
+.current-lease-section{
+    display:flex;
+    justify-content: space-between;
 }
 
 
@@ -71,9 +92,23 @@
     transform: translateY(-1px);
 }
 
+.expired-lease-table-header th {
+    vertical-align: middle; /* Vertically center text */
+    text-align: center; /* Horizontally center text */
+    padding: 10px; /* Adds spacing for readability */
+    background-color: #f4f4f4; /* Optional: Light gray background for the header */
+    font-weight: bold; /* Optional: Bold font for headers */
+}
+
+.expired-lease-table-body td {
+    vertical-align: middle; /* Aligns text vertically in the middle */
+    text-align: center; /* Optional: Aligns text horizontally to the center */
+    padding: 10px; /* Optional: Adds padding for better spacing */
+}
+
 /* Styling for the property-info table */
 .lease-info-table {
-    width: 60%;
+    width: 100%;
     margin: 0;
     border-collapse: collapse;
     font-size: 16px;
@@ -148,12 +183,17 @@
     font-weight: bold;
     font-size: 1.2rem; /* Adjust font size */
     text-align: center; /* Center-align the text */
-    color: orangered; /* Darker text color for readability */
+    color: black; /* Darker text color for readability */
     
   }
   
   
-  
+.table-button-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
   /* Button styles */
 .yes-button, .no-button {
     display: block;

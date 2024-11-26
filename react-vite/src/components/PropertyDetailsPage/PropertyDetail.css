@@ -5,25 +5,40 @@
 
 .property-container {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center; /* Align items to the top */
     border: 1px solid #ddd; /* Light border around the container */
     border-radius: 10px; /* Rounded corners for the container */
-    padding: 20px; /* Add padding for spacing */
+    padding: 10px; /* Add padding for spacing */
     margin-top: 20px; /* Add spacing from the top */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
     background-color: #f9f9f9; /* Softer background color for contrast */
+}
+
+
+.property-title-new-property-button-container{
+    display: flex;
+    justify-content: space-between; /* Place items at opposite ends */
+    align-items: center; /* Center vertically */
+    width: 100%; /* Ensure full width */
+}
+
+.property-table-button-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .property-buttons {
     display: flex;
     font-size: 16px;
     flex-direction: column; /* Stack buttons vertically */
-    justify-content: flex-start; /* Align buttons to the top */
+    justify-content: center; /* Align buttons to the top */
     align-items: center; /* Center buttons horizontally */
     gap: 15px; /* Add spacing between buttons */
     flex-shrink: 0; /* Prevent buttons from shrinking */
-    margin-left: 20px; /* Add spacing between buttons and table */
+    margin-left: 20px; 
 }
 
 h2{
@@ -34,6 +49,19 @@ h2{
 .property-details-title{
     font-weight: bold;
 }
+
+.new-property-button-container{
+    display: flex;    
+    font-size: 18px;
+    flex-direction: column; /* Stack buttons vertically */
+    justify-content: flex-start; /* Align buttons to the top */
+    align-items: start; /* Center buttons horizontally */
+    gap: 15px; /* Add spacing between buttons */
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+    margin-left: 20px; /* Add spacing between buttons and table */
+    font-weight: bold;
+}
+
 /* General button styling */
 .edit-property-button,
 .delete-property-button,
@@ -45,33 +73,20 @@ h2{
     border: 2px solid #FF8C00;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 100%;
+    width: 170px;;
     text-align: center;
     background-color: white;
     color: #FF8C00;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.expired-lease-table-header th {
-    vertical-align: middle; /* Vertically center text */
-    text-align: center; /* Horizontally center text */
-    padding: 10px; /* Adds spacing for readability */
-    background-color: #f4f4f4; /* Optional: Light gray background for the header */
-    font-weight: bold; /* Optional: Bold font for headers */
-}
-
-.expired-lease-table-body td {
-    vertical-align: middle; /* Aligns text vertically in the middle */
-    text-align: center; /* Optional: Aligns text horizontally to the center */
-    padding: 10px; /* Optional: Adds padding for better spacing */
-}
-
-
 
 .new-property-button:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     transform: translateY(-1px); /* Subtle lift effect */
 }
+
+
 
 /* Edit Property Button */
 
@@ -82,10 +97,6 @@ h2{
     transform: translateY(-1px);
 }
 
-/* Delete Property Button */
-/* .delete-property-button {
-    background-color: #D9534F; /* Muted red for delete */
-} */
 
 .delete-property-button:hover {
     background-color: #C9302C; /* Slightly darker red on hover */
@@ -95,7 +106,7 @@ h2{
 
 /* Styling for the property-info table */
 .property-info-table {
-    width: 65%;
+    width: 100%;
     margin: 0;
     border-collapse: collapse;
     font-size: 16px;
@@ -109,6 +120,7 @@ h2{
     vertical-align: middle;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    background-color: white;
 }
 
 .confirm-delete-form {

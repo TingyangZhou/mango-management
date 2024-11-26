@@ -53,6 +53,7 @@ export const getTenantsThunk = (propertyId) => async (dispatch) => {
 
 // create a Tenant
 export const createTenantThunk = (propertyId, tenantData) => async (dispatch) => {
+ 
     const res = await fetch(`/api/properties/${propertyId}/tenants`, {
         method: 'POST',
         headers: {
@@ -62,10 +63,11 @@ export const createTenantThunk = (propertyId, tenantData) => async (dispatch) =>
     });
 
     if (res.ok){
-        const new_tenants = await res.json();
-        dispatch(addTenant(new_tenants));
+        const tenants = await res.json();
+        dispatch(addTenant(tenants.tenants));
     } else{
         const error = await res.json();
+        console.log("==============", error)
         throw error;
     }
 };
@@ -82,7 +84,7 @@ export const updateTenantThunk = (propertyId, tenantId, tenantData) => async (di
     });
     if (res.ok) {
         const updated_tenants = await res.json();
-        dispatch(updateTenant(updated_tenants));
+        dispatch(updateTenant(updated_tenants.tenants));
     } else {
         const error = await res.json();
         throw error;
