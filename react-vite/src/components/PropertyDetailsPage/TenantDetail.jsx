@@ -21,19 +21,21 @@ const TenantDetail = ({propertyId}) => {
     const navigate = useNavigate();
     const [ errors, setErrors ] = useState({})
  
+    let tenants_arr;
+    const tenants = useSelector(state => state.tenants);
+    tenants_arr= Object.values(tenants.tenants);
     
-    const tenants = useSelector(state => state.tenants.tenants);
-    const tenants_arr = Object.values(tenants);
+     
+    const activeLease = useSelector(state => state.leases.activeLease)
     
     useEffect(()=>{
         
         dispatch(getTenantsThunk(propertyId))
             .catch((error) => {
                 // console.log("Error from thunk:", error); // Debugging
-                console.log('>......................')
                 setErrors(error);
             })
-    }, [dispatch, propertyId, tenants]);
+    }, [dispatch, propertyId, activeLease]);
    
   
     return (
@@ -43,23 +45,25 @@ const TenantDetail = ({propertyId}) => {
         <div className="tenants-page">
             <div className='tenants-container'>
                 {tenants_arr.length === 0 ? 
-                <><h2 style={{ textAlign: "center"}}>No tenant</h2>
-                <div className = "new-tenant-button-container">
-                    <OpenModalButton
-                        className="new-tenant-modal-button"
-                        modalClass="new-tenant-modal" // Pass this to set the modal class
-                        buttonText="New Tenant"
-                        modalComponent={<NewTenantModal 
-                            propertyId={propertyId} 
-                            formType= "Create Tenant"/>}
-                        onModalClose={() => navigate(`/properties/${propertyId}`)}
-                    />
-                    </div></>
-                    : 
+                <div className="no-tenant-container">
+                    <h2 className="no-tenant-title">No tenant on lease</h2>
+                    <div className = "new-tenant-button-container">
+                        <OpenModalButton
+                            className="new-tenant-modal-button"
+                            modalClass="new-tenant-modal" // Pass this to set the modal class
+                            buttonText="New Tenant"
+                            modalComponent={<NewTenantModal 
+                                propertyId={propertyId} 
+                                formType= "Create Tenant"/>}
+                            onModalClose={() => navigate(`/properties/${propertyId}`)}
+                        />
+                    </div>
+                </div>
+                : 
                 <>
                    <div className="title-button-container">
                     <div className="tenants-title-section">
-                            <h2 className="current-tenants-title">Current Tenant(s)</h2>
+                            <h2 className="current-tenants-title">Current Tenant(s) on Lease</h2>
                         </div>
                         <div className = "new-tenant-button-container">
                         <OpenModalButton
@@ -86,7 +90,7 @@ const TenantDetail = ({propertyId}) => {
                                         buttonText = 'Edit'
                                         modalComponent={<NewTenantModal 
                                             propertyId = {propertyId} 
-                                            tenant={tenants[tenant.id]}
+                                    
                                             tenantId = {tenant.id}
                                             formType= "Edit Tenant"/>}
                                     />

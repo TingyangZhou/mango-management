@@ -171,6 +171,10 @@ def terminate_lease(propertyId):
     try:
         current_active_lease.end_date = datetime.now().date() - timedelta(days=1)
         current_active_lease.is_active = False
+
+        for tenant in current_active_lease.tenants:
+            db.session.delete(tenant)
+
         db.session.commit()
     except Exception as e:
         db.session.rollback()
@@ -191,6 +195,9 @@ def delete_lease(leaseId):
     if not lease:
         return jsonify(	{"message": "Lease couldn't be found"}), 404
     
+    for tenant in lease.tenants:
+        db.session.delete(tenant)
+
     property = lease.property
     if not property:
         return jsonify({"message": "Property couldn't be found"}), 404

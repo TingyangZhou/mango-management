@@ -29,10 +29,18 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transform: translateY(-1px);
 }
+
+.no-tenant-container{
+    width: 90%;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .tenants-page {
     width: 80%;
     margin: 0 auto;
-    margin-bottom: 20px; /* Add space at the bottom */
+    padding-bottom: 20px; /* Add space at the bottom */
 }
 
 

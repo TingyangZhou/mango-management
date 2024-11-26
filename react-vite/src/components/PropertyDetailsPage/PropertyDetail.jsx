@@ -105,7 +105,7 @@ const PropertyDetailsPage = () => {
         }
 
         <LeaseDetail propertyId={propertyId} />
-        <TenantDetail propertyId={propertyId} />
+        <TenantDetail propertyId={propertyId} lease={activeLease}/>
             
     </>
     )

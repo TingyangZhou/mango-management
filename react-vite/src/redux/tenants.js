@@ -114,7 +114,7 @@ export const removeTenantThunk = (propertyId, tenantId) => async (dispatch) => {
 const tenantReducer = (state = {tenants:{}}, {type, payload}) => {
     switch (type) {
         case GET_TENANTS:
-            return {...state, tenants: normalizer(payload)};
+            return {...state, tenants: payload? normalizer(payload):{}};
         case ADD_TENANT:
             return {...state, tenants: normalizer(payload)};
         case UPDATE_TENANT:

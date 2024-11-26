@@ -1,28 +1,44 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { createTenantThunk, updateTenantThunk  } from '../../redux/tenants';
 import { useModal } from '../../context/Modal';
 import "./NewTenantModal.css";
 
-function NewTenantModal({propertyId, tenant, tenantId, formType}) {
+function NewTenantModal({propertyId, tenantId, formType}) {
 
     const { closeModal } = useModal();
 
     const dispatch=useDispatch();
-   
-    
-  
+    const tenants = useSelector(state => state.tenants);
+    const tenant = tenants.tenants[tenantId];
+
+
     const [ errors, setErrors ]=useState({});
-    const [ firstName, setFirstName ] = useState(tenant?.first_name || "");
-    const [ lastName, setLastName ] = useState(tenant?.last_name ||"");
-    const [ email, setEmail ] = useState(tenant?.email ||"");
-    const [ mobile, setMobile ] = useState(tenant?.mobile ||"");
+    const [ firstName, setFirstName ] = useState("");
+    const [ lastName, setLastName ] = useState("");
+    const [ email, setEmail ] = useState("");
+    const [ mobile, setMobile ] = useState("");
+   
+    useEffect(()=>{
+        setFirstName(tenant?.first_name);
+        setLastName(tenant?.last_name);
+        setEmail(tenant?.email);
+        setMobile(tenant?.mobile); 
+    },[])
+   
 
     const new_tenant = {
         first_name: firstName,
         last_name: lastName,
         email: email,
         mobile: mobile
+    }
+
+    const handleDummy=()=>{
+        setFirstName("Alan");
+        setLastName("Tan"),
+        setEmail("alan@aa.io"),
+        setMobile("5555555555")
     }
 
     const handleCancel = () => {
@@ -58,11 +74,17 @@ function NewTenantModal({propertyId, tenant, tenantId, formType}) {
     
 
     return (
+        <>
+        <button 
+                className="fill-tenant-dummy-button" 
+                onClick={handleDummy}
+            >dummy data</button>
         <form 
             onSubmit={handleSubmit}
             className = 'new-tenant-form'
         >
             <h3 className="create-tenant-title">{formType}</h3>
+            
             {errors?.message && <p className="hint">{errors.message}</p>}
             <label className='new-tenant-form-label'>
                 First Name
@@ -130,7 +152,7 @@ function NewTenantModal({propertyId, tenant, tenantId, formType}) {
             </div>
         
         </form>
-        
+        </>
     )
 }
 
