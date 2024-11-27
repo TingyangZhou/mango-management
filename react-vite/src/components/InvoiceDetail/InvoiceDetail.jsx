@@ -78,51 +78,63 @@ const InvoiceDetailsPage = () => {
                                 
                     
                     <table className="invoice-info-table">
-                    <tbody>
-                    <tr>    
-                        <td> Property ID: {invoice?.property?.id}</td>
-                        <td><GiTempleGate /> {invoice?.property?.address}</td>
-                    
-                        <td> Lease Id: {invoice?.lease.id}</td>
-                        <td><TbCalendarDue /> Term: {invoice?.lease?.start_date
-                            ? new Date(invoice?.lease?.start_date).toLocaleDateString('en-US', {
-                                timeZone: 'UTC', // Interpret and display the date in UTC
-                                month: 'short',  // Abbreviated month (e.g., "Mar")
-                                day: 'numeric',  // Day of the month (e.g., "1")
-                                year: 'numeric', // Full year (e.g., "2024")
-                            })
-                        : 'No start date available'} - {invoice?.lease?.end_date
-                            ? new Date(invoice?.lease?.end_date).toLocaleDateString('en-US', {
-                                timeZone: 'UTC', // Interpret and display the date in UTC
-                                month: 'short',  // Abbreviated month (e.g., "Mar")
-                                day: 'numeric',  // Day of the month (e.g., "1")
-                                year: 'numeric', // Full year (e.g., "2024")
-                            })
-                            : 'No end date available'}</td>
-                       
-                    </tr>
-                    </tbody>
-                    </table>
+                        <tbody>
+                            <tr>
+                            <td>
+                                <table>
+                                    <tbody>
+                                    <tr>    
+                                        <td> Property ID: {invoice?.property?.id}</td>
+                                        <td><GiTempleGate /> {invoice?.property?.address}</td>
+                                    
+                                        <td> Lease Id: {invoice?.lease.id}</td>
+                                        <td><TbCalendarDue /> Term: {invoice?.lease?.start_date
+                                            ? new Date(invoice?.lease?.start_date).toLocaleDateString('en-US', {
+                                                timeZone: 'UTC', // Interpret and display the date in UTC
+                                                month: 'short',  // Abbreviated month (e.g., "Mar")
+                                                day: 'numeric',  // Day of the month (e.g., "1")
+                                                year: 'numeric', // Full year (e.g., "2024")
+                                            })
+                                        : 'No start date available'} - {invoice?.lease?.end_date
+                                            ? new Date(invoice?.lease?.end_date).toLocaleDateString('en-US', {
+                                                timeZone: 'UTC', // Interpret and display the date in UTC
+                                                month: 'short',  // Abbreviated month (e.g., "Mar")
+                                                day: 'numeric',  // Day of the month (e.g., "1")
+                                                year: 'numeric', // Full year (e.g., "2024")
+                                            })
+                                            : 'No end date available'}</td>
+                                    
+                                    </tr>
+                                    </tbody>
+                                </table>
 
-                    <table className="invoice-info-table">
-                    <tbody>
-                        <tr><td>Tenants</td></tr>
-                    {tenants.reduce((rows, tenant, index) => {
-                   
-                   if (index % 3 === 0) rows.push([]);
-                   rows[rows.length - 1].push(tenant);
-                   return rows;
-                   }, []).map((row, rowIndex) => (
-                   <tr key={rowIndex}>
-                       {row.map((tenant, colIndex) => (
-                       <td key={colIndex}>{tenant?.first_name} {tenant?.last_name}</td>
-                       ))}
-                   </tr>
-                   ))}
-                    </tbody>
-                    </table>              
+                            </td>
+
+                            <td>
+                            <table className="invoice-info-table">
+                            <tbody>
+                                <tr><td>Tenants</td></tr>
+                                    {tenants.reduce((rows, tenant, index) => {
+                                
+                                if (index % 3 === 0) rows.push([]);
+                                rows[rows.length - 1].push(tenant);
+                                return rows;
+                                }, []).map((row, rowIndex) => (
+                                <tr key={rowIndex}>
+                                    {row.map((tenant, colIndex) => (
+                                    <td key={colIndex}>{tenant?.first_name} {tenant?.last_name}</td>
+                                    ))}
+                                </tr>
+                                ))}
+                                </tbody>
+                            </table> 
+                            </td>
+                            
+                            </tr>
+                            
+                            </tbody>
+                        </table>    
                     
-                   
             </div>
             
         </div>
