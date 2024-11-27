@@ -25,7 +25,7 @@ a {
   cursor: pointer;
 
   transition: all 0.3s ease;
-  width: 170px;
+  width: 150px;
   text-align: center;
   background-color: #666; /* Default muted gray background */
   color: white;

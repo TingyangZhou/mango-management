@@ -7,8 +7,11 @@ import Layout from './Layout';
 import Home from '../components/Home';
 import Properties from '../components/Properties';
 import PropertyDetail from '../components/PropertyDetailsPage';
+import Invoices from "../components/Invoices/Invoices.jsx"
 import CreateLeaseForm from '../components/LeaseForm/CreateLeaseForm.jsx';
 import UpdateLeaseForm from '../components/LeaseForm/UpdateLeaseForm.jsx';
+
+
 // import GenericError from '../components/Error';
 // import * as api from './api';
 
@@ -54,7 +57,12 @@ export const router = createBrowserRouter([
             {
                 path: '/properties/:propertyId/leases/edit',
                 element: <UpdateLeaseForm />
-            }
+            },
+            {
+                path: '/invoices',
+                element: <Invoices />
+            },
+           
 
 
 

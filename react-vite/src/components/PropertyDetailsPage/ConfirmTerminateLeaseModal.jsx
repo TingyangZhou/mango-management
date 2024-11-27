@@ -31,7 +31,7 @@ function ConfirmTerminateLeaseModal({propertyId}) {
         <form className='confirm-delete-form'>
              {errors?.message && <p className='hint'>{errors.messagey}</p>}
             <h2>Confirm Termination</h2>
-            <p>Are you sure you want to terminate this lease? </p>
+            <p> Terminating this lease will also permanently remove all associated tenants. Are you sure you want to proceed with terminating this lease? </p>
             <button 
                  className='yes-button'
                  onClick={handleTerminateClick}

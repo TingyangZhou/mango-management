@@ -83,8 +83,13 @@ h2{
 
 
 .new-property-button:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
-    transform: translateY(-1px); /* Subtle lift effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    transform: translateY(-4px); /* Slightly higher lift effect */
+    background: linear-gradient(90deg, #FF8C00, #FFA500); /* Gradient effect */
+    color: white; /* Change text color on hover for contrast */
+    border-color: #FFA500; /* Slightly lighter border */
+    transition: all 0.2s ease-in-out; /* Smooth and responsive transition */
+
 }
 
 
@@ -94,8 +99,12 @@ h2{
 
 .edit-property-button:hover {
    
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transform: translateY(-1px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    transform: translateY(-4px); /* Slightly higher lift effect */
+    background: linear-gradient(90deg, #FF8C00, #FFA500); /* Gradient effect */
+    color: white; /* Change text color on hover for contrast */
+    border-color: #FFA500; /* Slightly lighter border */
+    transition: all 0.2s ease-in-out; /* Smooth and responsive transition */);
 }
 
 
@@ -131,7 +140,7 @@ h2{
     border-radius: 10px;
     border: 3px solid #888; /* Border around the form */
     width: 350px;
-    height: 250px;
+    height: 300px;
     margin: 0 auto; /* Center the form horizontally */
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -143,7 +152,8 @@ h2{
 
   
 .confirm-delete-form h1{
-    margin-bottom: 0px;
+    margin: 0px;
+    padding:0px;
    
   }
   

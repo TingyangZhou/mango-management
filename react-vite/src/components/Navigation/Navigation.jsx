@@ -20,8 +20,8 @@ function Navigation() {
               <img src="/images/mango_logo.jpg" alt="Mango Logo" width="70" height="70" />
           </NavLink>
           </li>
-          <li><NavLink className='nav-propreties' to="properties">Properties</NavLink></li>
-          <li><NavLink className='nav-invoices' to="/">Invoices</NavLink></li>
+          <li><NavLink className='nav-propreties' to="/properties">Properties</NavLink></li>
+          <li><NavLink className='nav-invoices' to="/invoices">Invoices</NavLink></li>
       </ul>
       <div>
         <ProfileButton/>

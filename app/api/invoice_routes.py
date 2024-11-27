@@ -35,8 +35,8 @@ def get_all_invoices():
             "item": invoice.item,
             "amount": invoice.amount,
             "created_at": invoice.created_at,
-            "due_date": invoice.due_date,
-            "payment_date": invoice.payment_date,
+            "due_date": invoice.due_date.strftime('%Y-%m-%d'),
+            "payment_date": invoice.payment_date.strftime('%Y-%m-%d'),
             "property": {
                 "id": invoice.lease.property.id,
                 "address": invoice.lease.property.address
@@ -83,8 +83,8 @@ def get_a_property(invoiceId):
         "description": invoice.description,
         "amount": invoice.amount,
         "created_at": invoice.created_at,
-        "due_date": invoice.due_date,
-        "payment_date": invoice.payment_date,
+        "due_date": invoice.due_date.strftime('%Y-%m-%d'),
+        "payment_date": invoice.payment_date.strftime('%Y-%m-%d'),
         "property": {
             "id": invoice.lease.property.id,
             "address": invoice.lease.property.address
@@ -96,8 +96,8 @@ def get_a_property(invoiceId):
         ), 
         "lease":{
              "id": invoice.lease.id,
-             "start_date": invoice.lease.start_date,
-             "end_date": invoice.lease.end_date
+             "start_date": invoice.lease.start_date.strftime('%Y-%m-%d'),
+             "end_date": invoice.lease.end_date.strftime('%Y-%m-%d')
         } if invoice.lease else None,
         "tenants":[
             {
@@ -153,8 +153,8 @@ def add_invoice():
             "item": invoice.item,
             "amount": invoice.amount,
             "created_at": invoice.created_at,
-            "due_date": invoice.due_date,
-            "payment_date": invoice.payment_date,
+            "due_date": invoice.due_date.strftime('%Y-%m-%d'),
+            "payment_date": invoice.payment_date.strftime('%Y-%m-%d'),
             "property": {
                 "id": invoice.lease.property.id,
                 "address": invoice.lease.property.address
@@ -227,8 +227,8 @@ def update_invoice(invoiceId):
             "item": invoice.item,
             "amount": invoice.amount,
             "created_at": invoice.created_at,
-            "due_date": invoice.due_date,
-            "payment_date": invoice.payment_date,
+            "due_date": invoice.due_date.strftime('%Y-%m-%d'),
+            "payment_date": invoice.payment_date.strftime('%Y-%m-%d'),
             "property": {
                 "id": invoice.lease.property.id,
                 "address": invoice.lease.property.address
@@ -292,8 +292,8 @@ def pay_invoice(invoiceId):
         "item": invoice.item,
         "amount": invoice.amount,
         "created_at": invoice.created_at,
-        "due_date": invoice.due_date,
-        "payment_date": invoice.payment_date,
+        "due_date": invoice.due_date.strftime('%Y-%m-%d'),
+        "payment_date": invoice.payment_date.strftime('%Y-%m-%d'),
         "property": {
             "id": invoice.lease.property.id,
             "address": invoice.lease.property.address

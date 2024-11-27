@@ -16,7 +16,9 @@ class Tenant(db.Model):
     email = db.Column(db.String, nullable=False, unique = True)
     mobile = db.Column(db.String(20), nullable=False)
    
-
+    __table_args__ = (
+        db.UniqueConstraint('lease_id', 'email', name='unique_tenant_per_lease'),
+    )
 
     def to_dict_basic(self):
         return {

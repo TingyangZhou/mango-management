@@ -36,7 +36,6 @@ const TenantDetail = ({propertyId}) => {
                 setErrors(error);
             })
     }, [dispatch, propertyId, activeLease]);
-   
   
     return (
         <>
