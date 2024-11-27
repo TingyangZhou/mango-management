@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeLeaseThunk } from '../../redux/leases';
 import { useModal } from '../../context/Modal';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function ConfirmDeleteLeaseModal({propertyId, leaseId}) {
     const dispatch=useDispatch();

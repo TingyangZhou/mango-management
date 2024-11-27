@@ -2,7 +2,7 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {  getOnePropertyThunk } from "../../redux/properties";
 import OpenModalButton from '../OpenModalButton';
 import ConfirmDeleteFormModal from './ConfirmDeletePropertyModal.jsx'
@@ -89,7 +89,7 @@ const PropertyDetailsPage = () => {
                         </button>
                         <OpenModalButton
                             className = "open-modal-button"
-                            buttonText = 'Remove'
+                            buttonText = 'Delete'
                             modalComponent={<ConfirmDeleteFormModal propertyId = {propertyId}/>}
                             onModalClose = {()=> navigate(`/properties/${propertyId}`)}
                         />

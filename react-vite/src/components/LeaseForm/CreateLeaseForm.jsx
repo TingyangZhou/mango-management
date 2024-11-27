@@ -19,7 +19,7 @@ const CreateLeaseForm = ()=>{
             .catch((error) => {
                 setErrors(error);
             })
-    }, [dispatch])
+    }, [dispatch, propertyId])
  
     return ( 
         <>

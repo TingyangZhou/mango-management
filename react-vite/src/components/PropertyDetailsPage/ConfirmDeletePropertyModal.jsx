@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deletePropertyThunk } from '../../redux/properties';
 import { useModal } from '../../context/Modal';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function ConfirmDeleteFormModal({propertyId}) {
     const dispatch=useDispatch();

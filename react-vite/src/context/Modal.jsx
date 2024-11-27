@@ -7,12 +7,10 @@ const ModalContext = createContext();
 export function ModalProvider({ children }) {
   const modalRef = useRef();
   const [modalContent, setModalContent] = useState(null);
-  const [modalClass, setModalClass] = useState(''); // New state for custom class
   const [onModalClose, setOnModalClose] = useState(null);
 
   const closeModal = () => {
     setModalContent(null);
-    setModalClass(''); // Clear the custom class
     if (typeof onModalClose === 'function') {
       setOnModalClose(null);
       onModalClose();
@@ -23,7 +21,6 @@ export function ModalProvider({ children }) {
     modalRef,
     modalContent,
     setModalContent,
-    setModalClass, // Function to set the custom class
     setOnModalClose,
     closeModal,
   };
@@ -39,12 +36,12 @@ export function ModalProvider({ children }) {
 }
 
 export function Modal() {
-  const { modalRef, modalContent, modalClass, closeModal } = useContext(ModalContext);
+  const { modalRef, modalContent, closeModal } = useContext(ModalContext);
   
   if (!modalRef || !modalRef.current || !modalContent) return null;
 
   return ReactDOM.createPortal(
-    <div id="modal" className={modalClass}> {/* Apply the custom class */}
+    <div id="modal" > {/* Apply the custom class */}
       <div id="modal-background" onClick={closeModal} />
       <div id="modal-content">
         {modalContent}

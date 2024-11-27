@@ -5,7 +5,7 @@ from app.models import User, Property, Lease, Tenant, db
 from app.forms import CreatePropertyForm
 from sqlalchemy.exc import IntegrityError
 
-property_routes = Blueprint("portfolio", __name__, url_prefix="/api/properties")
+property_routes = Blueprint("properties", __name__, url_prefix="/api/properties")
 
 
 # Get all properties

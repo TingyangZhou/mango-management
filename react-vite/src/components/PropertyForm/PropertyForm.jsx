@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import './PropertyForm.css'
 import { updatePropertyThunk, createPropertyThunk } from '../../redux/properties.js'
 
@@ -37,7 +37,7 @@ const PropertyForm = ({property, formType}) =>{
                 await dispatch(updatePropertyThunk(updatedProperty, updatedProperty.id))
                 navigate(`/properties/${property.id}`)
             } else if(formType === 'Create Property'){
-                const newProperty = await dispatch(createPropertyThunk(updatedProperty))
+                await dispatch(createPropertyThunk(updatedProperty))
                 
                 navigate(`/properties`)
             } 

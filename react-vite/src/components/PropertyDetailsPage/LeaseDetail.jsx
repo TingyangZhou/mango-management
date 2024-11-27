@@ -162,7 +162,7 @@ const LeaseDetail = ({propertyId}) => {
                         
                             <OpenModalButton
                                 className = "open-modal-button"
-                                buttonText = 'Remove'
+                                buttonText = 'Delete'
                                 modalComponent={<ConfirmDeleteLeaseModal 
                                                 propertyId = {propertyId}
                                                 leaseId = {activeLease?.id}/>}
@@ -199,7 +199,7 @@ const LeaseDetail = ({propertyId}) => {
                             <th>End Date</th>
                             <th>Rent ($/month)</th>
                             <th>Deposit ($)</th>
-                            <th>Remove Lease</th>
+                            <th>Delete Lease</th>
                         </tr>
                     </thead>
                     <tbody  className = 'expired-lease-table-body'>
@@ -212,7 +212,7 @@ const LeaseDetail = ({propertyId}) => {
                                 <td>{lease.deposit}</td>
                                 <td><OpenModalButton
                                     className = "open-modal-button"
-                                    buttonText = 'Remove'
+                                    buttonText = 'Delete'
                                     modalComponent={<ConfirmDeleteLeaseModal 
                                                     propertyId = {propertyId}
                                                     leaseId = {lease?.id}/>}

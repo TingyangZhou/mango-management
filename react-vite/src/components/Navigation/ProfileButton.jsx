@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import "./ProfileButton.css";
 import { FaBriefcase } from "react-icons/fa";
 import { MdOutlineLogout } from "react-icons/md";
-import { BsLightbulbFill } from "react-icons/bs";
 
 // import { toggleTheme } from '../../themeUtils';
 // import { useTheme } from '../../context/ThemeContext';
@@ -63,9 +62,7 @@ function ProfileButton() {
     closeMenu()
   }
 
-  const handleModeChange = () => {
-    toggleTheme();
-  };
+
 
   return (
     <>

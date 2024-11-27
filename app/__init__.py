@@ -12,7 +12,8 @@ from .api.user_routes import user_routes
 from .api.property_routes import property_routes
 from .api.lease_routes import lease_routes
 from .api.tenant_routes import tenant_routes
-# from .api.search_routes import search_routes
+from .api.invoice_routes import invoice_routes
+
 
 from .config import Config
 from .models import User, db
@@ -39,8 +40,8 @@ app.register_blueprint(auth_routes)
 app.register_blueprint(lease_routes)
 app.register_blueprint(property_routes)
 app.register_blueprint(tenant_routes)
-# app.register_blueprint(stock_detail_routes, url_prefix="/api/stocks")
-# app.register_blueprint(search_routes, url_prefix="/api/stocks")
+app.register_blueprint(invoice_routes)
+
 db.init_app(app)
 Migrate(app, db)
 

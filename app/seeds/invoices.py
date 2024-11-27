@@ -8,7 +8,7 @@ def seed_invoices():
     invoice1 = Invoice(
         lease_id=1,
         user_id = 1,
-        invoice_number=7001,
+        
         item="Rent",
         description="Monthly rent for January",
         due_date=datetime(2024, 1, 1).date(),
@@ -18,7 +18,7 @@ def seed_invoices():
     invoice2 = Invoice(
         lease_id=2,
         user_id = 1,
-        invoice_number=7002,
+      
         item="Rent",
         description="Monthly rent for February",
         due_date=datetime(2024, 2, 1).date(),
@@ -28,7 +28,7 @@ def seed_invoices():
     invoice3 = Invoice(
         lease_id=3,
         user_id = 1,
-        invoice_number=7003,
+        
         item="Rent",
         description="Monthly rent for March",
         due_date=datetime(2024, 3, 1).date(),
@@ -38,7 +38,7 @@ def seed_invoices():
     invoice4 = Invoice(
         lease_id=4,
         user_id = 2,
-        invoice_number=7004,
+      
         item="Rent",
         description="Monthly rent for April",
         due_date=datetime(2024, 12, 1).date(),
@@ -48,7 +48,7 @@ def seed_invoices():
     invoice5 = Invoice(
         lease_id=5,
         user_id = 1,
-        invoice_number=7005,
+
         item="Rent",
         description="Monthly rent for May",
         due_date=datetime(2022, 5, 1).date(),
@@ -59,7 +59,7 @@ def seed_invoices():
     invoice6 = Invoice(
         lease_id=4,
         user_id = 2,
-        invoice_number=7006,
+
         item="Deposit",
        
         due_date=datetime(2024, 3, 15).date(),

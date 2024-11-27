@@ -50,7 +50,7 @@ const TenantDetail = ({propertyId}) => {
                     <div className = "new-tenant-button-container">
                         <OpenModalButton
                             className="new-tenant-modal-button"
-                            modalClass="new-tenant-modal" // Pass this to set the modal class
+                         
                             buttonText="New Tenant"
                             modalComponent={<NewTenantModal 
                                 propertyId={propertyId} 
@@ -68,7 +68,7 @@ const TenantDetail = ({propertyId}) => {
                         <div className = "new-tenant-button-container">
                         <OpenModalButton
                             className="new-tenant-modal-button"
-                            modalClass="new-tenant-modal" // Pass this to set the modal class
+                    
                             buttonText="New Tenant"
                             modalComponent={<NewTenantModal 
                                 propertyId={propertyId} 
@@ -96,7 +96,7 @@ const TenantDetail = ({propertyId}) => {
                                     />
                                     <OpenModalButton
                                         className = "tenant-modal-button"
-                                        buttonText = 'Remove'
+                                        buttonText = 'Delete'
                                         modalComponent={<ConfirmRemoveTenantModal propertyId = {propertyId} tenantId = {tenant.id}/>}
                                         onModalClose = {()=> navigate(`/properties/${propertyId}`)}
                                     />
