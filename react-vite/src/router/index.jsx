@@ -10,6 +10,7 @@ import PropertyDetail from '../components/PropertyDetailsPage';
 import Invoices from "../components/Invoices/Invoices.jsx"
 import CreateLeaseForm from '../components/LeaseForm/CreateLeaseForm.jsx';
 import UpdateLeaseForm from '../components/LeaseForm/UpdateLeaseForm.jsx';
+import InvoiceDetailsPage from '../components/InvoiceDetail/InvoiceDetail.jsx';
 
 
 // import GenericError from '../components/Error';
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
                 path: '/invoices',
                 element: <Invoices />
             },
+            {
+                path:'/invoices/:invoiceId',
+                element: <InvoiceDetailsPage/>
+            }
            
 
 

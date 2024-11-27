@@ -59,7 +59,7 @@ h2{
     align-items: start; /* Center buttons horizontally */
     gap: 15px; /* Add spacing between buttons */
     flex-shrink: 0; /* Prevent buttons from shrinking */
-    margin-left: 20px; /* Add spacing between buttons and table */
+    margin-right:0px;
     font-weight: bold;
 }
 
@@ -68,13 +68,13 @@ h2{
 .delete-property-button,
 .new-property-button {
     padding: 10px 15px;
-    font-size: 16px; /* Updated font size */
+    font-size: 15px; /* Updated font size */
     font-weight:800;
     border-radius: 8px; 
-    border: 2px solid #FF8C00;
+    border: 1px solid #FF8C00;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 170px;;
+    width: 150px;;
     text-align: center;
     background-color: white;
     color: #FF8C00;
@@ -104,7 +104,7 @@ h2{
     background: linear-gradient(90deg, #FF8C00, #FFA500); /* Gradient effect */
     color: white; /* Change text color on hover for contrast */
     border-color: #FFA500; /* Slightly lighter border */
-    transition: all 0.2s ease-in-out; /* Smooth and responsive transition */);
+    transition: all 0.2s ease-in-out; 
 }
 
 

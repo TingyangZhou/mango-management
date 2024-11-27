@@ -13,21 +13,25 @@
   
 .new-tenant-modal-button{
     padding: 10px 15px;
-    font-size: 16px; /* Updated font size */
+    font-size: 15px; /* Updated font size */
     font-weight:800;
     border-radius: 8px; 
-    border: 2px solid #FF8C00;
+    border: 1px solid #FF8C00;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 170px;
+    width: 150px;
     text-align: center;
     background-color: white;
     color: #FF8C00;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 .new-tenant-modal-button:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transform: translateY(-1px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    transform: translateY(-4px); /* Slightly higher lift effect */
+    background: linear-gradient(90deg, #FF8C00, #FFA500); /* Gradient effect */
+    color: white; /* Change text color on hover for contrast */
+    border-color: #FFA500; /* Slightly lighter border */
+    transition: all 0.2s ease-in-out; /* Smooth and responsive transition */
 }
 
 .no-tenant-container{
@@ -57,6 +61,22 @@
     background-color: #f9f9f9; /* Softer background color for contrast */
     margin-bottom: 20px;
  
+}
+
+.tenant-confirm-delete-form{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 3px solid #888; /* Border around the form */
+    width: 350px;
+    height: fit-content;
+    margin: 0 auto; /* Center the form horizontally */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 }
 
 
@@ -121,13 +141,13 @@
 
 .tenant-modal-button {
     padding: 10px 15px;
-    font-size: 16px; /* Updated font size */
+    font-size: 15px; /* Updated font size */
     font-weight:800;
     border-radius: 8px; 
-    border: 2px solid #FF8C00;
+    border: 1px solid #FF8C00;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 100px;
+    width: 80px;
     text-align: center;
     background-color: white;
     color: #FF8C00;
@@ -135,8 +155,12 @@
 }
 
 .tenant-modal-button:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
-    transform: translateY(-1px); /* Subtle lift effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    transform: translateY(-4px); /* Slightly higher lift effect */
+    background: linear-gradient(90deg, #FF8C00, #FFA500); /* Gradient effect */
+    color: white; /* Change text color on hover for contrast */
+    border-color: #FFA500; /* Slightly lighter border */
+    transition: all 0.2s ease-in-out; /* Smooth and responsive transition */
 }
 
   

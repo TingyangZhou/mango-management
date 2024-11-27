@@ -1,17 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import './Invoices.css'
 import { getAllInvoicesThunk } from '../../redux/invoices'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
+
 
 
 export default function Invoices (){
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [ errors, setErrors ] = useState("");
 
     const  invoices = useSelector((state) => state.invoices.invoices);
 
@@ -32,23 +31,23 @@ export default function Invoices (){
 
     useEffect(()=>{
         // console.log("=======useEffect===========")
-        dispatch(getAllInvoicesThunk())
-        .catch(error => {
-            setErrors(error);
-        });
+        dispatch(getAllInvoicesThunk());
     }, [dispatch])
+
+   
+    
 
     return (
         <div className='invoices--page'>
             <div className='new-invoice-button-container'>
                 <button  
                     onClick={handleCreateInvoice}
-                    className='create-invoice-button-on-listPage'>
+                    className='new-invoice-button-on-listPage'>
                         New Invoice
                     </button>
             </div>
            
-            <table>
+            <table className="invoice-list-table">
                 <thead>
                     <tr>    
                         <th>Invoice ID</th>
@@ -62,13 +61,17 @@ export default function Invoices (){
                 <tbody>
                     {sortedInvoices.map((invoice, index) => (
                         <tr key={index}
-                            onClick={() => navigate(`/properties/${property.id}`)}>
+                            onClick={() => navigate(`/invoices/${invoice.id}`)}>
                             <td>{invoice.id}</td>
                             <td>{invoice.property.address}</td>
                             <td>{invoice.item}</td>
                             <td>{invoice.amount}</td>
-                            <td>{invoice.due_date}</td>
-                            <td>{invoice.status}</td>
+                            <td>{new Date(invoice?.due_date).toLocaleDateString('en-US', {
+                                month: 'short',  // Abbreviated month (e.g., "Nov")
+                                day: 'numeric',  // Day of the month (e.g., "13")
+                                year: 'numeric'  // Full year (e.g., "2024")
+                            })}</td>
+                            <td className = {invoice.status}>{invoice.status}</td>
                         </tr>
                     ))}
                 </tbody>

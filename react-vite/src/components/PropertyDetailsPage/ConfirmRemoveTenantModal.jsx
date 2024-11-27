@@ -28,10 +28,10 @@ function ConfirmRemoveTenantModal({propertyId, tenantId}) {
     }
 
     return (
-        <form className='confirm-delete-form'>
+        <form className='tenant-confirm-delete-form'>
              {errors?.message && <p className='hint'>{errors.messagey}</p>}
             <h2>Confirm Termination</h2>
-            <p>Are you sure you want to remove this tenant? </p>
+            <p>Are you sure you want to delete this tenant? </p>
             <button 
                  className='yes-button'
                  onClick={handleDeleteClick}
