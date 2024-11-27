@@ -19,6 +19,7 @@ from datetime import datetime
 @login_required
 def get_all_invoices():
 
+    
     invoices = (
         Invoice.query
         .options(
@@ -58,6 +59,7 @@ def get_all_invoices():
 @invoice_routes.route("/<int:invoiceId>", methods=['GET'])
 @login_required
 def get_a_property(invoiceId):
+
     invoice = (
                 Invoice.query
                 .options(

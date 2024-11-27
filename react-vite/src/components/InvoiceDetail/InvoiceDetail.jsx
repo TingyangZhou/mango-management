@@ -18,7 +18,8 @@ const InvoiceDetailsPage = () => {
     const [ errors, setErrors ] = useState({})
 
     const invoice = useSelector(state => state.invoices.currentInvoice);
-
+    const tenants = invoice?.tenants
+    
     useEffect(()=>{
 
         dispatch(getOneInvoiceThunk(invoiceId))
@@ -55,12 +56,17 @@ const InvoiceDetailsPage = () => {
                                     year: 'numeric'  // Full year (e.g., "2024")
                                 })}
                             </td>
-                            <td> <TbCalendarDue /> Due On: {new Date(invoice?.due_date).toLocaleDateString('en-US', {
-                                    month: 'short',  // Abbreviated month (e.g., "Nov")
-                                    day: 'numeric',  // Day of the month (e.g., "13")
-                                    year: 'numeric'  // Full year (e.g., "2024")
-                                })}
+                            <td>
+                                {invoice?.due_date
+                                    ? new Date(invoice.due_date).toLocaleDateString('en-US', {
+                                        timeZone: 'UTC', // Interpret and display the date in UTC
+                                        month: 'short',  // Abbreviated month (e.g., "Mar")
+                                        day: 'numeric',  // Day of the month (e.g., "1")
+                                        year: 'numeric', // Full year (e.g., "2024")
+                                    })
+                                    : 'No due date available'}
                             </td>
+
                         </tr>
                         <tr>
                             <td colSpan="3"> <FcViewDetails /> Details: {invoice?.description}</td>
@@ -70,29 +76,53 @@ const InvoiceDetailsPage = () => {
                         </tbody>
                     </table>
                                 
-                    <h3>Property Information</h3>
+                    
                     <table className="invoice-info-table">
                     <tbody>
-                    <tr>
-                        <td><GiTempleGate />  Property Address: {invoice?.property?.address}</td>
-                        <td>Lease Term: {new Date(invoice?.lease?.start_date).toLocaleDateString('en-US', {
-                                    month: 'short',  // Abbreviated month (e.g., "Nov")
-                                    day: 'numeric',  // Day of the month (e.g., "13")
-                                    year: 'numeric'  // Full year (e.g., "2024")
-                                })} - {new Date(invoice?.lease?.end_date).toLocaleDateString('en-US', {
-                                    month: 'short',  // Abbreviated month (e.g., "Nov")
-                                    day: 'numeric',  // Day of the month (e.g., "13")
-                                    year: 'numeric'  // Full year (e.g., "2024")
-                                })}</td>
+                    <tr>    
+                        <td> Property ID: {invoice?.property?.id}</td>
+                        <td><GiTempleGate /> {invoice?.property?.address}</td>
+                    
+                        <td> Lease Id: {invoice?.lease.id}</td>
+                        <td><TbCalendarDue /> Term: {invoice?.lease?.start_date
+                            ? new Date(invoice?.lease?.start_date).toLocaleDateString('en-US', {
+                                timeZone: 'UTC', // Interpret and display the date in UTC
+                                month: 'short',  // Abbreviated month (e.g., "Mar")
+                                day: 'numeric',  // Day of the month (e.g., "1")
+                                year: 'numeric', // Full year (e.g., "2024")
+                            })
+                        : 'No start date available'} - {invoice?.lease?.end_date
+                            ? new Date(invoice?.lease?.end_date).toLocaleDateString('en-US', {
+                                timeZone: 'UTC', // Interpret and display the date in UTC
+                                month: 'short',  // Abbreviated month (e.g., "Mar")
+                                day: 'numeric',  // Day of the month (e.g., "1")
+                                year: 'numeric', // Full year (e.g., "2024")
+                            })
+                            : 'No end date available'}</td>
                        
                     </tr>
-                    <tr>
-                        <td colSpan="3"> <FcViewDetails /> Details: {invoice?.description}</td>
-                        <td className={invoice?.status}> {invoice?.status}</td>
-                        
-                    </tr>
                     </tbody>
-                </table>
+                    </table>
+
+                    <table className="invoice-info-table">
+                    <tbody>
+                        <tr><td>Tenants</td></tr>
+                    {tenants.reduce((rows, tenant, index) => {
+                   
+                   if (index % 3 === 0) rows.push([]);
+                   rows[rows.length - 1].push(tenant);
+                   return rows;
+                   }, []).map((row, rowIndex) => (
+                   <tr key={rowIndex}>
+                       {row.map((tenant, colIndex) => (
+                       <td key={colIndex}>{tenant?.first_name} {tenant?.last_name}</td>
+                       ))}
+                   </tr>
+                   ))}
+                    </tbody>
+                    </table>              
+                    
+                   
             </div>
             
         </div>

@@ -1,6 +1,7 @@
 .invoice-detail-page{
     width: 80%;
     margin: 0 auto;
+    padding-bottom:30px;
 }
 
 .invoice-container{
@@ -14,6 +15,7 @@
     margin-top: 20px; /* Add spacing from the top */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
     background-color: #f9f9f9; /* Softer background color for contrast */
+    
 }
 
 
@@ -127,5 +129,15 @@
     vertical-align: middle; /* Vertical alignment */
     padding: 20px; /* Optional: Add padding for better spacing */
 
+}
+
+.tenant-info-table{
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 16px;
+    background-color: #fff; /* White background for the table */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the table */
+    border-radius: 8px; /* Rounded corners for a clean look */
 }
 

@@ -66,11 +66,15 @@ export default function Invoices (){
                             <td>{invoice.property.address}</td>
                             <td>{invoice.item}</td>
                             <td>{invoice.amount}</td>
-                            <td>{new Date(invoice?.due_date).toLocaleDateString('en-US', {
-                                month: 'short',  // Abbreviated month (e.g., "Nov")
-                                day: 'numeric',  // Day of the month (e.g., "13")
-                                year: 'numeric'  // Full year (e.g., "2024")
-                            })}</td>
+                            <td>{invoice?.due_date
+                                    ? new Date(invoice.due_date).toLocaleDateString('en-US', {
+                                        timeZone: 'UTC', // Interpret and display the date in UTC
+                                        month: 'short',  // Abbreviated month (e.g., "Mar")
+                                        day: 'numeric',  // Day of the month (e.g., "1")
+                                        year: 'numeric', // Full year (e.g., "2024")
+                                    })
+                                    : 'No due date available'}
+                            </td>
                             <td className = {invoice.status}>{invoice.status}</td>
                         </tr>
                     ))}
