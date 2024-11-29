@@ -52,30 +52,37 @@ const InvoiceDetailsPage = () => {
 
     
     const handleEditClick=()=>{
+        setErrors({});
         setIsEditing(true);
     }
 
 
-    const handleSaveClick=()=>{
-       
+    const handleSaveClick=async(e)=>{
+       e.preventDefault();
+       setErrors({});
         try{
             
-            console.log("Dispatching updateInvoiceThunk with:", formData);
+            // console.log("Dispatching updateInvoiceThunk with:", formData);
             // console.log("============invoiceId", invoice?.id)
            
-            dispatch(updateInvoiceThunk(formData, invoice?.id))
+            await dispatch(updateInvoiceThunk(formData, invoice?.id))
             setIsEditing(false);
+            console.log('---------------------------%%%%%%%%%%%%')
             
+        } catch(error){
             
-        }catch(error){
-            
-            // console.log("============error:", error)
+            console.log("============error:", error)
             setIsEditing(true);
             setErrors(error);
-            // console.log("============errors:", errors)
+                    
         }
      
     }
+
+    useEffect(()=>{
+        console.log("%%%%%%%%%%errorss.item:", errors.item)
+    },[errors])
+
 
     const handleCancelClick = () => {
         setIsEditing(false); // Cancel edit mode
@@ -102,7 +109,7 @@ const InvoiceDetailsPage = () => {
 
     
     return(
-        <>  {Object.keys(errors).length !== 0 ? (<p className='hint'>{errors.message}</p>):
+        
         <div className="invoice-detail-page">
             <div className="invoice-container">
                 <div className="new-invoice-header">
@@ -143,16 +150,21 @@ const InvoiceDetailsPage = () => {
                         <tbody>
                         <tr>
                             <td> <GiTempleGate /> <span style={{ fontWeight: "bold" }}> 
-                                    Item:
-                                </span> 
+                                    Item: </span> 
                                 {isEditing ? (
-                                    <input
-                                        type='text'
-                                        className="edit-invoice-input"
-                                        value={formData?.item}
-                                        required
-                                        onChange ={e=>handleInputChange("item", e.target.value)}
-                                        />):(
+                                    <>
+                                        <input
+                                            type='text'
+                                            className="edit-invoice-input"
+                                            value={formData?.item}
+                                            required
+                                            onChange ={e=>handleInputChange("item", e.target.value)}
+                                        />
+                                        {errors?.item && <p className="hint">{errors.item.join(", ")}</p>}
+                                    </>
+                                    
+
+                                    ):(
                                             invoice?.item
                                         )
                                  }
@@ -182,7 +194,7 @@ const InvoiceDetailsPage = () => {
                                 </td>
                             }
                             
-                            <td> <TbCalendarDue /> <span style={{ fontWeight: "bold" }}>Due On:</span> 
+                            <td> <TbCalendarDue /> <span style={{ fontWeight: "bold" }}>Due On: </span> 
                             {isEditing?   
                                 (<input
                                     className="edit-invoice-input"
@@ -305,8 +317,8 @@ const InvoiceDetailsPage = () => {
             </div>
             
         </div>
-    }
-        </>
+    
+      
     )
 }
 
