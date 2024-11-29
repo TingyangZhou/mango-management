@@ -1,0 +1,52 @@
+
+
+.new-invoice-button-on-listPage{
+    padding: 10px 15px;
+    font-size: 18px; /* Updated font size */
+    border-radius: 8px; /* Slightly less rounded corners for a professional look */
+    border: none;
+    cursor: pointer;
+    margin-top:10px;
+    transition: all 0.3s ease;
+    width: 130px;
+    text-align: center;
+    background-color: #666; /* Default muted gray background */
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #4CAF50; /* Default muted gray background */
+    margin-right:0px;
+    align-items: right;
+}
+
+.new-invoice-button-container{
+  margin: 0 auto;
+  width: 80%;
+  display: flex; /* Enable flexbox */
+  justify-content: flex-end; /* Align content to the right */
+  align-items: center;
+  
+  
+}
+.invoice-list-table td, 
+.invoice-list-table th {
+  text-align: center; /* Horizontal alignment */
+  vertical-align: middle; /* Vertical alignment */
+  padding: 15px; /* Optional: Add padding for better spacing */
+}
+
+td.paid {
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
+  }
+  
+  /* Styling for "outstanding" status */
+  td.outstanding {
+    background-color: #fff3cd; /* Light yellow background */
+    color: #856404; /* Dark yellow text */
+  }
+  
+  /* Styling for "overdue" status */
+  td.overdue {
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+  }

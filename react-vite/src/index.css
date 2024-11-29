@@ -1,0 +1,61 @@
+.hint {
+    color: #D9534F; /* Muted red for a professional look */
+    font-size: 16px; /* Slightly smaller font size for emphasis */
+    padding-left: 4px; /* Slight padding for alignment */
+    display: block; /* Ensures it occupies its own line */
+
+}
+
+
+.hidden {
+    display: none;
+}
+
+/* Dark mode styles */
+.dark-mode body {
+    background-color: black;
+    color: #ffffff;
+}
+
+.dark-mode button {
+    background-color: #b83a00; /* Dimmed Orange */
+    color: #ffffff;
+}
+
+.dark-mode button:hover {
+    background-color:#fb641c ; /* Dimmed Orange */
+    color: #ffffff;
+}
+
+.dark-mode div{
+    background-color: black;
+}
+
+.dark-mode .signup-section, .login-section{
+    background-color: initial !important;
+}
+
+.dark-mode div:hover{
+    background-color: black;
+}
+
+.dark-mode p{
+    color: #ffffff; 
+}
+
+.dark-mode input{
+    background-color: black;
+    color:#ffffff
+}
+
+.dark-mode .signup-section input, .login-section input{
+    background-color: #ffffff;
+    color:black
+}
+
+
+
+.dark-mode h2{
+    color: #ffffff; 
+}
+

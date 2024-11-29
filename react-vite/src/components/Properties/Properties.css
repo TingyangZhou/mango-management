@@ -1,0 +1,118 @@
+/* .port-page-container{
+  padding:0rem 5rem
+} */
+
+
+/* Link Styling */
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+.new-property-container {
+  width: 100%; /* Ensure the button container spans full width */
+  display: flex;
+  /* border: solid 1px red; */
+  justify-content: right;
+ 
+}
+
+.create-property-button-listPage {
+  padding: 10px 15px;
+  font-size: 18px; /* Updated font size */
+  border-radius: 8px; /* Slightly less rounded corners for a professional look */
+  border: none;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+  width: 150px;
+  text-align: center;
+  background-color: #666; /* Default muted gray background */
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background-color: #4CAF50; /* Default muted gray background */
+  margin-right:10%;
+}
+
+/* Hover effect */
+.create-property-button-listPage:hover {
+    background-color: #388E3C; /* Slightly darker green on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    transform: translateY(-1px); /* Subtle lift effect */
+}
+
+
+
+.properties--page {
+  display: flex;
+  flex-direction: column; /* Ensure items stack vertically */
+  align-items: flex-start; /* Align items to the left */
+  padding: 20px;
+}
+
+/* Table container styling */
+table {
+  width: 80%; /* Ensures table takes full width */
+  border-collapse: collapse; /* Removes double borders */
+  margin: 10px auto; /* Centers the table */
+}
+
+/* Header styling */
+th {
+  background-color: #f4f4f4; /* Light gray for header */
+  font-weight: bold;
+  text-align: center; /* Aligns text to the left */
+  padding: 10px; /* Adds padding for better spacing */
+  border: none; 
+  font-size:22px;
+}
+
+/* Cell styling */
+td {
+  padding: 15px; /* Adds padding to table cells */
+  text-align: center; /* Aligns text to the left */
+  vertical-align: middle;
+  font-size:18px;
+
+}
+
+table tr:hover {
+  cursor: pointer;
+  background-color: #f4f4f4; /* Optional: Light gray background on hover */
+  transition: background-color 0.2s ease; /* Smooth transition */
+}
+
+/* Optional: Add zebra striping for rows */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.occupied {
+  background-color: orange; /* Background color */
+  opacity: 0.8;
+  color: white; /* Text color */
+  padding: 8px 10px; /* Add padding to give it a button-like appearance */
+  border-radius: 15px; /* Rounded corners to create a pill shape */
+  display: inline-block; /* Ensures the element respects padding and rounded corners */
+  text-align: center; /* Center the text */
+}
+
+.vacant {
+  background-color:#3498db; /* Background color */
+  opacity: 0.8;
+  color: white; /* Text color */
+  padding: 8px 10px; /* Padding for button-like shape */
+  border-radius: 15px; /* Rounded corners */
+  display: inline-block; /* Ensures proper display */
+  text-align: center; /* Center the text */
+}
+
+
+.page-footer{
+  
+  width:80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+}
+

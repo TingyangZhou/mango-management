@@ -1,0 +1,216 @@
+.property-detail-page {
+    width: 80%;
+    margin: 0 auto;
+ 
+}
+
+.property-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center; /* Align items to the top */
+    border: 1px solid #ddd; /* Light border around the container */
+    border-radius: 10px; /* Rounded corners for the container */
+    padding: 10px; /* Add padding for spacing */
+    margin-top: 20px; /* Add spacing from the top */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+    background-color: #f9f9f9; /* Softer background color for contrast */
+}
+
+
+.property-title-new-property-button-container{
+    display: flex;
+    justify-content: space-between; /* Place items at opposite ends */
+    align-items: center; /* Center vertically */
+    width: 100%; /* Ensure full width */
+}
+
+.property-table-button-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.property-buttons {
+    display: flex;
+    font-size: 16px;
+    flex-direction: column; /* Stack buttons vertically */
+    justify-content: center; /* Align buttons to the top */
+    align-items: center; /* Center buttons horizontally */
+    gap: 15px; /* Add spacing between buttons */
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+    margin-left: 20px; 
+}
+
+h2{
+    font-size: 20px;
+}
+
+
+.property-details-title{
+    font-weight: bold;
+}
+
+.new-property-button-container{
+    display: flex;    
+    font-size: 18px;
+    flex-direction: column; /* Stack buttons vertically */
+    justify-content: flex-start; /* Align buttons to the top */
+    align-items: start; /* Center buttons horizontally */
+    gap: 15px; /* Add spacing between buttons */
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+    margin-right:0px;
+    font-weight: bold;
+}
+
+/* General button styling */
+.edit-property-button,
+.delete-property-button {
+    padding: 10px 15px;
+    font-size: 15px; /* Updated font size */
+    font-weight:800;
+    border-radius: 8px; 
+    border: 1px solid #FF8C00;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 150px;;
+    text-align: center;
+    background-color: white;
+    color: #FF8C00;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+
+.new-property-button{
+    padding: 8px 15px;
+    font-weight:800;
+    font-size: 15px; 
+    border-radius: 8px; 
+    border: #4CAF50 solid 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 150px;
+    text-align: center;
+    background-color: white;
+    color: #4CAF50;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.new-property-button:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    transform: translateY(-4px); /* Slightly higher lift effect */
+    background: linear-gradient(90deg, #4CAF50, #4CAF50); /* Gradient effect */
+    color: white; /* Change text color on hover for contrast */
+    border-color: #4CAF50; /* Slightly lighter border */
+    transition: all 0.2s ease-in-out; /* Smooth and responsive transition */
+
+}
+
+
+
+
+
+/* Edit Property Button */
+
+
+.edit-property-button:hover {
+   
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    transform: translateY(-4px); /* Slightly higher lift effect */
+    background: linear-gradient(90deg, #FF8C00, #FFA500); /* Gradient effect */
+    color: white; /* Change text color on hover for contrast */
+    border-color: #FFA500; /* Slightly lighter border */
+    transition: all 0.2s ease-in-out; 
+}
+
+
+.delete-property-button:hover {
+    background-color: #C9302C; /* Slightly darker red on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Styling for the property-info table */
+.property-info-table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 16px;
+    background-color: #fff; /* White background for the table */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the table */
+    border-radius: 8px; /* Rounded corners for a clean look */
+}
+
+.property-info-table td {
+    padding: 15px;
+    vertical-align: middle;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+}
+
+.confirm-delete-form {
+    background-color: white;
+    padding: 20px;
+   
+    border-radius: 10px;
+    border: 3px solid #888; /* Border around the form */
+    width: 350px;
+    height: 300px;
+    margin: 0 auto; /* Center the form horizontally */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  
+.confirm-delete-form h1{
+    margin: 0px;
+    padding:0px;
+   
+  }
+  
+  /* Paragraph styling */
+  .confirm-delete-form p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: left;
+    margin-top: 0px;
+    /* border: solid 1px red; */
+  }
+  
+  
+  
+  
+  /* Button styles */
+.yes-button, .no-button {
+    display: block;
+    width: 100%; /* Full width button */
+    padding: 10px;
+    margin-bottom: 15px; /* Spacing between buttons */
+    font-size: 16px;
+    border: 2px solid black; /* Black border */
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Yes (Delete Spot) button styling */
+  .yes-button {
+    background-color: #ff4d4d; /* Red background for delete */
+    color: white;
+  }
+  
+  
+  
+  /* No (Keep Spot) button styling */
+  .no-button {
+    background-color: green; /* Dark grey background for keep spot */
+    color: white;
+  
+  }
