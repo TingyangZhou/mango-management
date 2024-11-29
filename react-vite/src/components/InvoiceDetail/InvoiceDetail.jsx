@@ -80,7 +80,7 @@ const InvoiceDetailsPage = () => {
     }
 
     useEffect(()=>{
-        console.log("%%%%%%%%%%errorss.item:", errors.item)
+        console.log("%%%%%%%%%%errors:", errors)
     },[errors])
 
 
@@ -109,7 +109,8 @@ const InvoiceDetailsPage = () => {
 
     
     return(
-        
+        <>
+        {(errors?.message) ? (<p className="hint">{errors?.message}</p>):
         <div className="invoice-detail-page">
             <div className="invoice-container">
                 <div className="new-invoice-header">
@@ -174,13 +175,17 @@ const InvoiceDetailsPage = () => {
                             <td><AiFillDollarCircle />  <span style={{ fontWeight: "bold" }}>Amount: </span> 
                                  
                             {isEditing ? (
+                                 <>
                                 <input
                                     type='text'
                                     required
                                     className="edit-invoice-input"
                                     value={formData?.amount}
                                     onChange ={e=>handleInputChange("amount", e.target.value)}
-                                    />):(
+                                    />
+                                {errors?.amount && <p className="hint">{errors.amount.join(", ")}</p>}
+                                </>
+                                ):(
                                         invoice?.amount
                                     )
                                 }
@@ -196,13 +201,16 @@ const InvoiceDetailsPage = () => {
                             
                             <td> <TbCalendarDue /> <span style={{ fontWeight: "bold" }}>Due On: </span> 
                             {isEditing?   
-                                (<input
+                                (<>
+                                <input
                                     className="edit-invoice-input"
                                     type="date"
                                     required
                                     onChange={e =>handleInputChange("due_date", e.target.value)}
                                     value={formData?.due_date}
-                                />) :  (new Date(invoice?.due_date).toLocaleDateString('en-US', {
+                                />
+                                 {errors?.due_date && <p className="hint">{errors.due_date.join(", ")}</p>}
+                                </>) :  (new Date(invoice?.due_date).toLocaleDateString('en-US', {
                                             timeZone: 'UTC', // Interpret and display the date in UTC
                                             month: 'short',  // Abbreviated month (e.g., "Mar")
                                             day: 'numeric',  // Day of the month (e.g., "1")
@@ -220,12 +228,16 @@ const InvoiceDetailsPage = () => {
                         <tr>
                             <td colSpan="2"> <FcViewDetails /> <span style={{ fontWeight: "bold" }}> Details: </span> 
                             {isEditing ? 
-                                (<textarea
+                                (
+                                <>
+                                <textarea
                                     className="edit-invoice-input"
 
                                     onChange={e =>handleInputChange("description", e.target.value)}
                                     value={formData?.description}
-                                    /> ) : (
+                                    /> 
+                                     {errors?.description && <p className="hint">{errors.description.join(", ")}</p>}
+                                    </>) : (
                                         invoice?.description)
                             }</td>
                             
@@ -318,7 +330,8 @@ const InvoiceDetailsPage = () => {
             
         </div>
     
-      
+    }
+    </>
     )
 }
 

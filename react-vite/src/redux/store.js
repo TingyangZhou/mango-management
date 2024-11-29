@@ -9,7 +9,7 @@ import {
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import propertyReducer from './properties';
-import watchlistReducer from './watchlist';
+
 import userInfoReducer from './users';
 import leaseReducer from './leases';
 import tenantReducer from './tenants';
@@ -19,7 +19,6 @@ import invoiceReducer from './invoices';
 const rootReducer = combineReducers({
     session: sessionReducer,
     properties: propertyReducer,
-    watchlist: watchlistReducer,
     userInfo: userInfoReducer,
     leases: leaseReducer,
     tenants:tenantReducer,

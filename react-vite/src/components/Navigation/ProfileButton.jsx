@@ -28,9 +28,22 @@ function ProfileButton() {
   };
 
 
+
+
+  const closeMenu = () => setShowMenu(false);
+
+
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(thunkLogout());
+    closeMenu();
+  };
+
+
+
+
   useEffect(() => {
     if (!showMenu) return;
-
 
     const closeMenu = (e) => {
       if (ulRef.current && !ulRef.current.contains(e.target)) {
@@ -45,25 +58,6 @@ function ProfileButton() {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-
-  const closeMenu = () => setShowMenu(false);
-
-
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(thunkLogout());
-    closeMenu();
-  };
-
-
-  const handlePortfolioClick = e => {
-    e. preventDefault()
-    navigate("/portfolio")
-    closeMenu()
-  }
-
-
-
   return (
     <>
       <button className='profile-button' onClick={toggleMenu}>
@@ -73,11 +67,8 @@ function ProfileButton() {
         <div className={"profile-dropdown"} ref={ulRef}>
           {user ? (
             <>
-              <li className='profile-username'>{user.username}</li>
-              <li className='profile-list-item-with-icon'>
-                <FaBriefcase />
-                <button className='profile-my-portfolio' onClick={handlePortfolioClick}>My Portfolio</button>
-              </li>
+              <li className='profile-username'>Hi {user.username}</li>
+             
               {/* <li className='profile-list-item-with-icon'>
                 <BsLightbulbFill />
                 <button className='profile-mode-button' id="change-mode-button" onClick={handleModeChange}>{isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}</button>
