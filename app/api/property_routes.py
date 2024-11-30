@@ -113,7 +113,7 @@ def add_property():
 
         # Check if the error is related to the unique constraint on address
         if "UNIQUE constraint failed: properties.address" in str(e.orig):
-            return jsonify({"message": "The address already exists. Please use a different address."}), 400
+            return jsonify({"address": "The address already exists. Please use a different address."}), 400
    
    return form.errors, 400
 
