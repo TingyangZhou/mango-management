@@ -1,6 +1,6 @@
 from .db import SCHEMA, add_prefix_for_prod, db, environment
 from datetime import datetime, timezone
-import uuid
+
 
 class Lease(db.Model):
     __tablename__ = "leases"
