@@ -130,12 +130,17 @@ const PropertyForm = ({property, formType}) =>{
 
                 <div className='property-form-buttons'>
                     <button
+                        type="button"
                         onClick = {handleCancel}
                         className='cancel-change-button'>
                         Cancel
                     </button>
 
-                    <button className='property-form-submit-button'>Submit</button>
+                    <button 
+                        type="submit" 
+                        className='property-form-submit-button'>
+                            Submit
+                    </button>
                 </div>
                
             </form>

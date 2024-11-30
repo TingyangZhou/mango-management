@@ -116,14 +116,26 @@ const LeaseDetail = ({propertyId}) => {
                     
                             <tr>
                                 
-                                <td> <CiCalendarDate /> Start: {activeLease?.start_date}</td>
-                                <td> <CiCalendarDate /> End: {activeLease?.end_date}</td>
+                                <td> <CiCalendarDate /> <span style={{ fontWeight: "bold" }}>Start:</span> {new Date(activeLease?.start_date).toLocaleDateString('en-US', {
+                                    timeZone: 'UTC',
+                                    month: 'short',  // Abbreviated month (e.g., "Nov")
+                                    day: 'numeric',  // Day of the month (e.g., "13")
+                                    year: 'numeric'  // Full year (e.g., "2024")
+                                })}</td>
+                                <td> <CiCalendarDate /> <span style={{ fontWeight: "bold" }}>End:</span> {new Date(activeLease?.end_date).toLocaleDateString('en-US', {
+                                    timeZone: 'UTC',
+                                    month: 'short',  // Abbreviated month (e.g., "Nov")
+                                    day: 'numeric',  // Day of the month (e.g., "13")
+                                    year: 'numeric'  // Full year (e.g., "2024")
+                                })}</td>
+                               
                             </tr>
 
                             <tr>
-                                <td> <AiFillDollarCircle /> Rent: ${activeLease?.rent} </td>
+                                <td> <AiFillDollarCircle /> <span style={{ fontWeight: "bold" }}>Rent: </span> ${activeLease?.rent} </td>
+                                
                                 <td>
-                                    <TbCalendarDue /> Rent Due:{" "}
+                                    <TbCalendarDue /> <span style={{ fontWeight: "bold" }}>Rent Due: </span>
                                     {activeLease?.rent_due_day === 1
                                         ? "1st of every month"
                                         : `${activeLease?.rent_due_day}${getOrdinalSuffix(activeLease?.rent_due_day)} of every month`}
@@ -134,9 +146,15 @@ const LeaseDetail = ({propertyId}) => {
                             
                             
                             <tr>
-                                <td> <AiFillDollarCircle /> Deposit: ${activeLease?.deposit} </td>
-                                <td> <TbCalendarDue /> Deposit Due: {activeLease?.deposit_due_date}</td>
-                            
+                                <td> <AiFillDollarCircle /> <span style={{ fontWeight: "bold" }}>Deposit: </span> ${activeLease?.deposit} </td>
+
+                                <td> <CiCalendarDate /> <span style={{ fontWeight: "bold" }}>Deposit Due: </span> {new Date(activeLease?.deposit_due_date).toLocaleDateString('en-US', {
+                                    timeZone: 'UTC',
+                                    month: 'short',  // Abbreviated month (e.g., "Nov")
+                                    day: 'numeric',  // Day of the month (e.g., "13")
+                                    year: 'numeric'  // Full year (e.g., "2024")
+                                })}</td>
+                                                           
                             </tr>
                         
                         </table>

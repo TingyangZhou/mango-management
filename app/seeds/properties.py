@@ -8,7 +8,7 @@ def seed_properties():
     # Create Properties
     property1 = Property(
         user_id = 1,
-        address="123 Main St, Houston, IL",
+        address="123 Main St, Houston, TX",
         property_type="Apartment",
         bedrooms=2,
         bathrooms=1,
@@ -16,7 +16,7 @@ def seed_properties():
     )
     property2 = Property(
         user_id = 1,
-        address="456 Oak Dr, Houston, IL",
+        address="456 Oak Dr, Houston, TX",
         property_type="House",
         bedrooms=3,
         bathrooms=2,
@@ -24,7 +24,7 @@ def seed_properties():
     )
     property3 = Property(
         user_id = 1,
-        address="789 Pine Ln, Houston, IL",
+        address="789 Pine Ln, Houston, TX",
         property_type="Townhouse",
         bedrooms=2,
         bathrooms=2,
@@ -32,7 +32,7 @@ def seed_properties():
     )
     property4 = Property(
         user_id = 2,
-        address="101 Maple Ct, Houston, IL",
+        address="101 Maple Ct, Houston, TX",
         property_type="Apartment",
         bedrooms=1,
         bathrooms=1,
@@ -40,7 +40,7 @@ def seed_properties():
     )
     property5 = Property(
         user_id = 2,
-        address="202 Cedar St, Houston, IL",
+        address="202 Cedar St, Houston, TX",
         property_type="House",
         bedrooms=3,
         bathrooms=3,

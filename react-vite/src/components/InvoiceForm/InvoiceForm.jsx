@@ -57,7 +57,8 @@ const InvoiceForm = ({formType}) =>{
                  
         }
     
-        const handleDummyData =() => {
+        const handleDummyData =(e) => {
+            e.preventDefault();
             setPropertyId(1);
             setDueDate(new Date("2025-1-1").toISOString().split("T")[0]);
             setAmount(1000);
@@ -68,7 +69,7 @@ const InvoiceForm = ({formType}) =>{
     return (
 
         <div className='invoice-form-page'>
-            <button onClick = {handleDummyData}>dummy data</button>
+            <button type="button" onClick = {handleDummyData}>dummy data</button>
             <h2>{formType}</h2>
             {errors?.message && <p className="hint">{errors.message}</p>}
             <form 
@@ -142,12 +143,13 @@ const InvoiceForm = ({formType}) =>{
 
                 <div className='invoice-form-buttons'>
                     <button
+                        type = "button"
                         onClick = {handleCancel}
                         className='cancel-change-button'>
                         Cancel
                     </button>
 
-                    <button className='form-submit-button'>Submit</button>
+                    <button type="submit" className='form-submit-button'>Submit</button>
                 </div>
                
             </form>

@@ -197,6 +197,7 @@ const InvoiceDetailsPage = () => {
                             </td>
                             {!isEditing && 
                                 <td> <TbCalendarDue /> <span style={{ fontWeight: "bold" }}>Created On:</span> {new Date(invoice?.created_at).toLocaleDateString('en-US', {
+                                    timeZone: 'UTC',
                                     month: 'short',  // Abbreviated month (e.g., "Nov")
                                     day: 'numeric',  // Day of the month (e.g., "13")
                                     year: 'numeric'  // Full year (e.g., "2024")

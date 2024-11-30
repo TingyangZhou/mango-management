@@ -74,14 +74,14 @@ const PropertyDetailsPage = () => {
                     <table className="property-info-table">
                         <tbody>
                         <tr>
-                            <td> <FaMapMarkerAlt /> {currentProperty?.address}</td>
-                            <td> <BiBuildingHouse /> {currentProperty?.property_type}</td>
+                            <td> <FaMapMarkerAlt /> <span style={{ fontWeight: "bold" }}> {currentProperty?.address}</span></td>
+                            <td> <BiBuildingHouse /> <span style={{ fontWeight: "bold" }}>{currentProperty?.property_type}</span> </td>
                             <td> <span className={currentProperty?.is_vacant? 'vacant': 'occupied'}> {currentProperty?.is_vacant? 'Vacant': 'Occupied'}</span></td>
                         </tr>
                         <tr>
-                            <td> <MdOutlineBedroomParent /> Bedrooms: {currentProperty?.bedrooms}</td>
-                            <td> <MdOutlineBathroom /> Bathrooms: {currentProperty?.bathrooms}</td>
-                            <td> Sqft: {currentProperty?.sqft} </td>
+                            <td> <MdOutlineBedroomParent /> <span style={{ fontWeight: "bold" }}>Bedrooms: </span> {currentProperty?.bedrooms}</td>
+                            <td> <MdOutlineBathroom /> <span style={{ fontWeight: "bold" }}>Bathrooms: </span> {currentProperty?.bathrooms}</td>
+                            <td> <span style={{ fontWeight: "bold" }}>Sqft: </span> {currentProperty?.sqft} </td>
                         </tr>
                         </tbody>
                     </table>

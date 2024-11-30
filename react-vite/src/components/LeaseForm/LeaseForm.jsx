@@ -87,7 +87,7 @@ const LeaseForm = ({lease, propertyId, formType}) =>{
           
             <div className='lease-form-page'>
                 <h2>{formType}</h2> 
-                <button onClick={handleDummyData}> Fill dummy data</button>
+                <button type="button" onClick={handleDummyData}> Fill dummy data</button>
                 <form 
                     onSubmit={handleSubmit}
                     className = 'lease-form'>
@@ -180,12 +180,17 @@ const LeaseForm = ({lease, propertyId, formType}) =>{
 
                     <div className='lease-form-buttons'>
                         <button
+                            type="button" 
                             onClick = {handleCancel}
                             className='cancel-change-button'>
                             Cancel
                         </button>
 
-                        <button className='lease-form-submit-button'>Submit</button>
+                        <button 
+                            type="submit" 
+                            className='lease-form-submit-button'>
+                                Submit
+                        </button>
                     </div>
                 
                 </form>

@@ -137,7 +137,19 @@ def update_tenant(propertyId, tenantId):
 
         form = CreateTenantForm()
         form['csrf_token'].data = request.cookies.get('csrf_token')
+
         if form.validate_on_submit():
+
+            # Check if email is unique for the lease
+            email = form.email.data
+            is_unique = not Tenant.query.filter(
+                Tenant.lease_id == active_lease.id, 
+                Tenant.email == email,
+                Tenant.id != tenantId
+                ).first()
+            if not is_unique:
+                return jsonify({"message": "A tenant with this email already exists for this lease."}), 400
+
                            
             tenant.first_name = form.first_name.data
             tenant.last_name = form.last_name.data

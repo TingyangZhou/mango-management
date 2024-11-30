@@ -83,7 +83,7 @@ const TenantDetail = ({propertyId}) => {
                         {tenants_arr.map(tenant => (
                             <li key={tenant.id} className = "tenant-list">
                                 <MdContactMail style={{ marginRight: '10px' }} /> 
-                                <div className ="tenant-info">{tenant.first_name} {tenant.last_name} | {tenant.email} | {tenant.mobile}</div> 
+                                <div className ="tenant-info"> <span style={{ fontWeight: "bold" }}>{tenant.first_name} {tenant.last_name} </span>  <br></br> {tenant.email} | {tenant.mobile}</div> 
                                <div className= "tenant-buttons">
                                     <OpenModalButton
                                         className = "tenant-modal-button"

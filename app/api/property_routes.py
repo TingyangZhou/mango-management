@@ -147,7 +147,16 @@ def update_property(propertyId):
         form = CreatePropertyForm()
         form['csrf_token'].data = request.cookies.get('csrf_token')
         if form.validate_on_submit():
-        
+            address = form.address.data
+
+            # other_properties = Property.query.filter(Property.id != propertyId).all()
+
+            is_unique = not Property.query.filter(
+                Property.address == address,
+                Property.id != propertyId                   
+            ).first()
+            if not is_unique:
+                return jsonify({"message": "The address already exists. Please use a different address."}), 400
                 
             property.address = form.address.data
             property.property_type = form.property_type.data

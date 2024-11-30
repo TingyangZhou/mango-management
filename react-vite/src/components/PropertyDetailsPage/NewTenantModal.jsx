@@ -128,14 +128,17 @@ function NewTenantModal({propertyId, tenantId, formType}) {
             <label className='new-tenant-form-label'>
                 Mobile Phone Number
                 <input 
-                    name = "mobile" 
+                    name="mobile" 
                     required
-                    type="tel" 
-                    pattern="[0-9]{3,}"
-                    className='mobile-input'
-                    value = {mobile}
-                    onChange = {(e) => setMobile(e.target.value)}
+                    type="text" 
+                    pattern="[0-9]{3,}" 
+                    onInput={(e) => e.target.value = e.target.value.replace(/[^0-9-]/g, '')}
+                    title="Please enter at least 3 characters, only digits are allowed" 
+                    className="mobile-input"
+                    value={mobile}
+                    onChange={(e) => setMobile(e.target.value)}
                 />
+
             </label>
             {errors?.mobile && <p className="hint">{errors.mobile}</p>}
 
@@ -143,12 +146,17 @@ function NewTenantModal({propertyId, tenantId, formType}) {
 
             <div className='property-form-buttons'>
                 <button
+                    type="button" 
                     onClick = {handleCancel}
                     className='cancel-change-button'>
                     Cancel
                 </button>
 
-                <button className='property-form-submit-button'>Submit</button>
+                <button 
+                    type="submit" 
+                    className='property-form-submit-button'>
+                        Submit
+                </button>
             </div>
         
         </form>
