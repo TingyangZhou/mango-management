@@ -119,9 +119,9 @@ const tenantReducer = (state = {tenants:{}}, {type, payload}) => {
             return {...state, tenants: normalizer(payload)};
         case UPDATE_TENANT:
             return {...state, tenants: normalizer(payload)};
-        case REMOVE_TENANT:
+        case REMOVE_TENANT:{
             const {[payload]: _, ...newTenants} = state.tenants;
-            return {...state, tenants: newTenants};
+            return {...state, tenants: newTenants};}
         default:
             return state;
     }

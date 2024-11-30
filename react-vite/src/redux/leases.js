@@ -114,8 +114,8 @@ export const updateLeaseThunk = (propertyId, leaseData) => async (dispatch) => {
         body: JSON.stringify(leaseData),
     });
     if (res.ok) {
-        const updated_lease = await res.json();
-        dispatch(updateLease(leaseData));
+        const updatedLease = await res.json();
+        dispatch(updateLease(updatedLease));
     } else {
         const error = await res.json();
         throw error;

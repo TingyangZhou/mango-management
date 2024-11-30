@@ -106,7 +106,7 @@ const InvoiceDetailsPage = () => {
                 // console.log("Error from thunk:", error); // Debugging
                 setErrors(error);
             })
-    }, [dispatch], invoice)
+    }, [dispatch, invoiceId])
 
     if (!sessionUser) {
         return <Navigate to='/login'></Navigate>

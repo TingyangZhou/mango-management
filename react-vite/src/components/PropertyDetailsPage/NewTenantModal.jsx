@@ -24,7 +24,7 @@ function NewTenantModal({propertyId, tenantId, formType}) {
         setLastName(tenant?.last_name);
         setEmail(tenant?.email);
         setMobile(tenant?.mobile); 
-    },[])
+    }, [tenant?.email, tenant?.first_name, tenant?.last_name, tenant?.mobile])
    
 
     const new_tenant = {

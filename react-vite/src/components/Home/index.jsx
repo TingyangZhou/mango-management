@@ -123,7 +123,7 @@ export default function Home() {
     useEffect(()=>{
         setAllZero_collection(pieData_collection.datasets[0].data.every((value) => value === 0));
         setAllZero_vacancy(pieData_vacancy.datasets[0].data.every((value) => value === 0));
-    })
+    }, [pieData_collection.datasets, pieData_vacancy.datasets])
 
 
     if (!sessionUser) {
