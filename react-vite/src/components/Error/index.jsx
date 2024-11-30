@@ -3,7 +3,7 @@ import { useRouteError } from 'react-router-dom';
 export default function GenericError() {
     const error = useRouteError();
 
-    console.log(error);
+    // console.log(error);
 
     return (
         <>

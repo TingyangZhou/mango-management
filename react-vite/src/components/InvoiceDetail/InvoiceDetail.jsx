@@ -72,7 +72,7 @@ const InvoiceDetailsPage = () => {
             
         } catch(error){
             
-            console.log("============error:", error)
+            // console.log("============error:", error)
             setIsEditing(true);
             setErrors(error);
                     
@@ -81,7 +81,7 @@ const InvoiceDetailsPage = () => {
     }
 
     useEffect(()=>{
-        console.log("%%%%%%%%%%errors:", errors)
+        // console.log("%%%%%%%%%%errors:", errors)
     },[errors])
 
 

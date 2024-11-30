@@ -24,7 +24,7 @@ function RecordPaymentModal({invoiceId}) {
                 navigate(`/invoices/${invoiceId}`); 
             })
             .catch(error => {
-                console.log("=========error", error)
+                // console.log("=========error", error)
                 // Handle errors appropriately
                 setErrors(error);
                 
