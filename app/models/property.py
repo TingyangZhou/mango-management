@@ -6,7 +6,14 @@ class Property(db.Model):
 
 
     if environment == "production":
-        __table_args__ = {"schema": SCHEMA}
+        __table_args__ = (
+            db.UniqueConstraint('address', name='unique_property_address'),
+            {"schema": SCHEMA},
+    )
+    else:
+        __table_args__ = (
+            db.UniqueConstraint('address', name='unique_property_address'),
+    )
     
 
     id = db.Column(db.Integer, primary_key=True)
