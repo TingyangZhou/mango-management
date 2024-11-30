@@ -19,7 +19,7 @@ class CreateLeaseForm(FlaskForm):
     end_date = DateField("End Date", validators=[DataRequired(), validate_end_date])
     rent = FloatField("Rent", validators=[DataRequired(), NumberRange(min=0.01, message="Rent must be a positive number.")])
     rent_due_day = IntegerField("Rent Due On", validators=[DataRequired(),NumberRange(min=0, max=30, message="Due day must be an integer between 0-30")])
-    deposit = FloatField("Deposit", validators=[DataRequired(), NumberRange(min=0.01, message="Deposit must be a positive number.")])
+    deposit = FloatField("Deposit", validators=[NumberRange(min=0, message="Deposit must be a non-negative number.")])
     deposit_due_date = DateField("Deposit Due Date", validators=[DataRequired()])
       
     

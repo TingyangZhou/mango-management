@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, Navigate, useParams } from 'react-router-dom'
 import {  getOneInvoiceThunk } from "../../redux/invoices.js";
 
 import { AiFillDollarCircle } from "react-icons/ai";
@@ -24,7 +24,8 @@ const InvoiceDetailsPage = () => {
     const { invoiceId } = useParams();
     const [ errors, setErrors ] = useState({});
     const [ isEditing, setIsEditing ] = useState(false);
-    
+
+    const sessionUser = useSelector((state) => state.session.user);    
 
     const invoice = useSelector(state => state.invoices.currentInvoice);
     const tenants = invoice?.tenants;
@@ -67,7 +68,7 @@ const InvoiceDetailsPage = () => {
            
             await dispatch(updateInvoiceThunk(formData, invoice?.id))
             setIsEditing(false);
-            console.log('---------------------------%%%%%%%%%%%%')
+            // console.log('---------------------------%%%%%%%%%%%%')
             
         } catch(error){
             
@@ -107,6 +108,10 @@ const InvoiceDetailsPage = () => {
             })
     }, [dispatch], invoice)
 
+    if (!sessionUser) {
+        return <Navigate to='/login'></Navigate>
+     }
+ 
     
     return(
         <>

@@ -99,7 +99,7 @@ const InvoiceForm = ({formType}) =>{
                         type="text"
                         name="item"
                         value={item}
-                  
+                        required
                         onChange={(e) => setItem(e.target.value)}
                     /> 
                 </label>

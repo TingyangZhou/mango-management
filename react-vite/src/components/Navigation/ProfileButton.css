@@ -3,14 +3,6 @@
     font-weight: normal;
 }
 
-/* for profile button drop down menu*/
-.dark-mode .profile-list-item-with-icon *{
-    background-color: black;
-}
-.dark-mode .profile-list-item-with-icon button:hover{
-    background-color: black;
-    color:#fb641c
-}
 
 .profile-button{
     border: 1px rgb(126, 126, 126) solid;
@@ -21,30 +13,39 @@
     font-size: large;
 }
 
-.profile-button:hover{
-    color:#fb641c
-}
 
+.profile-button-container{
+    position:relative;
+}
 
 .profile-dropdown{
     border: 1px  #cecece solid;
     border-radius: 5px;
     padding:0.5rem 1rem;
     background-color: white;
+    position: absolute;
+    width:130px;
+    right: 0px;
 }
 
 .profile-dropdown > li {
-    list-style-type: none;
-    padding: 0.25rem;
+    list-style-type: none; /* Remove bullet points */
+    padding: 0.25rem; /* Add spacing inside the list item */
+    margin: 0.25rem 0; /* Optional: Add vertical spacing between items */
+    font-size: 1rem; /* Adjust text size */
+    color: #333; /* Text color */
+    text-align: center;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+    
 }
 
-.profile-list-item-with-icon:hover{
-    color:#fb641c
+.profile-dropdown > li:hover {
+    background-color:white; /* Highlight background on hover */
+    border-radius: 4px; /* Optional: Round the corners slightly */
 }
 
-.profile-list-item-with-icon>button:hover{
-    color:#fb641c
-}
+
+
 
 .profile-list-item-with-icon{
     border-top: 1px #cecece solid;
@@ -56,3 +57,25 @@
 .profile-list-item-with-icon * {
     background-color: white;
 }
+
+.profile-log-out {
+    background-color:orangered; /* Bootstrap Danger Red */
+    color: #ffffff; /* White text for contrast */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 0.5rem 1rem; /* Padding for size */
+    font-size: 1rem; /* Text size */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
+    display: inline-flex; /* Align with icons */
+    align-items: center; /* Center icon and text */
+    width: 100%;
+    justify-content: center;
+    margin-top:5px;
+}
+
+.profile-log-out:hover {
+    transform: translateY(-2px); /* Lift button slightly */
+    color: white !important;
+}
+

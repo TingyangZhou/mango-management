@@ -41,12 +41,13 @@ function LoginFormPage() {
 
   return (
     <div className='login-page'>
+      
       <div className='login-section'>
-        
-      <h1 className='login-title'>Log in to MangoManager</h1>
+      <form className = 'login-form' onSubmit={handleSubmit}>
+      <h1 className='login-title'>Welcome to Mango Management</h1>
         {errors.length > 0 &&
           errors.map((message) => <p key={message}>{message}</p>)}
-          <form className = 'login-form' onSubmit={handleSubmit}>
+          
           <label>
             Email
             <input
@@ -74,9 +75,9 @@ function LoginFormPage() {
             type="button">
             Log In As Demo User
           </button>
-
+          <a className='SignUpLink' href='/signup'>Dont have an account yet? Sign up one here.</a>
         </form>
-        <a className='SignUpLink' href='/signup'>Dont have an account yet? Sign up one here.</a>
+        
 
       </div>
       

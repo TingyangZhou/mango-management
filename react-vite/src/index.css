@@ -10,7 +10,7 @@
 .hidden {
     display: none;
 }
-
+/* 
 /* Dark mode styles */
 .dark-mode body {
     background-color: black;
@@ -58,4 +58,4 @@
 .dark-mode h2{
     color: #ffffff; 
 }
-
+ */

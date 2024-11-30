@@ -13,10 +13,10 @@
   }
 
 .signup-title{
-    font-size: 24px;
-    color: white;
+    font-size: 20px;
+    color: black;
     text-align: center;
-    margin-top: 50px;
+    
     margin-bottom: 0px;
   }
 
@@ -29,11 +29,12 @@
   
 .signup-form {
     width: 300px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
+    background-color:white;
   }
 
   .sign-up-button {

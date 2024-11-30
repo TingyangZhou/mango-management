@@ -44,9 +44,10 @@ function SignupFormPage() {
   return (
     <div className='signup-page'>
       <div className='signup-section'>
+      <form className='signup-form' onSubmit={handleSubmit}>
         <h1 className='signup-title'>Sign Up</h1>
         {errors.server && <p className='error'>{errors.server}</p>}
-        <form className='signup-form' onSubmit={handleSubmit}>
+       
           <label>
             Email
             <input

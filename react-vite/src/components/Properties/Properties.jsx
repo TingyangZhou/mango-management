@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import './Properties.css'
 import { getAllPropertiesThunk } from '../../redux/properties'
 import { useDispatch } from 'react-redux'
-import { useNavigate,  useSearchParams } from 'react-router-dom'
+import { useNavigate,  Navigate, useSearchParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 
@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 export default function Properties (){
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const sessionUser = useSelector((state) => state.session.user);
     const [searchParams] = useSearchParams();
 
     const properties = useSelector((state) => state.properties.properties);
@@ -38,6 +39,11 @@ export default function Properties (){
         // console.log("=======useEffect===========")
         dispatch(getAllPropertiesThunk(page, per_page));
     }, [dispatch, page, per_page])
+
+    if (!sessionUser) {
+        return <Navigate to='/login'></Navigate>
+     }
+ 
 
     return (
         <div className='properties--page'>

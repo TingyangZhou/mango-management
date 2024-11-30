@@ -24,12 +24,8 @@ export default function Home() {
     const [allZero_collection, setAllZero_collection] = useState(0);
     const [allZero_vacancy, setAllZero_vacancy] = useState(0);
 
-    if (!sessionUser) {
-        return <Navigate to='/login'></Navigate>
-    }
-
-
-
+    const vacancyRate = userInfo?.num_vacant_properties/ (userInfo?.num_vacant_properties + userInfo?.num_occupied_properties) * 100
+    
     const pieData_collection = {
         labels: ['Total Collected', 'Outstanding', 'Overdue'],
         datasets: [
@@ -51,10 +47,7 @@ export default function Home() {
         ]
     };
 
-    useEffect(()=>{
-        setAllZero_collection(pieData_collection.datasets[0].data.every((value) => value === 0));
-        setAllZero_vacancy(pieData_vacancy.datasets[0].data.every((value) => value === 0));
-    })
+    
 
    
 
@@ -127,6 +120,19 @@ export default function Home() {
         }
     };
 
+    useEffect(()=>{
+        setAllZero_collection(pieData_collection.datasets[0].data.every((value) => value === 0));
+        setAllZero_vacancy(pieData_vacancy.datasets[0].data.every((value) => value === 0));
+    })
+
+
+    if (!sessionUser) {
+        return <Navigate to='/login'></Navigate>
+     }
+ 
+ 
+
+
     return (
         <div className="user-info-container">
             <div className="info-section">
@@ -139,9 +145,9 @@ export default function Home() {
                         <Pie data={pieData_collection} options={pieOptions_collection} />)}
                     </div>
                     <ul className="info-list">
-                        <li>Total Collected: ${userInfo?.collected}</li>
-                        <li>Outstanding: ${userInfo?.outstanding}</li>
-                        <li>Overdue: ${userInfo?.overdue}</li>
+                        <li style={{color:'#28a745'}}>Total Collected: ${userInfo?.collected}</li>
+                        <li style={{color:'#ffc107'}}>Outstanding: ${userInfo?.outstanding}</li>
+                        <li style={{color:'red'}}>Overdue: ${userInfo?.overdue}</li>
                     </ul>
                 </div>
                 
@@ -159,8 +165,9 @@ export default function Home() {
                     )}
                     </div>
                     <ul className="info-list">
-                        <li>Occupied: {userInfo?.num_occupied_properties}</li>
-                        <li>Vacant: {userInfo?.num_vacant_properties}</li>
+                        <li style={{color:'#ffc107'}}>Occupied: {userInfo?.num_occupied_properties}</li>
+                        <li style={{color:'#3498db'}}>Vacant: {userInfo?.num_vacant_properties}</li>
+                        <li>Vacancy Rate: {vacancyRate.toFixed(1)}%</li>
                     </ul>
                 </div>
                 

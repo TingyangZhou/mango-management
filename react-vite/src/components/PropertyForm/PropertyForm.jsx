@@ -123,6 +123,7 @@ const PropertyForm = ({property, formType}) =>{
                         value={sqft}
                         min="1" 
                         step="1"
+                        required
                     />
                 </label>
                 {errors?.sqft && <p className="hint">{errors.sqft}</p>}

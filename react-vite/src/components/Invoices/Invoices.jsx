@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import './Invoices.css'
 import { getAllInvoicesThunk } from '../../redux/invoices'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
 
@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 export default function Invoices (){
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const sessionUser = useSelector((state) => state.session.user);
 
 
     const  invoices = useSelector((state) => state.invoices.invoices);
@@ -35,7 +36,10 @@ export default function Invoices (){
     }, [dispatch])
 
    
-    
+    if (!sessionUser) {
+        return <Navigate to='/login'></Navigate>
+     }
+ 
 
     return (
         <div className='invoices--page'>

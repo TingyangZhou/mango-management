@@ -46,7 +46,7 @@ const TenantDetail = ({propertyId}) => {
                 {tenants_arr.length === 0 ? 
                 <div className="no-tenant-container">
                     <h2 className="no-tenant-title">No tenant on lease</h2>
-                    <div className = "new-tenant-button-container">
+                    {activeLease && <div className = "new-tenant-button-container">
                         <OpenModalButton
                             className="new-tenant-modal-button"
                          
@@ -56,7 +56,8 @@ const TenantDetail = ({propertyId}) => {
                                 formType= "Create Tenant"/>}
                             onModalClose={() => navigate(`/properties/${propertyId}`)}
                         />
-                    </div>
+                    </div>}
+                    
                 </div>
                 : 
                 <>

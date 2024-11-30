@@ -163,6 +163,7 @@ def add_invoice():
             "created_at": invoice.created_at,
             "due_date": invoice.due_date,
             "payment_date": invoice.payment_date,
+            "description": invoice.description,
             "property": {
                 "id": invoice.lease.property.id,
                 "address": invoice.lease.property.address
@@ -242,6 +243,7 @@ def update_invoice(invoiceId):
             "created_at": invoice.created_at,
             "due_date": invoice.due_date,
             "payment_date": invoice.payment_date,
+            "description": invoice.description,
             "property": {
                 "id": invoice.lease.property.id,
                 "address": invoice.lease.property.address
@@ -313,6 +315,7 @@ def pay_invoice(invoiceId):
         "id": invoice.id,
         "item": invoice.item,
         "amount": invoice.amount,
+        "description": invoice.description,
         "created_at": invoice.created_at,
         "due_date": invoice.due_date,
         "payment_date": invoice.payment_date,

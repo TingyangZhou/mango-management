@@ -2,7 +2,7 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, Navigate } from 'react-router-dom'
 import {  getOnePropertyThunk } from "../../redux/properties";
 import OpenModalButton from '../OpenModalButton';
 import ConfirmDeleteFormModal from './ConfirmDeletePropertyModal.jsx'
@@ -22,6 +22,7 @@ const PropertyDetailsPage = () => {
     const navigate = useNavigate();
     const { propertyId } = useParams();
     const [ errors, setErrors ] = useState({})
+    const sessionUser = useSelector((state) => state.session.user);
  
 
     const currentProperty = useSelector(state => state.properties.currentProperty)
@@ -45,6 +46,11 @@ const PropertyDetailsPage = () => {
     const handleCreateProperty =() =>{
         navigate(`/properties/new`)
     }
+
+    if (!sessionUser) {
+        return <Navigate to='/login'></Navigate>
+     }
+ 
 
     return (
         <>

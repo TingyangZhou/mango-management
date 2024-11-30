@@ -5,10 +5,9 @@ import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import "./ProfileButton.css";
-import { FaBriefcase } from "react-icons/fa";
-import { MdOutlineLogout } from "react-icons/md";
+
 
 // import { toggleTheme } from '../../themeUtils';
 // import { useTheme } from '../../context/ThemeContext';
@@ -29,7 +28,6 @@ function ProfileButton() {
 
 
 
-
   const closeMenu = () => setShowMenu(false);
 
 
@@ -37,6 +35,7 @@ function ProfileButton() {
     e.preventDefault();
     dispatch(thunkLogout());
     closeMenu();
+    navigate('/login')
   };
 
 
@@ -54,12 +53,11 @@ function ProfileButton() {
 
     document.addEventListener("click", closeMenu);
 
-
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
   return (
-    <>
+    <div className="profile-button-container">
       <button className='profile-button' onClick={toggleMenu}>
         <FaUserCircle />
       </button>
@@ -74,8 +72,7 @@ function ProfileButton() {
                 <button className='profile-mode-button' id="change-mode-button" onClick={handleModeChange}>{isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}</button>
               </li> */}
               <li className='profile-list-item-with-icon'>
-                <MdOutlineLogout />
-                <button className='profile-log-out' onClick={logout}>Log Out</button>
+                  <button className='profile-log-out' onClick={logout}>Log Out</button>
               </li>
               
             </>
@@ -95,7 +92,7 @@ function ProfileButton() {
           )}
         </div>
       )}
-    </>
+    </div>
   );
 }
 

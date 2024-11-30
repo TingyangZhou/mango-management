@@ -18,7 +18,7 @@ class Lease(db.Model):
     end_date = db.Column(db.Date, nullable = False)
     rent = db.Column(db.Numeric(precision=10, scale=2), nullable = False)
     rent_due_day = db.Column(db.Integer, nullable = False)
-    deposit = db.Column(db.Numeric(precision=10, scale=2), nullable = False)
+    deposit = db.Column(db.Numeric(precision=10, scale=2), nullable = True)
     deposit_due_date = db.Column(db.Date, nullable = False)
     is_active = db.Column(db.Boolean, nullable = False, default = True)
     created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc))
