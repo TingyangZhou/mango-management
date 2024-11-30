@@ -73,7 +73,7 @@ export default function Properties (){
                             <td>{property.address}</td>
                             <td>{property.rent}</td>
                             <td>{property.num_tenants}</td>
-                            <td className={property.is_vacant ? "vacant" : "occupied"}>{property.is_vacant ? "Vacant" : "Occupied"}</td>
+                            <td> <span className={property.is_vacant ? "vacant" : "occupied"}>{property.is_vacant ? "Vacant" : "Occupied"}</span> </td>
                         </tr>
                     ))}
                 </tbody>

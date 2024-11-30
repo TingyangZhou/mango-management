@@ -119,7 +119,7 @@ const InvoiceDetailsPage = () => {
         <div className="invoice-detail-page">
             <div className="invoice-container">
                 <div className="new-invoice-header">
-                    <h3 className="invoice-id-title"> Invoice ID: {invoice?.id}</h3>
+                    <h2 className="invoice-id-title"> Invoice ID: {invoice?.id}</h2>
                     <div className= {invoice?.status === "paid" ? "invoice-buttons-container-three-buttons": "invoice-buttons-container-four-buttons"}>
                        
                         <button 

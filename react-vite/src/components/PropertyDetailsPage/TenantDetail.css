@@ -136,9 +136,12 @@
 
 .tenant-info {
     flex: 2;
-    font-size: 1rem;
+    font-size: 16px;
     color: #333;
-    font-size: 1.2rem; /* Increased font size */
+    display:flex;
+    flex-direction: column;
+    gap:5px;
+  
 }
 
 .tenant-buttons {

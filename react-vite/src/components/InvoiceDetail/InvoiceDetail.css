@@ -142,9 +142,9 @@
 }
 
 .invoice-id-title{
-    font-weight: bold; /* Makes the text bold */
+  font-weight: bold; /* Makes the text bold */
   text-align: left; /* Aligns the text to the left */
-  font-size: 1.2rem; /* Slightly larger font size for emphasis */
+  font-size: 18px; /* Slightly larger font size for emphasis */
   padding: 10px; /* Adds spacing around the text */
   background-color: #f8f9fa; /* Light gray background for contrast */
   color: #333; /* Dark text for good readability */
@@ -184,7 +184,7 @@
 .tenant-title {
     font-weight: bold; /* Makes the text bold */
     text-align: left; /* Aligns the text to the left */
-    font-size: 1.2rem; /* Slightly larger font size for emphasis */
+    font-size: 18px; /* Slightly larger font size for emphasis */
     padding: 10px; /* Adds spacing around the text */
     background-color: #f8f9fa; /* Light gray background for contrast */
     color: #333; /* Dark text for good readability */
