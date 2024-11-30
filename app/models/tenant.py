@@ -6,7 +6,15 @@ class Tenant(db.Model):
 
 
     if environment == "production":
-        __table_args__ = {"schema": SCHEMA}
+        __table_args__ = (
+            db.UniqueConstraint('lease_id', 'email', name='unique_tenant_per_lease'),
+            {"schema": SCHEMA},
+    )
+    else:
+        __table_args__ = (
+            db.UniqueConstraint('lease_id', 'email', name='unique_tenant_per_lease'),
+    )
+
     
 
     id = db.Column(db.Integer, primary_key=True)
@@ -16,10 +24,7 @@ class Tenant(db.Model):
     email = db.Column(db.String, nullable=False, unique = False)
     mobile = db.Column(db.String(20), nullable=False)
    
-    __table_args__ = (
-        db.UniqueConstraint('lease_id', 'email', name='unique_tenant_per_lease'),
-    )
-
+    
     def to_dict_basic(self):
         return {
             "id": self.id,

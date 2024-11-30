@@ -2,7 +2,7 @@ from sqlalchemy.sql import text
 from app.models import SCHEMA, Tenant, db, environment
 
 
-# # Adds demo tweets
+
 def seed_tenants():
 
     tenants = [
