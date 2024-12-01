@@ -40,7 +40,7 @@ const InvoiceForm = ({formType}) =>{
         e.preventDefault();
         const newInvoice = {
             property_id:propertyId,
-            item: item,
+            item: item,      
             amount: amount,
             due_date: dueDate,
             description: description
@@ -56,15 +56,20 @@ const InvoiceForm = ({formType}) =>{
         }
                  
         }
-    
-        const handleDummyData =(e) => {
-            e.preventDefault();
-            setPropertyId(1);
-            setDueDate(new Date("2025-1-1").toISOString().split("T")[0]);
-            setAmount(1000);
-            setItem("Deposit");
-            setDescription("Deposit for property 1") 
+        
+        
+    const handleDummyData =(e) => {
+        e.preventDefault();
+        if (occupiedPropertyArr.length === 0) {
+            alert("No leased property available to set data.");
+            return; // Exit the function early
         }
+        setPropertyId(occupiedPropertyArr[0].id);
+        setDueDate(new Date("2025-1-1").toISOString().split("T")[0]);
+        setAmount(1000);
+        setItem("Deposit");
+        setDescription("Deposit for property 1") 
+    }
 
     return (
 
@@ -133,6 +138,7 @@ const InvoiceForm = ({formType}) =>{
                     <input
                         className="invoice-amount-input"
                         type='number'
+                        required
                         onChange={(e) => setAmount(e.target.value)}
                         value={amount}
                         min="0.01" 

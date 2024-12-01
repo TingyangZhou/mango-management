@@ -126,6 +126,15 @@ def add_invoice():
  
     propertyId = form.property_id.data
 
+    # Check if the property exists
+    property = Property.query.get(propertyId)
+    if not property:
+        return jsonify({"message": "Property couldn't be found"}), 404
+    
+    # Check if the user is autherized to access this property
+    if property.user_id != current_user.id:
+        return jsonify({"message": "You are not authorized to access this property"}), 403
+    
     # check if an active lease exists for this property
 
     lease = Lease.query.filter(
