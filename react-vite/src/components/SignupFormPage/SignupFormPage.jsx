@@ -57,8 +57,8 @@ function SignupFormPage() {
             placeholder="*First Name"
             type="text"
             value={firstName}
-            minlength="1" 
-            maxlength="50"
+            minLength="1" 
+            maxLength="50"
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
@@ -68,8 +68,8 @@ function SignupFormPage() {
             placeholder="*Last Name"
             type="text"
             value={lastName}
-            minlength="1" 
-            maxlength="50"
+            minLength="1" 
+            maxLength="50"
             onChange={(e) => setLastName(e.target.value)}
             required
           />
@@ -90,8 +90,9 @@ function SignupFormPage() {
               placeholder="*Username"
               type="text"
               value={username}
-              minlength="1" 
-              maxlength="40"
+              minLength="1" 
+              maxLength="40"
+              title="cannot exceed 40 characters"
               onChange={(e) => setUsername(e.target.value)}
               required
             />
