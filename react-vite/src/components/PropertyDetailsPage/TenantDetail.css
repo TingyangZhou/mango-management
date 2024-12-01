@@ -47,6 +47,7 @@
 .no-tenant-title{
     font-weight: bold;
     margin-left:10px;
+    
 
 }
 
@@ -107,7 +108,7 @@
 }
 
 .current-tenants-title {
-    font-size: 1.3rem;
+    font-size: 18px;
     font-weight: bold;
     color: #333;
 

@@ -150,7 +150,7 @@ const LeaseForm = ({lease, propertyId, formType}) =>{
                             className='rent-input'
                             onChange={(e) => setRent(e.target.value === "" ? "" : Number(e.target.value))}
                             value={rent}
-                            min="0" 
+                            min="0.01" 
                             step="0.01"
                         />
                     </label>

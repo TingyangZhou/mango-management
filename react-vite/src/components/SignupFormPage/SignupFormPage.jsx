@@ -13,6 +13,9 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
 
@@ -28,6 +31,8 @@ function SignupFormPage() {
 
     const serverResponse = await dispatch(
       thunkSignup({
+        first_name: firstName,
+        last_name: lastName,
         email,
         username,
         password,
@@ -45,50 +50,78 @@ function SignupFormPage() {
     <div className='signup-page'>
       <div className='signup-section'>
       <form className='signup-form' onSubmit={handleSubmit}>
-        <h1 className='signup-title'>Sign Up</h1>
+        <h1 className='signup-title'>Create an Account</h1>
         {errors.server && <p className='error'>{errors.server}</p>}
-       
-          <label>
-            Email
+        
+          <input
+            placeholder="*First Name"
+            type="text"
+            value={firstName}
+            minlength="1" 
+            maxlength="50"
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+          {errors.first_name && <p className='error'>{errors.last_name}</p>}
+
+          <input
+            placeholder="*Last Name"
+            type="text"
+            value={lastName}
+            minlength="1" 
+            maxlength="50"
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+          {errors.last_name && <p className='error'>{errors.last_name}</p>}
+          
+      
             <input
+              placeholder="*Email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-          </label>
+        
           {errors.email && <p className='error'>{errors.email}</p>}
-          <label>
-            Username
+          
             <input
+              placeholder="*Username"
               type="text"
               value={username}
+              minlength="1" 
+              maxlength="40"
               onChange={(e) => setUsername(e.target.value)}
               required
             />
-          </label>
+         
           {errors.username && <p className='error'>{errors.username}</p>}
-          <label>
-            Password
+          
             <input
+              placeholder="*Password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-          </label>
+     
           {errors.password && <p className='error'>{errors.password}</p>}
-          <label>
-            Confirm Password
+         
             <input
               type="password"
               value={confirmPassword}
+              placeholder="*Confirm Password"
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-          </label>
+       
           {errors.confirmPassword && <p className='error'>{errors.confirmPassword}</p>}
-          <button className="sign-up-button" type="submit">Sign Up</button>
+          <button 
+              className="sign-up-button" 
+              type="submit">
+                Sign Up
+            </button>
           <button className= 'login-button' 
           onClick={()=> navigate('/login')}>Log In</button>
         </form>
