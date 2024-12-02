@@ -46,6 +46,8 @@ def seed_properties():
         bathrooms=3,
         square_feet=1600,
     )
+
+    
     db.session.add_all([property1, property2, property3, property4, property5])
     db.session.commit()
 

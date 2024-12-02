@@ -8,7 +8,50 @@ from sqlalchemy.exc import IntegrityError
 property_routes = Blueprint("properties", __name__, url_prefix="/api/properties")
 
 
-# Get all properties
+# get all properties wihtout pagination
+@property_routes.route("/all", methods=['GET'])
+@login_required
+def get_all_properties_no_page():
+    user = User.query.get(current_user.id)
+   
+    properties = Property.query.filter(
+    Property.user_id == user.id
+    ).order_by(Property.created_at.desc()).all()
+
+    response =[]
+    
+    for property in properties:
+        property_dict = property.to_dict_basic()
+
+        current_lease = Lease.query.filter(db.and_(property.id == Lease.property_id,
+                                                    Lease.is_active == True)).first()
+        
+     
+        if (current_lease != None):
+            property_dict['rent'] = current_lease.rent
+            property_dict['is_vacant'] = False
+            property_dict['num_tenants'] = Tenant.query.filter(Tenant.lease_id == current_lease.id).count()
+        else:
+            property_dict['rent'] = 'N/A'
+            property_dict['is_vacant'] = True
+            property_dict['num_tenants'] = 0
+
+        
+        property_data = {
+            "id": property_dict["id"],
+            "address": property_dict["address"],
+            "rent": property_dict["rent"],
+            "num_tenants": property_dict["num_tenants"],
+            "is_vacant": property_dict['is_vacant'],
+            "created_at": property_dict['created_at'],
+            "updated_at": property_dict["updated_at"] 
+        }
+        
+        response.append(property_data)
+    
+    return jsonify({"properties":response}), 200
+
+# Get all properties by pagination
 @property_routes.route("", methods=['GET'])
 @login_required
 def get_all_properties():
@@ -16,7 +59,13 @@ def get_all_properties():
     page = request.args.get('page', 1, type=int)  # Default to page 1
     per_page = request.args.get('per_page', 10, type=int)  # Default to 10 items per page
     num_properties = Property.query.filter(Property.user_id == user.id).count()
-    pagination = Property.query.filter(Property.user_id == user.id).paginate(page=page, per_page=per_page, error_out=False)
+
+    pagination = Property.query.filter(
+    Property.user_id == user.id
+    ).order_by(Property.created_at.desc()).paginate(
+        page=page, per_page=per_page, error_out=False
+    )
+
 
     response = []
     for property in pagination.items:

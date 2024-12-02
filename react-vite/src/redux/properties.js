@@ -2,7 +2,8 @@
 
 import { normalizer } from './utils';
 
-const GET_ALL_PROPERTIES = 'properties/getAll';
+const GET_ALL_PROPERTIES_PAGE = 'properties/getAllWithPage';
+const GET_ALL_PROPERTIES_NO_PAGE = 'properties/getAllNoPage'
 const GET_ONE_PROPERTY= 'properties/getOne';
 const CREATE_PROPERTY = 'properties/create';
 const UPDATE_PROPERTY = 'properties/update';
@@ -12,10 +13,19 @@ const DELETE_PROPERTY = 'properties/delete';
 
 const getAllProperties = (properties) => {
     return {
-        type: GET_ALL_PROPERTIES,
+        type: GET_ALL_PROPERTIES_PAGE,
         payload: properties,
     };
 };
+
+
+const getAllPropertiesNoPage = (properties) => {
+    return {
+        type: GET_ALL_PROPERTIES_NO_PAGE,
+        payload: properties,
+    };
+};
+
 
 const getOneProperty = (property) => {
     return {
@@ -49,13 +59,27 @@ const deleteProperty = (propertyId) => {
 
 /** Thunk Action Creators: */
 
-// get all properties 
+// get all properties pagination
 export const getAllPropertiesThunk = (page, per_page) => async (dispatch) => {
     const res = await fetch(`/api/properties?page=${page}&per_page=${per_page}`);
         
     if (res.ok) {
         const data = await res.json();
         dispatch(getAllProperties(data));
+    } else {
+        const errors = await res.json();
+        return errors;
+    }
+};
+
+
+// get all properties without pagination
+export const getAllPropertiesNoPageThunk = () => async (dispatch) => {
+    const res = await fetch(`/api/properties/all`);
+        
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(getAllPropertiesNoPage(data));
     } else {
         const errors = await res.json();
         return errors;
@@ -141,17 +165,23 @@ let initialState = {
 
 export default function propertyReducer(state = initialState, { type, payload }) {
     switch (type) {
-        case GET_ALL_PROPERTIES:
+        case GET_ALL_PROPERTIES_PAGE:
             return {...state,
                 currentProperty: state.currentProperty, 
                 properties: normalizer(payload.properties), 
                 num_properties:payload.num_properties
             };
+        case GET_ALL_PROPERTIES_NO_PAGE:
+            return {...state,
+                currentProperty: state.currentProperty, 
+                properties: normalizer(payload.properties), 
+            };
         case GET_ONE_PROPERTY:
             return {...state, currentProperty: payload, properties: state.properties}
         case CREATE_PROPERTY:
             return {
-                currentProperty:null,
+                ...state,
+                currentProperty:{...payload},
                 properties: {...state.properties, [payload.id]:payload}
             }
         case UPDATE_PROPERTY:

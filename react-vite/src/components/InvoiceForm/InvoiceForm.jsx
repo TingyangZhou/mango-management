@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import './InvoiceForm.css';
 import { createInvoiceThunk } from '../../redux/invoices.js';
-import { getAllPropertiesThunk } from '../../redux/properties';
+import { getAllPropertiesNoPageThunk } from '../../redux/properties';
 
 const InvoiceForm = ({formType}) =>{
    
@@ -20,11 +20,13 @@ const InvoiceForm = ({formType}) =>{
 
 
     useEffect(() => {
-        dispatch(getAllPropertiesThunk(1, 'all')); 
+        dispatch(getAllPropertiesNoPageThunk()); 
     }, [dispatch]);
 
     let occupiedPropertyArr=[];
     const properties = useSelector(state => state.properties.properties);
+
+
     if (properties){
         const propertiesArr = Object.values(properties);
         occupiedPropertyArr = propertiesArr.filter(property => property?.is_vacant === false);

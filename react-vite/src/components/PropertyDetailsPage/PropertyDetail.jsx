@@ -44,8 +44,9 @@ const PropertyDetailsPage = () => {
     }
 
     const handleCreateProperty =() =>{
-        navigate(`/properties/new`)
+        navigate(`/properties/new`, {state:{ propertyId }})
     }
+
 
     if (!sessionUser) {
         return <Navigate to='/login'></Navigate>

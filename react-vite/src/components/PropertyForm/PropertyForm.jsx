@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch} from 'react-redux';
+import { useNavigate} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import './PropertyForm.css'
 import { updatePropertyThunk, createPropertyThunk } from '../../redux/properties.js'
 
-const PropertyForm = ({property, formType}) =>{
+const PropertyForm = ({property, propertyId, formType}) =>{
     const [ errors, setErrors ] = useState({});
     const [ address, setAddress ] = useState(property?.address || "");
     const [ property_type, setProperty_type ] = useState(property?.property_type || "");
@@ -14,12 +14,15 @@ const PropertyForm = ({property, formType}) =>{
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
 
     let handleCancel;
 
+    
+
     if (formType === "Create Property") {
         handleCancel = () => {
-            navigate(`/properties`)
+            navigate(`/properties/${propertyId}`)
         }
     } else if (formType === "Update Property"){
         handleCancel = () => {
@@ -36,11 +39,17 @@ const PropertyForm = ({property, formType}) =>{
             if (formType === 'Update Property'){
                 await dispatch(updatePropertyThunk(updatedProperty, updatedProperty.id))
                 navigate(`/properties/${property.id}`)
-            } else if(formType === 'Create Property'){
-                await dispatch(createPropertyThunk(updatedProperty))
+            } else if (formType === 'Create Property') {
+                // Wait for the thunk to resolve and return the created property
+                const createdProperty = await dispatch(createPropertyThunk(updatedProperty));
                 
-                navigate(`/properties`)
-            } 
+                if (createdProperty?.id) {
+                    console.log("Navigating to created property:", createdProperty.id);
+                    navigate(`/properties/${createdProperty.id}`);
+                } else {
+                    console.error("Error: Created property ID is undefined");
+                }
+            }
         } catch(error){
             setErrors(error);
         }

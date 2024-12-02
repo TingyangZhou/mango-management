@@ -113,7 +113,7 @@ const LeaseDetail = ({propertyId}) => {
                     <div className="table-button-container">
                                 
                         <table className="lease-info-table">
-                    
+                            <tbody>
                             <tr>
                                 
                                 <td> <CiCalendarDate /> <span style={{ fontWeight: "bold" }}>Start:</span> {new Date(activeLease?.start_date).toLocaleDateString('en-US', {
@@ -156,7 +156,7 @@ const LeaseDetail = ({propertyId}) => {
                                 })}</td>
                                                            
                             </tr>
-                        
+                            </tbody>
                         </table>
 
                         <div className = "active-lease-buttons">
