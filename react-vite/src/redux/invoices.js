@@ -121,12 +121,15 @@ export const getOneInvoiceThunk = (invoiceId) => async (dispatch) => {
 
 // search invoices
 export const searchInvoicesThunk = (input) => async (dispatch) => {
-    const res = await fetch(`/api/invoices/input=${input}`);
+    const res = await fetch(`/api/invoices/search?input=${input}`);
+    console.log('=======input:', input)
         
     if (res.ok) {
         const data = await res.json();
+        console.log("=================data", data)
         dispatch(getAllInvoices(data));
     } else {
+        console.log('error=============')
         const errors = await res.json();
         throw errors;
     }

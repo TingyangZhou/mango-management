@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import './Invoices.css'
-import { getAllFilteredInvoicesPageThunk } from '../../redux/invoices'
+import { getAllFilteredInvoicesPageThunk, searchInvoicesThunk } from '../../redux/invoices'
 import { useDispatch } from 'react-redux'
-import { Link, useNavigate, Navigate, useSearchParams} from 'react-router-dom'
+import { useNavigate, Navigate, useSearchParams} from 'react-router-dom'
 import { useSelector } from 'react-redux';
+
+import { FaFeather, FaSearch } from "react-icons/fa"
 
 
 
@@ -11,21 +13,25 @@ export default function Invoices (){
     const [searchParams] = useSearchParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const sessionUser = useSelector((state) => state.session.user);
+    const [errors, setErrors] = useState({});
 
-    const  invoices = useSelector((state) => state.invoices.invoices);
-
-    const num_invoices = useSelector((state) => state.invoices.num_invoices);
+    
     const [ isPaidChecked, setIsPaidChecked ] = useState(false);
     const [ isOutstandingChecked, setIsOutstandingChecked ] = useState(false);
     const [ isOverdueChecked, setIsOverdueChecked ] = useState(false);
-
     const [ filterBy, setFilterBy ] = useState("");
     const [ page, setPage] = useState(1)
+    
+
+    const [ searchInput, setSearchInput ] = useState("");
+
+    const sessionUser = useSelector((state) => state.session.user);
+    const invoices = useSelector((state) => state.invoices.invoices);
+    const num_invoices = useSelector((state) => state.invoices.num_invoices);
+    const invoices_arr = Object.values(invoices);
+
     const per_page = searchParams.get('per_page') || 10;
     const num_pages =Math.ceil (num_invoices/per_page);
-
-    const invoices_arr = Object.values(invoices);
  
     const sortedInvoices = invoices_arr.sort((a, b) => {
         const dateA = new Date(a.created_at);
@@ -90,12 +96,22 @@ export default function Invoices (){
         setPage(pageNumber);
    
     };
+
+    const handleKeyDown =(e) =>{
+        try{
+            dispatch(searchInvoicesThunk(e.target.value))
+        } catch(e){
+            
+            setErrors(e);
+        }
+    }
     
 
     useEffect(()=>{
+        setErrors({});
         // console.log("=======useEffect===========")
         // console.log("==================filterBy:", filterBy)
-        dispatch( getAllFilteredInvoicesPageThunk(filterBy, page, per_page));
+        dispatch(getAllFilteredInvoicesPageThunk(filterBy, page, per_page));
         // console.log("===========page:", page)
   
     }, [dispatch, filterBy, page, per_page])
@@ -108,6 +124,7 @@ export default function Invoices (){
 
     return (
         <div className='invoices-page'>
+            
             <div className="invoice-list-header">
                 <div className='filter-container'>
                     <label className='checkbox-label'>
@@ -138,6 +155,18 @@ export default function Invoices (){
                             Overdue
                     </label>
                 </div>
+                <div className="search-bar-container">
+                    <FaSearch />
+                    <input
+                    type="text"
+                    placeholder="search for invoices.."
+                    onChange={(e) => {
+                        setSearchInput(e.target.value)}}
+                        value={searchInput}
+                        onKeyDown={e=>handleKeyDown(e)}
+                ></input>
+                </div>
+                {errors?.message && <p className="hint">{errors.message}</p>}
                 <div className='new-invoice-button-container'>
                     <button  
                         onClick={handleCreateInvoice}

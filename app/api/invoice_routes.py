@@ -115,8 +115,6 @@ def get_all_invoices_filter():
 
     if filter_by:
         filters = filter_by.lower().strip('"').strip("'").split(",")
-    
-
 
     # Base query
     invoices_query = Invoice.query.filter(Invoice.user_id == current_user.id)
@@ -242,7 +240,7 @@ def get_a_property(invoiceId):
     
     
 # Search Invoices
-@search_routes.route('/search', methods=['GET'])
+@invoice_routes.route('/search', methods=['GET'])
 @login_required
 def search_invoices():
     search_query = request.args.get('input', '').strip()
@@ -251,37 +249,50 @@ def search_invoices():
         return jsonify({"message": "Search input required"}), 400
     
 
-    search_results = Invoice.query.filter(db.and_(
+    # search_results = Invoice.query.join(Invoice.lease).join(Lease.property).filter(db.and_(
+    #     Invoice.user_id == current_user.id,
+    #         or_(
+    #             Invoice.item.ilike(f'%{search_query}%'),
+    #             Property.address.ilike(f'%{search_query}%')
+    #         )
+    #     )
+        
+    # ).all()
+
+
+    search_results = Invoice.query.join(Invoice.lease).join(Lease.property).filter(db.and_(
         Invoice.user_id == current_user.id,
             or_(
-                Invoice.item.ilike(f'%{search_query}%') |
-                Invoice.property.address.ilike(f'%{search_query}%')
+                Invoice.item.ilike(f'%{search_query}%'),
+                Property.address.ilike(f'%{search_query}%')
             )
         )
         
     ).all()
 
+    invoices_dict=[]
     # Construct response
-    invoices_dict = [
-        {
-            "id": invoice.id,
-            "item": invoice.item,
-            "amount": invoice.amount,
-            "created_at": invoice.created_at,
-            "due_date": invoice.due_date,
-            "payment_date": invoice.payment_date,
-            "property": {
-                "id": invoice.lease.property.id,
-                "address": invoice.lease.property.address
-            } if invoice.lease and invoice.lease.property else None,
-            "status": (
-                "paid" if invoice.payment_date else
-                "overdue" if invoice.due_date and invoice.due_date < datetime.now().date() else
-                "outstanding"
-            )
-        }
-        for invoice in search_results
-    ]
+    if search_results:
+        invoices_dict = [
+            {
+                "id": invoice.id,
+                "item": invoice.item,
+                "amount": invoice.amount,
+                "created_at": invoice.created_at,
+                "due_date": invoice.due_date,
+                "payment_date": invoice.payment_date,
+                "property": {
+                    "id": invoice.lease.property.id,
+                    "address": invoice.lease.property.address
+                } if invoice.lease and invoice.lease.property else None,
+                "status": (
+                    "paid" if invoice.payment_date else
+                    "overdue" if invoice.due_date and invoice.due_date < datetime.now().date() else
+                    "outstanding"
+                )
+            }
+            for invoice in search_results
+        ]
     return jsonify({'invoices': invoices_dict}), 200
 
 
