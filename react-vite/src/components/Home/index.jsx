@@ -75,8 +75,8 @@ export default function Home() {
     };
     
     const total_num_properties = userInfo?.num_vacant_properties + userInfo?.num_occupied_properties;
-    const vacant_percent = userInfo?.num_vacant_properties / total_num_properties * 100;
-    const occupied_percent = userInfo?.num_occupied_properties / total_num_properties * 100;
+    const vacant_percent =( userInfo?.num_vacant_properties / total_num_properties * 100).toFixed(1);
+    const occupied_percent =( userInfo?.num_occupied_properties / total_num_properties * 100).toFixed(1);
 
     const pieData_vacancy = {
         labels: ['Vacant', 'Occupied'],

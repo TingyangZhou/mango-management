@@ -1,6 +1,3 @@
-/* .port-page-container{
-  padding:0rem 5rem
-} */
 
 
 /* Link Styling */
@@ -9,21 +6,32 @@ a {
   color: #333;
 }
 
-.new-property-container {
-  width: 100%; /* Ensure the button container spans full width */
-  display: flex;
-  /* border: solid 1px red; */
-  justify-content: right;
- 
+
+
+.checkbox-label {
+  display: inline-flex; /* Ensures the content stays in one line */
+  align-items: center; /* Vertically aligns the checkbox and text */
+  gap: 8px; /* Adds space between the checkbox and text */
+  font-size: 16px; /* Label text size */
+  color: #333; /* Text color */
+  cursor: pointer; /* Pointer cursor for better UX */
+  white-space: nowrap; /* Prevents text wrapping */
 }
 
-.create-property-button-listPage {
+input[type="checkbox"] {
+  width: 16px; /* Optional: Adjust checkbox size */
+  height: 16px;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+
+.create-property-button-on-listPage {
   padding: 10px 15px;
   font-size: 18px; /* Updated font size */
   border-radius: 8px; /* Slightly less rounded corners for a professional look */
   border: none;
   cursor: pointer;
-
   transition: all 0.3s ease;
   width: 150px;
   text-align: center;
@@ -31,7 +39,7 @@ a {
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   background-color: #4CAF50; /* Default muted gray background */
-  margin-right:10%;
+  margin-right: 0px;;
 }
 
 /* Hover effect */
@@ -42,9 +50,40 @@ a {
 }
 
 
+.filter-container {
+  display: flex;
+  gap: 40px; /* Space between checkboxes */
+
+  margin-bottom:-30px;
+  /* border: 1px red solid; */
+}
+.filter-container label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 16px; /* Label text size */
+  color: #333;
+  cursor: pointer;
+}
+
+
+
+.property-list-header {
+  display: flex;
+  justify-content: space-between; /* Push checkboxes and button to opposite ends */
+  align-items: center;
+  width: 78%; /* Adjust the width as needed */
+ 
+ 
+  margin: 0 auto;
+  background-color: #fff; /* Optional background color */
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  */
+}
+
 
 .properties--page {
   display: flex;
+  justify-content: center;
   flex-direction: column; /* Ensure items stack vertically */
   align-items: flex-start; /* Align items to the left */
   padding: 20px;
@@ -80,7 +119,7 @@ th {
 
 /* Cell styling */
 td {
-  padding: 15px; /* Adds padding to table cells */
+  padding: 7px; /* Adds padding to table cells */
   text-align: center; /* Aligns text to the center */
   vertical-align: middle; /* Centers content vertically */
   font-size: 16px; /* Adjusted for a clean, modern look */
@@ -135,11 +174,4 @@ tbody tr:nth-child(even) {
 }
 
 
-.page-footer{
-  
-  width:80%;
-  display: flex;
-  justify-content: space-between;
-  margin: 20px auto;
-}
 

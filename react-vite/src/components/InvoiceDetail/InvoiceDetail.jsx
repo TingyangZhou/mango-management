@@ -30,6 +30,8 @@ const InvoiceDetailsPage = () => {
     const invoice = useSelector(state => state.invoices.currentInvoice);
     const tenants = invoice?.tenants;
 
+    
+
 
     const [ formData, setFormData ] = useState({
         item: invoice?.item || "",
@@ -50,7 +52,9 @@ const InvoiceDetailsPage = () => {
         })
     },[invoice])
 
-
+    const handleClick = () =>{
+        navigate (`/properties/${invoice?.property?.id}`)
+    }
     
     const handleEditClick=()=>{
         setErrors({});
@@ -249,7 +253,18 @@ const InvoiceDetailsPage = () => {
                             
                             
                             <td className={invoice?.status}> 
-                                {invoice?.status}</td>
+                               {invoice?.status == 'paid'
+                               ? (`${invoice?.status} on ${(new Date(invoice?.payment_date).toLocaleDateString('en-US', {
+                                timeZone: 'UTC', // Interpret and display the date in UTC
+                                month: 'short',  // Abbreviated month (e.g., "Mar")
+                                day: 'numeric',  // Day of the month (e.g., "1")
+                                year: 'numeric', // Full year (e.g., "2024")
+                             })
+                            )
+                            }`) 
+                               : invoice?.status
+                               }
+                              </td>
                             
                         </tr>
                         
@@ -280,7 +295,7 @@ const InvoiceDetailsPage = () => {
                     
                     <table className="property-tenant-info-table">            
                         <tbody> 
-                                <tr>    
+                                <tr className='nav-to-property' onClick={handleClick}>    
                                     <td> <FaOrcid /> <span style={{ fontWeight: "bold" }}>Property ID:</span> {invoice?.property?.id}</td>
                                     <td><GiTempleGate /> <span style={{ fontWeight: "bold" }}>Address: </span>{invoice?.property?.address}</td>
                                 </tr>

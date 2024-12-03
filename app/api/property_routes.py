@@ -99,6 +99,7 @@ def get_all_properties():
     return jsonify({"properties":response, "num_properties": num_properties}), 200
 
 
+
 # Get Property details from an id
 @property_routes.route("/<int:propertyId>", methods=['GET'])
 @login_required

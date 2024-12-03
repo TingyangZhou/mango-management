@@ -1,20 +1,24 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './Properties.css'
-import { getAllPropertiesThunk } from '../../redux/properties'
+import {  getAllPropertiesNoPageThunk  } from '../../redux/properties'
 import { useDispatch } from 'react-redux'
 import { useNavigate,  Navigate, useSearchParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 
 export default function Properties (){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const sessionUser = useSelector((state) => state.session.user);
-    const [searchParams] = useSearchParams();
+    // const [searchParams] = useSearchParams();
+    const [ isVacantChecked, setIsVacantChecked ] = useState(false);
+    const [ isOccupiedChecked, setIsOccupiedChecked ] = useState(false);
+    const [ vacantProperties, setVacantProperties ] = useState([]);
+    const [ occupiedProperties, setOccupiedProperties ] = useState([]);
 
     const properties = useSelector((state) => state.properties.properties);
-    const num_properties = useSelector((state) => state.properties.num_properties);
+    // const num_properties = useSelector((state) => state.properties.num_properties);
     const properties_arr = Object.values(properties);
     // console.log("property array:", properties_arr);
 
@@ -24,21 +28,44 @@ export default function Properties (){
             return dateB - dateA;
 
     });
+
+    
+    const handleVacantChange = (e) =>{
+        setIsVacantChecked(e.target.checked);
+
+        if (e.target.checked){
+            setVacantProperties(sortedProperties.filter(property => {
+                return  property.is_vacant === true;
+             }))
+          
+        }
+      
+    }
+    
+
+    const handleOccupiedChange = (e) =>{
+        setIsOccupiedChecked(e.target.checked);
+
+        if (e.target.checked){
+            setOccupiedProperties(sortedProperties.filter(property => {
+                return  property.is_vacant === false;
+             }))
+          
+        }
+      
+    }
     
     
     const handleCreateProperty =() =>{
         navigate(`/properties/new`)
     }
    
-    const page = searchParams.get('page') || 1;
-    const per_page = searchParams.get('per_page') || 10;
-    const num_pages =Math.ceil (num_properties/per_page);
-    
+   
 
     useEffect(()=>{
         // console.log("=======useEffect===========")
-        dispatch(getAllPropertiesThunk(page, per_page));
-    }, [dispatch, page, per_page])
+        dispatch( getAllPropertiesNoPageThunk());
+    }, [dispatch])
 
     if (!sessionUser) {
         return <Navigate to='/login'></Navigate>
@@ -47,13 +74,37 @@ export default function Properties (){
 
     return (
         <div className='properties--page'>
-            <div className='new-property-container'>
+            <div className= 'property-list-header'>
+                <div className='filter-container'>
+                    <label className='checkbox-label'>
+                        <input 
+                            type="checkbox" 
+                            id="filter-vacant" 
+                            checked = {isVacantChecked}
+                            onChange = {handleVacantChange}
+                        /> 
+                            Vacant
+                    </label>
+                    <label className='checkbox-label'>
+                        <input 
+                            type="checkbox" 
+                            id="filter-occupied" 
+                            checked = {isOccupiedChecked}
+                            onChange = {handleOccupiedChange}
+                            />
+                            Occupied
+                    </label>
+                </div>
+                
                 <button  
                     onClick={handleCreateProperty}
-                    className='create-property-button-listPage'>
-                        New Property
-                    </button>
+                    className='create-property-button-on-listPage'>
+                    New Property
+                </button>
+            
             </div>
+            
+            
            
             <table>
                 <thead>
@@ -66,7 +117,27 @@ export default function Properties (){
                     </tr>
                 </thead>
                 <tbody>
-                    {sortedProperties.map((property, index) => (
+                    {(isVacantChecked === isOccupiedChecked) && sortedProperties.map((property, index) => (
+                        <tr key={index}
+                            onClick={() => navigate(`/properties/${property.id}`)}>
+                            <td>{property.id}</td>
+                            <td>{property.address}</td>
+                            <td>{property.rent}</td>
+                            <td>{property.num_tenants}</td>
+                            <td> <span className={property.is_vacant ? "vacant" : "occupied"}>{property.is_vacant ? "Vacant" : "Occupied"}</span> </td>
+                        </tr>
+                    ))}
+                    {(isVacantChecked) && vacantProperties.map((property, index) => (
+                        <tr key={index}
+                            onClick={() => navigate(`/properties/${property.id}`)}>
+                            <td>{property.id}</td>
+                            <td>{property.address}</td>
+                            <td>{property.rent}</td>
+                            <td>{property.num_tenants}</td>
+                            <td> <span className={property.is_vacant ? "vacant" : "occupied"}>{property.is_vacant ? "Vacant" : "Occupied"}</span> </td>
+                        </tr>
+                    ))}
+                    {(isOccupiedChecked) && occupiedProperties.map((property, index) => (
                         <tr key={index}
                             onClick={() => navigate(`/properties/${property.id}`)}>
                             <td>{property.id}</td>
@@ -79,7 +150,7 @@ export default function Properties (){
                 </tbody>
             </table>
 
-            <footer className = 'page-footer'>
+            {/* <footer className = 'page-footer'>
                 <div className = 'curr-page'>page {page}</div>
                 <div className = 'page-list'>
                 {Array.from({ length: num_pages }, (_, i) => (
@@ -98,7 +169,7 @@ export default function Properties (){
                 </div>
                 
 
-            </footer>
+            </footer> */}
         </div>
     )
 }

@@ -46,7 +46,7 @@ function LoginFormPage() {
       <form className = 'login-form' onSubmit={handleSubmit}>
       <h1 className='login-title'>Welcome to Mango Management</h1>
         {errors.length > 0 &&
-          errors.map((message) => <p key={message}>{message}</p>)}
+          errors.map((message) => <p className='hint' key={message}>{message}</p>)}
           
           <label>
             Email
@@ -57,7 +57,7 @@ function LoginFormPage() {
               required
             />
           </label>
-          {errors.email && <p className='error'>{errors.email}</p>}
+          {errors.email && <p className='hint'>{errors.email}</p>}
           <label>
             Password
             <input
@@ -67,7 +67,7 @@ function LoginFormPage() {
               required
             />
           </label>
-          {errors.password && <p>{errors.password}</p>}
+          {errors.password && <p className='hint'>{errors.password}</p>}
           <button className= 'login-button' type="submit">Log In</button>
           <button 
             onClick ={handleDemoLogin} 

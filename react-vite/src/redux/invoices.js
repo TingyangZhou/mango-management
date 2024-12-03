@@ -2,7 +2,9 @@
 
 import { normalizer } from './utils';
 
-const GET_ALL_INVOICES = 'invoices/getAll';
+const GET_ALL_INVOICES_NO_PAGE = 'invoices/getAll';
+const GET_ALL_FILTERED_INVOICES_PAGE = 'invoices/getAllFilteredPage';
+const SEARCH_INVOICES = 'invoices/search';
 const GET_ONE_INVOICE = 'invoices/getOne';
 const CREATE_INVOICE = 'invoices/create';
 const UPDATE_INVOICE = 'invoices/update';
@@ -13,10 +15,28 @@ const DELETE_INVOICE = 'invoices/delete';
 
 const getAllInvoices = (invoices) => {
     return {
-        type: GET_ALL_INVOICES,
+        type: GET_ALL_INVOICES_NO_PAGE,
         payload: invoices,
     };
 };
+
+
+
+const getAllFilteredInvoicesPage = (invoices) => {
+    return {
+        type: SEARCH_INVOICES,
+        payload: invoices,
+    };
+};
+
+
+const searchlInvoices = (invoices) => {
+    return {
+        type: GET_ALL_INVOICES_NO_PAGE,
+        payload: invoices,
+    };
+};
+
 
 const getOneInvoice = (invoice) => {
     return {
@@ -58,7 +78,7 @@ const deleteInvoice = (invoiceId) => {
 
 // get all invoices
 export const getAllInvoicesThunk = () => async (dispatch) => {
-    const res = await fetch(`/api/invoices`);
+    const res = await fetch(`/api/invoices/all`);
         
     if (res.ok) {
         const data = await res.json();
@@ -70,6 +90,20 @@ export const getAllInvoicesThunk = () => async (dispatch) => {
 };
 
 
+
+// Get all filtered invoices with pagination
+export const getAllFilteredInvoicesPageThunk = (filterBy, page, per_page) => async (dispatch) => {
+    const res = await fetch(`/api/invoices?filterBy=${filterBy}&page=${page}&per_page=${per_page}`);
+        
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(getAllFilteredInvoicesPage(data));
+    } else {
+        const errors = await res.json();
+        throw errors;
+    }
+};
+
 // get one invoice
 export const getOneInvoiceThunk = (invoiceId) => async (dispatch) => {
     const res = await fetch(`/api/invoices/${invoiceId}`);
@@ -78,6 +112,21 @@ export const getOneInvoiceThunk = (invoiceId) => async (dispatch) => {
         dispatch(getOneInvoice(data));
     } else {
         
+        const errors = await res.json();
+        throw errors;
+    }
+};
+
+
+
+// search invoices
+export const searchInvoicesThunk = (input) => async (dispatch) => {
+    const res = await fetch(`/api/invoices/input=${input}`);
+        
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(getAllInvoices(data));
+    } else {
         const errors = await res.json();
         throw errors;
     }
@@ -173,7 +222,7 @@ let initialState = {
 export default function invoiceReducer(state = initialState, { type, payload }) {
     
     switch (type) {
-        case GET_ALL_INVOICES:
+        case GET_ALL_INVOICES_NO_PAGE:
             if (!payload){
                 return {...state,
                     currentInvoice: null, 
@@ -186,6 +235,35 @@ export default function invoiceReducer(state = initialState, { type, payload }) 
                 
             }
            
+         
+        
+        case GET_ALL_FILTERED_INVOICES_PAGE:
+            if (!payload){
+                return {...state,
+                    currentInvoice: null, 
+                    invoices: {}
+                }
+            } 
+            return {...state,
+                currentInvoice: state.currentInvoice, 
+                invoices: normalizer(payload?.invoices),
+                num_invoices:payload.num_invoices
+            
+                
+            }
+
+        case SEARCH_INVOICES:
+            if (!payload){
+                return {...state,
+                    currentInvoice: null, 
+                    invoices: {}
+                }
+            } 
+            return {...state,
+                currentInvoice: state.currentInvoice, 
+                invoices: normalizer(payload?.invoices)           
+                
+            }
         case GET_ONE_INVOICE:
             return {...state, currentInvoice: payload, invoices: state.invoices}
         case CREATE_INVOICE:

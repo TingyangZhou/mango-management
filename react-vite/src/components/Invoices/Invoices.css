@@ -1,4 +1,15 @@
+.invoices-page{
+  padding-bottom:20px;
+  
+}
 
+.invoice-list-header{
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; /* Push checkboxes and button to opposite ends */
+  align-items: center;
+  width: 78%;
+}
 
 .new-invoice-button-on-listPage{
     padding: 10px 15px;
@@ -16,6 +27,7 @@
     background-color: #4CAF50; /* Default muted gray background */
     margin-right:0px;
     align-items: right;
+    
 }
 
 .new-invoice-button-container{
@@ -34,6 +46,7 @@
   padding: 15px; /* Optional: Add padding for better spacing */
 }
 
+
 td.paid {
     background-color: #d4edda; /* Light green background */
     color: #155724; /* Dark green text */
@@ -49,4 +62,18 @@ td.paid {
   td.overdue {
     background-color: #f8d7da; /* Light red background */
     color: #721c24; /* Dark red text */
+  }
+
+  .page-footer{
+  
+    width:80%;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+  }
+  
+  .page-footer:hover{
+    cursor: pointer;
+    text-decoration: underline; /* Add underline on hover */
+    color: #0056b3; /* Darker blue color for hover */
   }

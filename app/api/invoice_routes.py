@@ -5,6 +5,7 @@ from app.models import User, Property, Lease, Tenant, Invoice, db
 from app.forms import CreateInvoiceForm, UpdateInvoiceForm
 from datetime import datetime, date
 from sqlalchemy.exc import IntegrityError
+
 from sqlalchemy.orm import joinedload
 
 invoice_routes = Blueprint("invoice", __name__, url_prefix="/api/invoices")
@@ -14,11 +15,11 @@ invoice_routes = Blueprint("invoice", __name__, url_prefix="/api/invoices")
 from flask import jsonify
 from flask_login import login_required, current_user
 from datetime import datetime
+from sqlalchemy import and_, or_
 
-@invoice_routes.route("", methods=['GET'])
+@invoice_routes.route("/all", methods=['GET'])
 @login_required
 def get_all_invoices():
-
     
     invoices = (
         Invoice.query
@@ -54,6 +55,131 @@ def get_all_invoices():
     return jsonify({"invoices": invoices_dict}), 200
 
 
+# # Get all invoices with pagination
+# @invoice_routes.route("", methods=['GET'])
+# @login_required
+# def get_all_invoices_page():
+#     page = request.args.get('page', 1, type=int)  # Default to page 1
+#     per_page = request.args.get('per_page', 10, type=int)  # Default to 10 items per page
+
+#     # Get total number of invoices
+#     num_invoices = Invoice.query.filter(Invoice.user_id == current_user.id).count()
+
+#     # Paginate invoices
+#     paginated_invoices = (
+#         Invoice.query
+#         .options(
+#             joinedload(Invoice.lease).joinedload(Lease.property)
+#         )
+#         .filter(Invoice.user_id == current_user.id)
+#         .order_by(Invoice.created_at.desc())
+#         .paginate(page=page, per_page=per_page, error_out=False)
+#     )
+
+#     # Construct response
+#     invoices_dict = [
+#         {
+#             "id": invoice.id,
+#             "item": invoice.item,
+#             "amount": invoice.amount,
+#             "created_at": invoice.created_at,
+#             "due_date": invoice.due_date,
+#             "payment_date": invoice.payment_date,
+#             "property": {
+#                 "id": invoice.lease.property.id,
+#                 "address": invoice.lease.property.address
+#             } if invoice.lease and invoice.lease.property else None,
+#             "status": (
+#                 "paid" if invoice.payment_date else
+#                 "overdue" if invoice.due_date and invoice.due_date < datetime.now().date() else
+#                 "outstanding"
+#             )
+#         }
+#         for invoice in paginated_invoices.items
+#     ]
+
+#     return jsonify({"invoices": invoices_dict, "num_invoices": num_invoices}), 200
+
+
+# Get filtered invoices with pagination 
+@invoice_routes.route("", methods=['GET'])
+@login_required
+def get_all_invoices_filter():
+     # Extract query parameters
+    filter_by = request.args.get('filterBy', default=None)
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 10, type=int)
+
+    # Parse `filter_by` into a list of filters
+    filters = []
+
+    if filter_by:
+        filters = filter_by.lower().strip('"').strip("'").split(",")
+    
+
+
+    # Base query
+    invoices_query = Invoice.query.filter(Invoice.user_id == current_user.id)
+
+    # Define filter conditions
+    conditions = []
+
+    # Add conditions for each filter
+    if "paid" in filters:
+        conditions.append(Invoice.payment_date.isnot(None))
+    if "outstanding" in filters:
+        conditions.append(
+            and_(
+                Invoice.due_date.isnot(None),
+                Invoice.due_date > datetime.now().date(),
+                Invoice.payment_date.is_(None)
+            )
+        )
+    if "overdue" in filters:
+        conditions.append(
+            and_(
+                Invoice.due_date.isnot(None),
+                Invoice.due_date < datetime.now().date(),
+                Invoice.payment_date.is_(None)
+            )
+        )
+
+    # Apply combined conditions to the query
+    if conditions:
+        invoices_query = invoices_query.filter(or_(*conditions))
+        num_invoices = invoices_query.filter(or_(*conditions)).count()
+    else:
+        num_invoices = invoices_query.count()
+
+    # Pagination and ordering
+    paginated_invoices = invoices_query.order_by(Invoice.created_at.desc()).paginate(
+        page=page, per_page=per_page, error_out=False
+    )
+
+    
+    # Construct response
+    invoices_dict = [
+        {
+            "id": invoice.id,
+            "item": invoice.item,
+            "amount": invoice.amount,
+            "created_at": invoice.created_at,
+            "due_date": invoice.due_date,
+            "payment_date": invoice.payment_date,
+            "property": {
+                "id": invoice.lease.property.id,
+                "address": invoice.lease.property.address
+            } if invoice.lease and invoice.lease.property else None,
+            "status": (
+                "paid" if invoice.payment_date else
+                "overdue" if invoice.due_date and invoice.due_date < datetime.now().date() else
+                "outstanding"
+            )
+        }
+        for invoice in paginated_invoices.items
+    ]
+
+    return jsonify({"invoices": invoices_dict, "num_invoices": num_invoices}), 200
 
 # Get Invoice details from an id
 @invoice_routes.route("/<int:invoiceId>", methods=['GET'])
@@ -115,6 +241,48 @@ def get_a_property(invoiceId):
     return jsonify(invoice_dict), 200
     
     
+# Search Invoices
+@search_routes.route('/search', methods=['GET'])
+@login_required
+def search_invoices():
+    search_query = request.args.get('input', '').strip()
+
+    if not search_query:
+        return jsonify({"message": "Search input required"}), 400
+    
+
+    search_results = Invoice.query.filter(db.and_(
+        Invoice.user_id == current_user.id,
+            or_(
+                Invoice.item.ilike(f'%{search_query}%') |
+                Invoice.property.address.ilike(f'%{search_query}%')
+            )
+        )
+        
+    ).all()
+
+    # Construct response
+    invoices_dict = [
+        {
+            "id": invoice.id,
+            "item": invoice.item,
+            "amount": invoice.amount,
+            "created_at": invoice.created_at,
+            "due_date": invoice.due_date,
+            "payment_date": invoice.payment_date,
+            "property": {
+                "id": invoice.lease.property.id,
+                "address": invoice.lease.property.address
+            } if invoice.lease and invoice.lease.property else None,
+            "status": (
+                "paid" if invoice.payment_date else
+                "overdue" if invoice.due_date and invoice.due_date < datetime.now().date() else
+                "outstanding"
+            )
+        }
+        for invoice in search_results
+    ]
+    return jsonify({'invoices': invoices_dict}), 200
 
 
 # Create A Invoice
@@ -369,3 +537,4 @@ def remove_invoice(invoiceId):
     db.session.commit()
 
     return jsonify(	{"message": "Successfully deleted"}), 200
+

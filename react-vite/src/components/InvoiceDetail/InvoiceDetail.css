@@ -113,6 +113,18 @@
     transition: all 0.2s ease-in-out; /* Smooth and responsive transition */
 }
 
+table tr.nav-to-property{
+    cursor: pointer !important;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+}
+
+table tr.nav-to-property:hover {
+    cursor: pointer !important; 
+    background-color: #f0f0f0; /* Light gray background on hover */
+    color: #007bff; /* Text color on hover */
+    
+}
+
 
 .new-invoice-header{
     display: flex;
