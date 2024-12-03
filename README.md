@@ -1,3 +1,7 @@
+Live site: https://mango-management.onrender.com/
+
+Mango Management is a full-stack rental house management application designed to streamline property management. It enables landlords to efficiently manage rental properties, associated leases, and tenant information, as well as handle invoices seamlessly. 
+
 # Flask React Project
 
 This is the starter for the Flask React project.
