@@ -21,7 +21,6 @@ export default function Properties (){
     // const num_properties = useSelector((state) => state.properties.num_properties);
     const properties_arr = Object.values(properties);
 
-
     const sortedProperties = properties_arr.sort((a, b) => {
         const dateA = new Date(a.created_at);
         const dateB = new Date(b.created_at);
@@ -32,7 +31,6 @@ export default function Properties (){
     
     const handleVacantChange = (e) =>{
         setIsVacantChecked(e.target.checked);
-        console.log('isVacantChecked=======:', e.target.checked);
       
         if (e.target.checked){
             setVacantProperties(sortedProperties.filter(property => {
@@ -46,8 +44,6 @@ export default function Properties (){
 
     const handleOccupiedChange = (e) =>{
         setIsOccupiedChecked(e.target.checked);
-        
-        console.log('isOccupiedChecked=======:', e.target.checked);
 
         if (e.target.checked){
             setOccupiedProperties(sortedProperties.filter(property => {

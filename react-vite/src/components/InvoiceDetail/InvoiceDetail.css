@@ -38,9 +38,15 @@
 .edit-invoice-button
 {
     padding: 8px 15px;
+<<<<<<< HEAD
     font-weight:700;
     font-size: 15px; 
     border-radius: 25px; 
+=======
+    font-weight:800;
+    font-size: 16px; 
+    border-radius: 8px; 
+>>>>>>> 681a0a9b2f130562924ae6eb6533bded54958f13
     border: #FF8C00 solid 1px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -54,9 +60,15 @@
 
 .new-invoice-button{
     padding: 8px 15px;
+<<<<<<< HEAD
     font-weight:700;
     font-size: 15px; 
     border-radius: 25px; 
+=======
+    font-weight:800;
+    font-size: 16px; 
+    border-radius: 8px; 
+>>>>>>> 681a0a9b2f130562924ae6eb6533bded54958f13
     border: #4CAF50 solid 1px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -91,9 +103,15 @@
 
 .delete-invoice-button{
     padding: 8px 15px;
+<<<<<<< HEAD
     font-weight:700;
     font-size: 15px; 
     border-radius: 25px; 
+=======
+    font-weight:800;
+    font-size: 16px; 
+    border-radius: 8px; 
+>>>>>>> 681a0a9b2f130562924ae6eb6533bded54958f13
     border: red solid 1px;
     cursor: pointer;
     transition: all 0.3s ease;
