@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { addLeaseContractThunk } from '../../redux/leases';
 import { useModal } from '../../context/Modal';
@@ -11,6 +12,7 @@ const DragAndDropUploadModal = ({ propertyId }) => {
     const [ errors, setErrors ] = useState({});
     const { closeModal } = useModal();
     const dispatch=useDispatch();
+    const navigate = useNavigate();
 
 
     const handleDragOver = (e) => {

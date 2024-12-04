@@ -196,7 +196,7 @@ const LeaseForm = ({lease, propertyId, formType}) =>{
                         </label>
                     }
                     
-
+                    {fileLoading && <p>Loading...</p>}
                     <div className='lease-form-buttons'>
                         <button
                             type="button" 

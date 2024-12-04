@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import './PropertyForm.css'
 import { updatePropertyThunk, createPropertyThunk } from '../../redux/properties.js'
 
@@ -44,7 +44,7 @@ const PropertyForm = ({property, propertyId, formType}) =>{
                 const createdProperty = await dispatch(createPropertyThunk(updatedProperty));
                 
                 if (createdProperty?.id) {
-                    console.log("Navigating to created property:", createdProperty.id);
+                    // console.log("Navigating to created property:", createdProperty.id);
                     navigate(`/properties/${createdProperty.id}`);
                 } else {
                     console.error("Error: Created property ID is undefined");

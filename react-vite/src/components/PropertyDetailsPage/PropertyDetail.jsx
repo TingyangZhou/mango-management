@@ -7,7 +7,7 @@ import {  getOnePropertyThunk } from "../../redux/properties";
 import OpenModalButton from '../OpenModalButton';
 import ConfirmDeleteFormModal from './ConfirmDeletePropertyModal.jsx'
 import LeaseDetail from './LeaseDetail.jsx'
-import TenantDetail from './TenantDetail.jsx'
+
 
 // import { useTheme } from '../../context/ThemeContext';
 import './PropertyDetail.css';

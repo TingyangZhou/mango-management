@@ -23,7 +23,6 @@ const LeaseDetail = ({propertyId}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [ errors, setErrors ] = useState({});
-    const [ file, setFile ] = useState(null);
 
     const activeLease = useSelector(state => state.leases.activeLease)
     const expiredLeases = useSelector(state => state.leases.expiredLeases)

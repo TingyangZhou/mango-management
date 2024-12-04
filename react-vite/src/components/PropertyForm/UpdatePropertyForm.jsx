@@ -15,7 +15,7 @@ const UpdatePropertyForm = ()=>{
     useEffect(()=>{
         dispatch(getOnePropertyThunk(propertyId))
             .catch((error) => {
-                console.log("Error from thunk:", error); // Debugging
+                // console.log("Error from thunk:", error); 
                 setErrors(error);
             })
     }, [dispatch, propertyId])
