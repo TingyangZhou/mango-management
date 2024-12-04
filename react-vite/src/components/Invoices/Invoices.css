@@ -15,8 +15,8 @@
 
 .new-invoice-button-on-listPage{
     padding: 10px 15px;
-    font-size: 18px; /* Updated font size */
-    border-radius: 8px; /* Slightly less rounded corners for a professional look */
+    font-size: 16px; /* Updated font size */
+    border-radius: 30px; /* Slightly less rounded corners for a professional look */
     border: none;
     cursor: pointer;
     margin-top:10px;

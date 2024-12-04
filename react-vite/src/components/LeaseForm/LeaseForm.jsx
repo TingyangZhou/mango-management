@@ -184,15 +184,18 @@ const LeaseForm = ({lease, propertyId, formType}) =>{
                         
                     </label>
                     {errors?.rent_due_day && <p className="hint">{errors.rent_due_day}</p>}
-
-                    <label htmlFor="file-upload" className="file-upload">
-                        Add Lease Contract 
+                    
+                    {formType==="Create Lease" && 
+                        <label htmlFor="file-upload" className="file-upload">
+                        Attach Lease Contract (Optional) 
                         <input
                             type="file"
                             accept=".pdf, .doc, .docx, .jpg, .jpeg, .png"
                             onChange={(e) => setFile(e.target.files[0])} // Ensure `e.target.files[0]` exists
                         />
-                    </label>
+                        </label>
+                    }
+                    
 
                     <div className='lease-form-buttons'>
                         <button

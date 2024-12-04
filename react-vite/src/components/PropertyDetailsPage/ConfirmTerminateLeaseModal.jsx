@@ -14,11 +14,11 @@ function ConfirmTerminateLeaseModal({propertyId}) {
         setErrors({});
         e.preventDefault();
 
+        
         dispatch(terminateLeaseThunk(propertyId))
         .then(closeModal)
+        .then(() => navigate(`/properties/${propertyId}`))
         .catch(error => setErrors(error));
-        
-        return navigate(`/properties/${propertyId}`);
         
     }
     

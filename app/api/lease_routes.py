@@ -94,9 +94,9 @@ def create_lease(propertyId):
        
        
         file = form.data["lease_doc"]
-        print("File object:", file)
-        print("File filename:", getattr(file, "filename", None))
-        print("File content_type:", getattr(file, "content_type", None))
+        # print("File object:", file)
+        # print("File filename:", getattr(file, "filename", None))
+        # print("File content_type:", getattr(file, "content_type", None))
         url = None
         if file: 
             file.filename = get_unique_filename(file.filename)
@@ -232,7 +232,7 @@ def delete_lease(leaseId):
 
 
 # Delete a Lease Contract
-@lease_routes.route("/properties/<int:propertyId>/lease-contract", methods=['PATCH'])
+@lease_routes.route("/properties/<int:propertyId>/lease-contract/delete", methods=['PATCH'])
 @login_required
 def delete_lease_contract(propertyId):
     user = User.query.get(current_user.id)  
@@ -263,6 +263,53 @@ def delete_lease_contract(propertyId):
     
     except Exception as e:
         db.session.rollback()
-        return jsonify({"message": "Failed to terminate the lease"}), 500
+        return jsonify({"message": "Failed to remove lease file"}), 500
     
      
+
+# Add a Lease Contract
+@lease_routes.route("/properties/<int:propertyId>/lease-contract/add", methods=['PATCH'])
+@login_required
+def add_lease_contract(propertyId):
+    user = User.query.get(current_user.id)  
+       
+    # Check if an active lease exists for this property
+    lease = Lease.query.filter(db.and_(Lease.property_id == propertyId,
+                                Lease.end_date >= datetime.now().date())).first()
+    
+    if not lease:
+        return jsonify(	{"message": "Lease couldn't be found"}), 404
+    
+    property = lease.property
+    if not property:
+        return jsonify({"message": "Property couldn't be found"}), 404
+    
+    # Check if the user is authorized to access the property
+    if property.user_id != user.id:
+        return jsonify({"message": "You are not authorized to access this property"}), 403
+    
+    try:
+            
+        file = request.files['lease_doc']
+        url = None
+        if file: 
+            file.filename = get_unique_filename(file.filename)
+            upload = upload_file_to_s3(file)
+
+            if "url" not in upload:
+                return jsonify(upload), 400
+
+            url = upload["url"]
+        
+        
+            lease.lease_doc = url
+        
+        db.session.commit()
+
+        lease_dict = lease.to_dict_basic()
+        return jsonify(lease_dict), 200
+
+    
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": "Failed to upload the lease file"}), 500

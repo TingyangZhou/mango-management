@@ -8,6 +8,7 @@ import OpenModalButton from '../OpenModalButton';
 import ConfirmDeleteLeaseModal from './ConfirmDeleteLeaseModal.jsx'
 import ConfirmTerminateLeaseModal from './ConfirmTerminateLeaseModal.jsx'
 import ConfirmDeleteContractModal from './ConfirmDeleteContractModal.jsx'
+import DragAndDropUploadModal from './DragAndDropUploadModal.jsx'
 import TenantDetail from './TenantDetail.jsx'
 import './LeaseDetail.css'
 import { TbCalendarDue } from "react-icons/tb";
@@ -22,6 +23,7 @@ const LeaseDetail = ({propertyId}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [ errors, setErrors ] = useState({});
+    const [ file, setFile ] = useState(null);
 
     const activeLease = useSelector(state => state.leases.activeLease)
     const expiredLeases = useSelector(state => state.leases.expiredLeases)
@@ -176,7 +178,18 @@ const LeaseDetail = ({propertyId}) => {
                                 
                             </td>
                         </tr>
-                        ) : null}
+                        ) : 
+                        <tr>
+                            <td colSpan='2'>
+                            <OpenModalButton
+                                    className = "add-lease-button"
+                                    buttonText = 'Add Lease Contract'
+                                    modalComponent={<DragAndDropUploadModal propertyId = {propertyId}/>}
+                                    onModalClose = {()=> navigate(`/properties/${propertyId}`)}
+                                />                            
+                            </td>
+                        </tr>
+                        }
                           
                             </tbody>
                         </table>
@@ -218,14 +231,9 @@ const LeaseDetail = ({propertyId}) => {
                 }
 
                 
-            
+
             </div>
-
-
-
-        </div>
-        
-        {sortedExpiredLeases.length !== 0 && 
+            {sortedExpiredLeases.length !== 0 && 
         <button 
             className = "toggle-expand-button"
             onClick={toggleExpand}>
@@ -270,6 +278,10 @@ const LeaseDetail = ({propertyId}) => {
                 </table>
             </div>
         )}
+
+        </div>
+        
+        
         </>     
         }
             

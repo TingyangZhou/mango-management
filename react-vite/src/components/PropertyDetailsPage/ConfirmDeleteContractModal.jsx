@@ -34,7 +34,7 @@ function ConfirmDeleteContractModal({propertyId}) {
     return (
         <form className='confirm-delete-contract-form'>
             
-            <h2>Confirm Termination</h2>
+            <h2>Confirm Delete</h2>
             {errors?.message && <p className='hint'>{errors.message}</p>}
             <p> Are you sure you want to remove the lease contract? </p>
             <button 

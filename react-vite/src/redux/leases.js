@@ -8,6 +8,7 @@ const UPDATE_LEASE = 'leases/updateLease';
 const TERMINATE_LEASE = 'leases/terminateLease';
 const REMOVE_LEASE = 'leases/removeLease';
 const DELETE_LEASE_CONTRACT = 'leases/deleteLeaseContract'
+const ADD_LEASE_CONTRACT = 'leases/addLeaseContract';
 
 
 // Action Creators
@@ -46,14 +47,6 @@ export const terminateLease = (lease) => {
     };
 };
 
-export const deleteLeaseContract = (lease) => {
-    return {
-        type: DELETE_LEASE_CONTRACT,
-        payload: lease
-    };
-};
-
-
 
 export const removeLease = (leaseId) => {
     return {
@@ -61,6 +54,23 @@ export const removeLease = (leaseId) => {
         payload: leaseId
     };
 };
+
+export const deleteLeaseContract = (lease) => {
+    return {
+        type: DELETE_LEASE_CONTRACT,
+        payload: lease
+    };
+};
+
+export const addLeaseContract = (lease) => {
+    return {
+        type: ADD_LEASE_CONTRACT,
+        payload: lease
+    };
+};
+
+
+
 
 // Thunk Actions
 
@@ -115,13 +125,10 @@ export const addLeaseThunk = (propertyId, formData) => async (dispatch) => {
 
 
 // update lease
-export const updateLeaseThunk = (propertyId, leaseData) => async (dispatch) => {
+export const updateLeaseThunk = (propertyId, formData) => async (dispatch) => {
     const res = await fetch(`/api/properties/${propertyId}/lease`, {
         method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(leaseData),
+        body: formData
     });
     if (res.ok) {
         const updatedLease = await res.json();
@@ -152,7 +159,7 @@ export const terminateLeaseThunk = (propertyId) => async (dispatch) => {
 
 // delete lease contract thunk
 export const deleteLeaseContractThunk = (propertyId) => async (dispatch) => {
-    const res = await fetch(`/api/properties/${propertyId}/lease-contract`, {
+    const res = await fetch(`/api/properties/${propertyId}/lease-contract/delete`, {
         method: 'PATCH'
     });
     if (res.ok) {
@@ -160,13 +167,32 @@ export const deleteLeaseContractThunk = (propertyId) => async (dispatch) => {
         dispatch((deleteLeaseContract(updated_lease)));
         
     } else {
-        console.log('=============error:')
+        // console.log('=============error:')
         const error = await res.json();
         
         throw error;
     }
 };
 
+
+// Add lease contract thunk
+export const addLeaseContractThunk = (propertyId, formData) => async (dispatch) => {
+    
+    const res = await fetch(`/api/properties/${propertyId}/lease-contract/add`, {
+        body: formData,
+        method: 'PATCH'
+    });
+    if (res.ok) {
+        const updated_lease = await res.json();
+        dispatch((addLeaseContract(updated_lease)));
+        
+    } else {
+        
+        const error = await res.json();
+        // console.log('=============error:', error)
+        throw error;
+    }
+};
 
  //remove lease thunk
 export const removeLeaseThunk = (leaseId) => async (dispatch) => {
@@ -209,6 +235,8 @@ const leaseReducer = (state = initialState, {type, payload}) => {
                 expiredLeases:{...(state.expiredLeases), [payload.id]: payload}
             };
         case DELETE_LEASE_CONTRACT:
+            return {...state, activeLease: payload};
+        case ADD_LEASE_CONTRACT:
             return {...state, activeLease: payload};
         case REMOVE_LEASE:
             return {
