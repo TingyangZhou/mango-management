@@ -1,0 +1,43 @@
+.nav-link {
+  display: flex;
+  align-items: center; /* Aligns items vertically */
+  list-style-type: none; /* Removes bullet points */
+  margin: 0;
+  padding: 0;
+  gap: 80px; /* Space between nav items */
+}
+
+.nav-bar-main {
+  display: flex;
+  align-items: center; /* Aligns nav items, logo, and profile button vertically */
+  justify-content: space-between; /* Space between logo and profile button */
+  padding: 10px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 10px;
+  border-bottom: 2px solid  #ccc;
+}
+
+.nav-propreties, .nav-invoices {
+  text-decoration: none; /* Removes underlines */
+  color: inherit; /* Inherits color from parent */
+  font-size: 20px; 
+}
+
+.nav-propreties:hover, .nav-invoices:hover {
+  color: orange; /* Optional: Change color on hover */
+}
+
+.mango-logo img {
+  display: block; /* Ensures proper alignment for the logo */
+  transition: transform 0.3s ease;
+}
+
+.mango-logo img:hover {
+  transform: scale(1.10); /* Increases size by 20% on hover */
+}
+
+
+.hidden-profile-button, .hidden-home-link {
+  display: none;
+}

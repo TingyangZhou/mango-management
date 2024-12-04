@@ -1,0 +1,65 @@
+ 
+.signup-page {
+    background-image: url('../../../public/images/background.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    min-height: 100vh;
+    padding-right: 150px; /* Optional spacing from the right edge */
+    
+  }
+
+.signup-title{
+    font-size: 20px;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    
+    margin-bottom: 10px;
+  }
+
+.signup-section{
+    margin-top:20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+  
+.signup-form {
+    width: 400px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    background-color:white;
+  }
+
+  .sign-up-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #b83a00;
+    color: white;
+    margin: 10px 0;
+    /* transition: background-color 0.3s ease; */
+}
+
+.sign-up-button:hover {
+  background-color: #fb641c;
+}
+
+.signup-form input {
+  margin-bottom: 15px; /* Adds space below each input */
+  height:45px;
+  padding: 10px; /* Adds space inside the input field */
+  width: 100%; /* Optional: Makes inputs span the container width */
+  box-sizing: border-box; /* Ensures padding doesn't increase input width */
+}

@@ -1,0 +1,177 @@
+
+
+/* Link Styling */
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+
+
+.checkbox-label {
+  display: inline-flex; /* Ensures the content stays in one line */
+  align-items: center; /* Vertically aligns the checkbox and text */
+  gap: 8px; /* Adds space between the checkbox and text */
+  font-size: 16px; /* Label text size */
+  color: #333; /* Text color */
+  cursor: pointer; /* Pointer cursor for better UX */
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+input[type="checkbox"] {
+  width: 16px; /* Optional: Adjust checkbox size */
+  height: 16px;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+
+.create-property-button-on-listPage {
+  padding: 10px 15px;
+  font-size: 18px; /* Updated font size */
+  border-radius: 8px; /* Slightly less rounded corners for a professional look */
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 150px;
+  text-align: center;
+  background-color: #666; /* Default muted gray background */
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background-color: #4CAF50; /* Default muted gray background */
+  margin-right: 0px;;
+}
+
+/* Hover effect */
+.create-property-button-listPage:hover {
+    background-color: #388E3C; /* Slightly darker green on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    transform: translateY(-1px); /* Subtle lift effect */
+}
+
+
+.filter-container {
+  display: flex;
+  gap: 40px; /* Space between checkboxes */
+
+  margin-bottom:-30px;
+  /* border: 1px red solid; */
+}
+.filter-container label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 16px; /* Label text size */
+  color: #333;
+  cursor: pointer;
+}
+
+
+
+.property-list-header {
+  display: flex;
+  justify-content: space-between; /* Push checkboxes and button to opposite ends */
+  align-items: center;
+  width: 78%; /* Adjust the width as needed */
+ 
+ 
+  margin: 0 auto;
+  background-color: #fff; /* Optional background color */
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  */
+}
+
+
+.properties--page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column; /* Ensure items stack vertically */
+  align-items: flex-start; /* Align items to the left */
+  padding: 20px;
+}
+
+/* Table container styling */
+table {
+  width: 80%; /* Ensures table takes full width */
+  border-collapse: collapse; /* Removes double borders */
+  margin: 10px auto; /* Centers the table */
+}
+/* Table styling */
+table {
+  width: 80%; /* Centers the table with ample width */
+  border-collapse: collapse; /* Removes double borders */
+  margin: 20px auto; /* Centers table and adds top-bottom margin */
+  font-family: 'Arial', sans-serif; /* Professional font */
+  color: #333; /* Text color */
+  border: 1px solid #ddd; /* Subtle outer border */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a slight shadow */
+}
+
+/* Header styling */
+th {
+  background-color: #008080; /* Professional blue background */
+  color: white; /* White text for contrast */
+  font-weight: bold;
+  text-align: center; 
+  padding: 12px; /* Adds padding for better spacing */
+  font-size: 18px;
+  border-bottom: 1px solid #004080; /* Bold bottom border for emphasis */
+}
+
+/* Cell styling */
+td {
+  padding: 7px; /* Adds padding to table cells */
+  text-align: center; /* Aligns text to the center */
+  vertical-align: middle; /* Centers content vertically */
+  font-size: 16px; /* Adjusted for a clean, modern look */
+  border-bottom: 1px solid #ddd; /* Light row borders */
+}
+
+/* Row striping */
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Light gray background for even rows */
+}
+
+tr:nth-child(odd) {
+  background-color: #ffffff; /* White background for odd rows */
+}
+
+/* Hover effect */
+table tr:hover {
+  cursor: pointer;
+  background-color: #e6f2ff; /* Soft blue background on hover */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Optional: Remove outline from focused rows */
+tr:focus {
+  outline: none;
+}
+
+
+/* Optional: Add zebra striping for rows */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.occupied {
+  background-color: orange; /* Background color */
+  opacity: 0.8;
+  color: white; /* Text color */
+  padding: 8px 10px; /* Add padding to give it a button-like appearance */
+  border-radius: 15px; /* Rounded corners to create a pill shape */
+  display: inline-block; /* Ensures the element respects padding and rounded corners */
+  text-align: center; /* Center the text */
+}
+
+.vacant {
+  background-color:#3498db; /* Background color */
+  opacity: 0.8;
+  color: white; /* Text color */
+  padding: 8px 10px; /* Padding for button-like shape */
+  border-radius: 15px; /* Rounded corners */
+  display: inline-block; /* Ensures proper display */
+  text-align: center; /* Center the text */
+}
+
+
+

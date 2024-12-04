@@ -1,0 +1,67 @@
+
+
+/* General styling for the form page */
+.invoice-form-page {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9; /* Light gray background */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: Arial, sans-serif;
+}
+
+/* Form title */
+.invoice-form-page h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form container */
+.invoice-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Spacing between form elements */
+    
+}
+
+/* Label styling */
+.invoice-form-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 0px;
+}
+
+.invoice-form input,
+.invoice-form textarea,
+.invoice-form select{
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.invoice-form input:focus,
+.invoice-form textarea:focus,
+.invoice-form selectLfocus{
+    border-color: #4A90E2; /* Blue border */
+    outline: none;
+    box-shadow: 0 0 4px rgba(74, 144, 226, 0.4); /* Subtle blue glow */
+}
+
+
+.invoice-form-buttons{
+    display: flex; /* Enable flexbox layout */
+    justify-content: space-between; /* Distribute buttons to edges */
+    align-items: center; /* Align buttons vertically in the center */
+    margin-top: 20px; /* Add spacing from the top */
+    gap: 20px; /* Optional: Add space between buttons */
+}

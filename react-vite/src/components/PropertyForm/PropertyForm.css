@@ -1,0 +1,139 @@
+.property-form-label{
+    color:black;
+}
+
+/* General styling for the form page */
+.property-form-page {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9; /* Light gray background */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: Arial, sans-serif;
+}
+
+/* Form title */
+.property-form-page h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form container */
+.property-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Spacing between form elements */
+}
+
+/* Label styling */
+.property-form-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Input and select fields */
+.property-address-input,
+.property-form-label select,
+.property-form-label input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Highlight input fields on focus */
+.property-address-input:focus,
+.property-form-label select:focus,
+.property-form-label input:focus {
+    border-color: #4A90E2; /* Blue border */
+    outline: none;
+    box-shadow: 0 0 4px rgba(74, 144, 226, 0.4); /* Subtle blue glow */
+}
+
+/* Error messages */
+.hint {
+    font-size: 12px;
+    color: red; /* Highlight error messages in red */
+    margin-top: 5px;
+}
+/* Container for buttons */
+.property-form-buttons {
+    display: flex; /* Enable flexbox layout */
+    justify-content: space-between; /* Distribute buttons to edges */
+    align-items: center; /* Align buttons vertically in the center */
+    margin-top: 20px; /* Add spacing from the top */
+    gap: 20px; /* Optional: Add space between buttons */
+}
+
+/* Cancel Button */
+.cancel-change-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #D9534F; /* Muted red for cancel */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-change-button:hover {
+    background-color: #C9302C; /* Darker red on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    transform: translateY(-2px); /* Subtle lift effect */
+}
+
+/* Submit Button */
+.form-submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50; /* Green for submit */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.property-form-submit-button:hover {
+    background-color: #388E3C; /* Darker green on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .property-form-page {
+        padding: 15px;
+    }
+
+    .property-form {
+        gap: 15px;
+    }
+
+    .property-form-label {
+        font-size: 14px;
+    }
+
+    .property-address-input,
+    .property-form-label select,
+    .property-form-label input {
+        font-size: 13px;
+    }
+
+    .edit-property-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}

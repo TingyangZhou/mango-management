@@ -1,0 +1,156 @@
+
+/* General styling for the form page */
+.file-upload input{
+    display: block;
+    font-size: 16px; /* Adjust font size */
+    padding: 10px 15px; 
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for hover effect */
+    transition: all 0.3s ease; /* Smooth transition for hover */
+}
+
+.file-upload input:hover{
+    cursor:pointer;
+    
+}
+
+  
+.lease-form-page {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9; /* Light gray background */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: Arial, sans-serif;
+}
+
+/* Form title */
+.lease-form-page h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form container */
+.lease-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Spacing between form elements */
+}
+
+/* Label styling */
+.lease-form-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Input and select fields */
+.lease-start-input,
+.lease-end-input,
+.deposit-input,
+.deposit-due-input,
+.rent-input
+{
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.rent-due-input
+{
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 25%;
+    box-sizing: border-box;
+}
+
+.of-every-month{
+    font-size:18px;
+}
+
+/* Highlight input fields on focus */
+.lease-start-input:focus,
+.lease-end-input:focus,
+.deposit-due-input:focus,
+.deposit-input:focus,
+.rent-due-input:focus,
+.rent-input:focus,
+.property-form-label select:focus,
+.property-form-label input:focus {
+    border-color: #4A90E2; /* Blue border */
+    outline: none;
+    box-shadow: 0 0 4px rgba(74, 144, 226, 0.4); /* Subtle blue glow */
+}
+
+.lease-form-buttons {
+    display: flex; /* Enable flexbox layout */
+    justify-content: space-between; /* Distribute buttons to edges */
+    align-items: center; /* Align buttons vertically in the center */
+    margin-top: 20px; /* Add spacing from the top */
+    gap: 20px; /* Optional: Add space between buttons */
+}
+
+/* Cancel Button */
+.cancel-change-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #D9534F; /* Muted red for cancel */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-change-button:hover {
+    background-color: #C9302C; /* Darker red on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    transform: translateY(-2px); /* Subtle lift effect */
+}
+
+/* Submit Button */
+.lease-form-submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50; /* Green for submit */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lease-form-submit-button:hover {
+    background-color: #388E3C; /* Darker green on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .lease-form-page {
+        padding: 15px;
+    }
+
+    .lease-form {
+        gap: 15px;
+    }
+
+    .lease-form-label {
+        font-size: 14px;
+    }
+
+}

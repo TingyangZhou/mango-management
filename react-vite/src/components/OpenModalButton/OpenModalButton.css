@@ -1,0 +1,29 @@
+/* General button styling with red background */
+.open-modal-button {
+    padding: 9px 20px;
+    font-size: 15px;
+    width: 150px;
+    border:#FF8C00 solid 1px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color:white;
+    color: #FF8C00; 
+    font-weight:700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Hover effect for red button */
+.open-modal-button:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    transform: translateY(-4px); /* Slightly higher lift effect */
+    background: linear-gradient(90deg, #FF8C00, #FFA500); /* Gradient effect */
+    color: white; /* Change text color on hover for contrast */
+    border-color: #FFA500; /* Slightly lighter border */
+    transition: all 0.2s ease-in-out; /* Smooth and responsive transition */
+}
+
+/* Focus effect */
+.open-modal-button:focus {
+    outline: 2px solid #A02A26; /* Dark red outline for accessibility */
+}

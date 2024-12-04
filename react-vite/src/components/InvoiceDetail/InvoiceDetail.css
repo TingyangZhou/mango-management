@@ -1,0 +1,242 @@
+
+.edit-invoice-input{
+    width:60%;
+}
+
+.invoice-detail-page{
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom:30px;
+}
+
+.invoice-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center; /* Align items to the top */
+    border: 1px solid #ddd; /* Light border around the container */
+    border-radius: 10px; /* Rounded corners for the container */
+    padding: 10px; /* Add padding for spacing */
+    margin-top: 20px; /* Add spacing from the top */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+    background-color: #f9f9f9; /* Softer background color for contrast */
+    
+}
+
+
+.invoice-buttons-container-three-buttons{
+    display:flex;
+    justify-content: space-evenly;
+    width: 55%;
+}
+
+.invoice-buttons-container-four-buttons{
+    display:flex;
+    justify-content: space-evenly;
+    width: 75%;
+}
+.edit-invoice-button
+{
+    padding: 8px 15px;
+    font-weight:700;
+    font-size: 15px; 
+    border-radius: 25px; 
+    border: #FF8C00 solid 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 150px;
+    text-align: center;
+    background-color: white;
+    color: #FF8C00;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+
+.new-invoice-button{
+    padding: 8px 15px;
+    font-weight:700;
+    font-size: 15px; 
+    border-radius: 25px; 
+    border: #4CAF50 solid 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 150px;
+    text-align: center;
+    background-color: white;
+    color: #4CAF50;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.edit-invoice-button:hover,
+.pay-button:hover
+{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    transform: translateY(-4px); /* Slightly higher lift effect */
+    background: linear-gradient(90deg, #FF8C00, #FFA500); /* Gradient effect */
+    color: white; /* Change text color on hover for contrast */
+    border-color: #FFA500; /* Slightly lighter border */
+    transition: all 0.2s ease-in-out; /* Smooth and responsive transition */
+}
+
+.new-invoice-button:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    transform: translateY(-4px); /* Slightly higher lift effect */
+    background: linear-gradient(90deg, #4CAF50, #4CAF50); /* Gradient effect */
+    color: white; /* Change text color on hover for contrast */
+    border-color: #4CAF50; /* Slightly lighter border */
+    transition: all 0.2s ease-in-out; /* Smooth and responsive transition */
+}
+
+
+
+.delete-invoice-button{
+    padding: 8px 15px;
+    font-weight:700;
+    font-size: 15px; 
+    border-radius: 25px; 
+    border: red solid 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 150px;
+    text-align: center;
+    background-color: white;
+    color: red;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.delete-invoice-button:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    transform: translateY(-4px); /* Slightly higher lift effect */
+    background:red;
+    color: white; /* Change text color on hover for contrast */
+    border-color: red; /* Slightly lighter border */
+    transition: all 0.2s ease-in-out; /* Smooth and responsive transition */
+}
+
+table tr.nav-to-property{
+    cursor: pointer !important;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+}
+
+table tr.nav-to-property:hover {
+    cursor: pointer !important; 
+    background-color: #f0f0f0; /* Light gray background on hover */
+    color: #007bff; /* Text color on hover */
+    
+}
+
+
+.new-invoice-header{
+    display: flex;
+    justify-content: space-between; /* Place items at opposite ends */
+    align-items: center; /* Center vertically */
+    width: 100%; /* Ensure full width */
+
+}
+.invoice-info-table{
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 16px;
+    background-color: #fff; /* White background for the table */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the table */
+    border-radius: 8px; /* Rounded corners for a clean look */
+    cursor: default;
+}
+
+
+.invoice-info-table td{
+    text-align: left; /* Horizontal alignment */
+    vertical-align: middle; /* Vertical alignment */
+    padding: 20px; /* Optional: Add padding for better spacing */
+    cursor: default;
+
+}
+
+.invoice-id-title{
+  font-weight: bold; /* Makes the text bold */
+  text-align: left; /* Aligns the text to the left */
+  font-size: 18px; /* Slightly larger font size for emphasis */
+  padding: 10px; /* Adds spacing around the text */
+  background-color: #f8f9fa; /* Light gray background for contrast */
+  color: #333; /* Dark text for good readability */
+  border-bottom: 2px solid #ddd; /* Adds a subtle separator */
+}
+
+
+
+.property-tenant-info-table{
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    cursor: default;
+    font-size: 16px;
+    background-color: #fff; /* White background for the table */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the table */
+    
+}
+.property-tenant-info-table td{
+    text-align: left; /* Horizontal alignment */
+    vertical-align: middle; /* Vertical alignment */
+    padding: 20px; /* Optional: Add padding for better spacing */
+    cursor: default;
+
+}
+
+.no-tenant{
+    font-weight: bold; /* Makes the text bold */
+    text-align: left; /* Aligns the text to the left */
+    font-size: 1.2rem; /* Slightly larger font size for emphasis */
+    padding: 10px; /* Adds spacing around the text */
+    background-color: #f8f9fa; /* Light gray background for contrast */
+    color: #333; /* Dark text for good readability */
+    border-bottom: 2px solid #ddd; /* Adds a subtle separator */
+}
+
+.tenant-title {
+    font-weight: bold; /* Makes the text bold */
+    text-align: left; /* Aligns the text to the left */
+    font-size: 18px; /* Slightly larger font size for emphasis */
+    padding: 10px; /* Adds spacing around the text */
+    background-color: #f8f9fa; /* Light gray background for contrast */
+    color: #333; /* Dark text for good readability */
+    border-bottom: 2px solid #ddd; /* Adds a subtle separator */
+  }
+  
+
+
+
+
+.edit-cancel, .edit-save {
+    display: block;
+    width: 40%; /* Full width button */
+    padding: 10px;
+    margin-bottom: 15px; /* Spacing between buttons */
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.edit-cancel{
+    border: 1px solid green;
+    background-color: green; /* Dark grey background for keep spot */
+    color: white;
+}
+
+.edit-save{
+    border: 1px solid orange;
+    background-color: orange; /* Red background for delete */
+    color: white;
+}
+
+.edit-save-button-container  {
+    text-align: right !important; /* Align content to the right */
+    padding: 10px; /* Optional: Add some padding for spacing */
+}
+
+.cancel-save-button-container{
+    display: flex;
+    justify-content: space-between;
+}

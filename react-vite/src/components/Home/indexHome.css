@@ -1,0 +1,63 @@
+/* Main container for the sections */
+.user-info-container {
+    display: flex;
+    justify-content: space-between;
+    gap:30px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.info-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+ 
+}
+
+/* Each section (Collection, Occupancy) */
+.info-section {
+    width: 47%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+}
+
+/* Header for each section */
+.info-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 5px 0;
+    background-color: #008080;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: white;
+}
+
+/* List styling */
+.info-list {
+    list-style-type: none; /* Adds bullet points */
+    text-align: left;
+    padding-left: 0px; /* Indents bullet points */
+    margin-top:20px;
+    /* border: solid 1px red; */
+   
+}
+
+/* List item styling */
+.info-list li {
+    margin-right: 30px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+
+.pie-chart-container {
+    width: 40%;
+    margin: 0 auto;
+    /* border: solid 1px red; */
+}

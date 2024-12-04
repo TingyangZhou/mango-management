@@ -1,0 +1,116 @@
+.invoices-page{
+  padding-bottom:20px;
+  
+}
+
+.invoice-list-header{
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; /* Push checkboxes and button to opposite ends */
+  margin-top:10px;
+  padding:0px;
+  align-items: center;
+  width: 80%;
+}
+
+.new-invoice-button-on-listPage{
+    padding: 10px 15px;
+    font-size: 18px; /* Updated font size */
+    border-radius: 8px; /* Slightly less rounded corners for a professional look */
+    border: none;
+    cursor: pointer;
+    margin-top:10px;
+    transition: all 0.3s ease;
+    width: 130px;
+    text-align: center;
+    background-color: #666; /* Default muted gray background */
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #4CAF50; /* Default muted gray background */
+    margin-right:0px;
+    align-items: right;
+    
+}
+
+.new-invoice-button-container{
+
+  display: flex; /* Enable flexbox */
+  justify-content: flex-end; /* Align content to the right */
+  align-items: center;
+
+  /* border: 1px solid red; */
+  
+  
+}
+.invoice-list-table td, 
+.invoice-list-table th {
+  text-align: center; /* Horizontal alignment */
+  vertical-align: middle; /* Vertical alignment */
+  padding: 15px; /* Optional: Add padding for better spacing */
+}
+
+
+
+td.paid {
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
+  }
+  
+  /* Styling for "outstanding" status */
+  td.outstanding {
+    background-color: #fff3cd; /* Light yellow background */
+    color: #856404; /* Dark yellow text */
+  }
+  
+  /* Styling for "overdue" status */
+  td.overdue {
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+  }
+
+  .page-footer{
+  
+    width:80%;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+ 
+  }
+  
+  
+
+  .page-number {
+    padding: 0.3rem 0.6rem; /* Add spacing inside each page number */
+    border-radius: 4px; /* Rounded edges for better appearance */
+    cursor: pointer; /* Pointer cursor for clickable items */
+    color: #555; /* Default text color */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition effects */
+}
+
+.page-number:hover {
+    background-color: #ddd; /* Highlight the number on hover */
+    color: #000; /* Darker text on hover */
+}
+
+  .search-bar{
+    height: rem;
+  }
+
+  .search-bar-container{
+    display:flex;
+    width:300px;
+    position: relative;
+    margin-bottom: -5px;
+    margin-left:200px;
+  }
+
+  .search-icon{
+    position:absolute;
+    top:16px;
+    left:10px;
+  }
+
+.search-input{
+  padding: 0.5rem 2rem 0.5rem 2.2rem;
+}
+
