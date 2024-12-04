@@ -14,7 +14,8 @@ def seed_leases():
         rent_due_day=1,
         deposit=1500.00,
         deposit_due_date=datetime(2023, 12, 15).date(),
-        is_active=True
+        is_active=True,
+        lease_doc="https://capstonefilebucket.s3.us-east-1.amazonaws.com/04e2f8db5bf34becb662265083c6beb3.pdf"
     )
     lease2 = Lease(
 

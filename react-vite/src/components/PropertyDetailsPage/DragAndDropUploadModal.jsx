@@ -45,6 +45,10 @@ const DragAndDropUploadModal = ({ propertyId }) => {
     const formData = new FormData();
     formData.append("lease_doc", file);
 
+    console.log("File: ", file);
+    for (const [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+    }
 
     
     const handleUpload = (e) => {

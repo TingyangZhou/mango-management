@@ -15,7 +15,7 @@ const LeaseForm = ({lease, propertyId, formType}) =>{
     const [ rent, setRent ] = useState(lease?.rent ||0);
     const [ rentDueOn, setRentDueOn ] = useState(lease?.rent_due_day || "");
     const [ file, setFile ] = useState(null);
-    const [ fileLoading, setFileLoading ] = useState(false);
+    
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -50,7 +50,7 @@ const LeaseForm = ({lease, propertyId, formType}) =>{
     const handleSubmit = async (e) =>{
        
         e.preventDefault();
-        setFileLoading(true);
+     
         const formData = new FormData();
         formData.append("start_date", startDate);
         formData.append("end_date", endDate);
@@ -196,7 +196,6 @@ const LeaseForm = ({lease, propertyId, formType}) =>{
                         </label>
                     }
                     
-                    {fileLoading && <p>Loading...</p>}
                     <div className='lease-form-buttons'>
                         <button
                             type="button" 
