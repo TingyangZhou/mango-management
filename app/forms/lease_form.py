@@ -1,13 +1,8 @@
 from flask_wtf import FlaskForm
-<<<<<<< HEAD
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import IntegerField, DateField, FloatField
 from wtforms.validators import DataRequired, NumberRange, ValidationError
 from app.api.aws import ALLOWED_EXTENSIONS
-=======
-from wtforms import IntegerField, DateField, FloatField
-from wtforms.validators import DataRequired, NumberRange, ValidationError
->>>>>>> 681a0a9b2f130562924ae6eb6533bded54958f13
 
 from datetime import date
 
@@ -28,10 +23,7 @@ class CreateLeaseForm(FlaskForm):
     rent_due_day = IntegerField("Rent Due On", validators=[DataRequired(),NumberRange(min=0, max=30, message="Due day must be an integer between 0-30")])
     deposit = FloatField("Deposit", validators=[NumberRange(min=0, message="Deposit must be a non-negative number.")])
     deposit_due_date = DateField("Deposit Due Date", validators=[DataRequired()])
-<<<<<<< HEAD
     lease_doc = FileField("Lease File", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
-=======
->>>>>>> 681a0a9b2f130562924ae6eb6533bded54958f13
       
     
 
