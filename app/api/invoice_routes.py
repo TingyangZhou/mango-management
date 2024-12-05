@@ -229,7 +229,9 @@ def get_a_property(invoiceId):
             {
                 "id": tenant.id,
                 "first_name": tenant.first_name,
-                "last_name": tenant.last_name
+                "last_name": tenant.last_name,
+                "email": tenant.email,
+                'mobile': tenant.mobile
             }
             for tenant in tenants
         ],

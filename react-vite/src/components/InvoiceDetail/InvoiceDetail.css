@@ -197,10 +197,9 @@ table tr.nav-to-property:hover {
     font-weight: bold; /* Makes the text bold */
     text-align: left; /* Aligns the text to the left */
     font-size: 18px; /* Slightly larger font size for emphasis */
-    padding: 10px; /* Adds spacing around the text */
-    background-color: #f8f9fa; /* Light gray background for contrast */
+    padding-bottom: 10px; /* Adds spacing around the text *
     color: #333; /* Dark text for good readability */
-    border-bottom: 2px solid #ddd; /* Adds a subtle separator */
+    border-bottom: 0px; /* Adds a subtle separator */
   }
   
 
@@ -240,3 +239,5 @@ table tr.nav-to-property:hover {
     display: flex;
     justify-content: space-between;
 }
+
+

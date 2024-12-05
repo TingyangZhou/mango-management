@@ -7,7 +7,7 @@ import { AiFillDollarCircle } from "react-icons/ai";
 import { GiTempleGate } from "react-icons/gi";
 import { TbCalendarDue } from "react-icons/tb";
 import { FcViewDetails } from "react-icons/fc";
-import { IoIosContact } from "react-icons/io";
+import { MdContactMail } from "react-icons/md";
 import { FaOrcid } from "react-icons/fa6";
 
 import OpenModalButton from '../OpenModalButton';
@@ -322,24 +322,25 @@ const InvoiceDetailsPage = () => {
                                         ) : (
                                         <>
                                             {/* Add a title row */}
+                                          
                                             <tr>
-                                            <td colSpan="4" className="tenant-title">Tenants:</td>
-                                            </tr>
-                                            {/* Render tenants */}
-                                            {tenants.reduce((rows, tenant, index) => {
-                                            // Start a new row every 2 tenants
-                                            if (index % 2 === 0) rows.push([]);
-                                            rows[rows.length - 1].push(tenant);
-                                            return rows;
-                                            }, []).map((row, rowIndex) => (
-                                            <tr key={rowIndex}>
-                                                {row.map((tenant, tenantIndex) => (
-                                                <td key={tenantIndex}>
-                                                    <IoIosContact /> {tenant.first_name} {tenant.last_name}
+                                                <td className= 'tenant-list-section' colSpan="2">  
+                                                    <div className='tenant-title'>Tenants</div> 
+                                                    {tenants.map(tenant => (
+                                                        
+                                                        <li key={tenant.id} className = "tenant-list">
+                                                        <MdContactMail style={{ marginRight: '10px' }} /> 
+                                                        <div className ="tenant-info"> 
+                                                            <div style={{ fontWeight: "bold" }}>{tenant.first_name} {tenant.last_name} </div> 
+                                                            <div> {tenant?.email} | {tenant?.mobile}</div> 
+                                                        </div>
+                                                    </li>
+                                                    ))}
                                                 </td>
-                                                ))}
                                             </tr>
-                                            ))}
+                                                
+                                                                                         
+                                           
                                         </>
                                         )}
 
