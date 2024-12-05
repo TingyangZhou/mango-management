@@ -54,6 +54,7 @@
   .browse-button:hover{
     color:blue;
     cursor:pointer;
+    text-decoration: underline;
   }
 
 
@@ -61,10 +62,10 @@
   .drop-zone {
     border: 2px dashed #007bff;
     border-radius: 5px;
-    padding: 20px;
+    padding: 20px, 20px;
     text-align: center;
     background-color: #f9f9f9;
-    height:250px;
+    height:280px;
     transition: background-color 0.3s ease;
     padding-top:0px;
    
@@ -96,7 +97,8 @@
     background-color: #007bff; /* Professional blue background */
     color: #fff; /* White text */
     text-decoration: none; /* Remove underline */
-    font-weight: bold; /* Bold text for better readability */
+    font-weight: bold;
+    font-size:15px;
     padding: 10px 20px; /* Add padding for button-like appearance */
     border-radius: 25px; /* Slightly rounded corners for a modern look */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for a raised effect */
@@ -394,15 +396,15 @@
 
   .upload-button {
     display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 10px 10px;
+    font-size: 14px;
     font-weight: bold;
     color: #fff;
     background-color: #007bff; /* Professional blue */
     border: none;
     border-radius: 30px;
     margin-top: 15px;
-    width:300px;
+    width:200px;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     text-align: center;

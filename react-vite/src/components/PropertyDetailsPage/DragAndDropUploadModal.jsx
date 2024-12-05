@@ -78,8 +78,10 @@ const DragAndDropUploadModal = ({ propertyId }) => {
             onDrop={handleDrop}
         > 
          
-            <p><FaCloudUploadAlt size={48}/></p>
-            <p style={{fontWeight:'bold'}}>
+            <p><FaCloudUploadAlt size={58}/></p>
+            <p style={{fontWeight:'bold',
+                color: file?  'red': 'black'
+            }}>
                 {file ? `Selected File: ${file.name}` : "Drag & Drop a file "}
             </p>
             <p>
@@ -98,7 +100,7 @@ const DragAndDropUploadModal = ({ propertyId }) => {
             <button 
                 className='upload-button'
                 onClick={handleUpload}
-                >Confirm to Upload</button>
+                >Save</button>
             {errors?.message && <p className='hint'>{errors.message}</p>}
 
         </div>

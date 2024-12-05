@@ -5,7 +5,7 @@ from flask_login  import login_required, current_user
 from datetime import datetime, timedelta
 from app.models import Lease, Property, User, db
 from app.forms import CreateLeaseForm
-from app.api.aws import (get_unique_filename, upload_file_to_s3)
+from app.api.aws import (get_unique_filename, upload_file_to_s3, remove_file_from_s3)
 
 lease_routes = Blueprint('leases', __name__, url_prefix="/api")
 
@@ -253,7 +253,10 @@ def delete_lease_contract(propertyId):
         return jsonify({"message": "You are not authorized to access this property"}), 403
     
     try:
-            
+        url = lease.lease_doc
+        if not url:
+            return jsonify({'message': 'The lease_doc url does not exist'}), 400
+        remove_file_from_s3(url)
         lease.lease_doc = None
 
         db.session.commit()
