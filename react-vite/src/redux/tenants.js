@@ -67,7 +67,7 @@ export const createTenantThunk = (propertyId, tenantData) => async (dispatch) =>
         dispatch(addTenant(tenants.tenants));
     } else{
         const error = await res.json();
-        console.log("==============", error)
+        // console.log("==============", error)
         throw error;
     }
 };

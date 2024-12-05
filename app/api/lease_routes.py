@@ -292,14 +292,14 @@ def add_lease_contract(propertyId):
             
         file = request.files['lease_doc']
         url = None
-        print('=================lease_doc:',file)
+        # print('=================lease_doc:',file)
         if file: 
             file.filename = get_unique_filename(file.filename)
-            print('===============================filename:', file.filename)
+            # print('===============================filename:', file.filename)
             upload = upload_file_to_s3(file)
-            print('===============================after upload_file_to_s3')
+            # print('===============================after upload_file_to_s3')
             if "url" not in upload:
-                print('==============================="url" not in upload')
+                # print('==============================="url" not in upload')
                 return jsonify(upload), 400
 
             url = upload["url"]

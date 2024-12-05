@@ -39,10 +39,10 @@ def upload_file_to_s3(file, acl="public-read"):
     messages if you don't print them or return them to your frontend.
     """
     try:
-        print('====================in aws helper function==file:', file)
-        print('====================in aws helper function==file.name:', file.filename)
-        print('====================in aws helper function==bucket name:', BUCKET_NAME)
-        print('====================in aws helper function==content_type:', file.content_type)
+        # print('====================in aws helper function==file:', file)
+        # print('====================in aws helper function==file.name:', file.filename)
+        # print('====================in aws helper function==bucket name:', BUCKET_NAME)
+        # print('====================in aws helper function==content_type:', file.content_type)
         s3.upload_fileobj(
             file,
             BUCKET_NAME,
@@ -51,7 +51,7 @@ def upload_file_to_s3(file, acl="public-read"):
         )
     except Exception as e:
         # in case the your s3 upload fails
-        print('====================in aws helper function==exception:', str(e))
+        # print('====================in aws helper function==exception:', str(e))
         return {"message": str(e)}
 
     return {"url": f"{S3_LOCATION}{file.filename}"}
