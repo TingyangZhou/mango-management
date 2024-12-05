@@ -295,7 +295,7 @@ def add_lease_contract(propertyId):
         print('=================lease_doc:',file)
         if file: 
             file.filename = get_unique_filename(file.filename)
-            print('===============================before upload_file_to_s3')
+            print('===============================filename:', file.filename)
             upload = upload_file_to_s3(file)
             print('===============================after upload_file_to_s3')
             if "url" not in upload:
