@@ -39,6 +39,7 @@ def upload_file_to_s3(file, acl="public-read"):
     messages if you don't print them or return them to your frontend.
     """
     try:
+        print('====================in aws helper function:', file)
         s3.upload_fileobj(
             file,
             BUCKET_NAME,
