@@ -21,7 +21,7 @@ def get_all_properties_no_page():
     response =[]
     
     for property in properties:
-        property_dict = property.to_dict_basic()
+        property_dict = property.to_dict_basic() or {}
 
         current_lease = Lease.query.filter(db.and_(property.id == Lease.property_id,
                                                     Lease.is_active == True)).first()
@@ -31,10 +31,14 @@ def get_all_properties_no_page():
             property_dict['rent'] = current_lease.rent
             property_dict['is_vacant'] = False
             property_dict['num_tenants'] = Tenant.query.filter(Tenant.lease_id == current_lease.id).count()
+            property_dict['start_date'] = current_lease.start_date
+            property_dict['end_date'] = current_lease.end_date
         else:
             property_dict['rent'] = 'N/A'
             property_dict['is_vacant'] = True
             property_dict['num_tenants'] = 0
+            property_dict['start_date'] ='N/A'
+            property_dict['end_date'] = 'N/A'
 
         
         property_data = {
@@ -44,7 +48,9 @@ def get_all_properties_no_page():
             "num_tenants": property_dict["num_tenants"],
             "is_vacant": property_dict['is_vacant'],
             "created_at": property_dict['created_at'],
-            "updated_at": property_dict["updated_at"] 
+            "updated_at": property_dict["updated_at"],
+            "start_date": property_dict['start_date'],
+            "end_date": property_dict['end_date']
         }
         
         response.append(property_data)
@@ -78,6 +84,8 @@ def get_all_properties():
             property_dict['rent'] = current_lease.rent
             property_dict['is_vacant'] = False
             property_dict['num_tenants'] = Tenant.query.filter(Tenant.lease_id == current_lease.id).count()
+            property_dict['start_date'] = current_lease.start_date
+            property_dict['end_date'] = current_lease.end_date
         else:
             property_dict['rent'] = 'N/A'
             property_dict['is_vacant'] = True
@@ -91,7 +99,9 @@ def get_all_properties():
             "num_tenants": property_dict["num_tenants"],
             "is_vacant": property_dict['is_vacant'],
             "created_at": property_dict['created_at'],
-            "updated_at": property_dict["updated_at"] 
+            "updated_at": property_dict["updated_at"], 
+            "start_date": property_dict['start_date'],
+            "end_date": property_dict['end_date']
         }
         
         response.append(property_data)

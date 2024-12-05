@@ -166,7 +166,7 @@ export default function Invoices (){
                     <input
                         type="text"
                         className="search-input"
-                        placeholder="Search by property or item..."
+                        placeholder="Search invoices by property or item..."
                         onChange={(e) => {handleChange(e)}}
                         value={searchInput}
            

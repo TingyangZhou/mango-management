@@ -19,7 +19,9 @@ export default function Properties (){
 
     const properties = useSelector((state) => state.properties.properties);
     // const num_properties = useSelector((state) => state.properties.num_properties);
+    
     const properties_arr = Object.values(properties);
+ 
 
     const sortedProperties = properties_arr.sort((a, b) => {
         const dateA = new Date(a.created_at);
@@ -27,6 +29,47 @@ export default function Properties (){
             return dateB - dateA;
 
     });
+
+
+    const currentDate = new Date(); // Get the current date
+    
+    for (const property of sortedProperties) { 
+        let daysRemaining = 0;
+        let daysPassed = 0;
+
+        if (property?.is_vacant === false && property?.start_date && property?.end_date) {
+            // Convert start_date and end_date to Date objects 
+            const startDate = new Date(property.start_date);
+            const endDate = new Date(property.end_date);
+
+            // Calculate time passed and remaining
+            const timePassed = currentDate <= startDate
+                ? 0 // Lease has not started
+                : currentDate - startDate; // Difference in milliseconds
+
+            const timeRemaining = currentDate <= startDate
+                ? endDate - startDate // Entire lease duration
+                : endDate - currentDate;
+
+            // Convert milliseconds to days
+            daysPassed = Math.ceil(timePassed / (1000 * 60 * 60 * 24));
+            daysRemaining = Math.ceil(timeRemaining / (1000 * 60 * 60 * 24));
+
+            property.daysPassed = daysPassed;
+            property.daysRemaining = daysRemaining;
+
+            // Calculate percentages
+            const totalDays = daysPassed + daysRemaining;
+            property.percentPassed = totalDays > 0 ? (daysPassed / totalDays) * 100 : 0;
+            property.percentRemaining = totalDays > 0 ? (daysRemaining / totalDays) * 100 : 0;
+
+            
+            // console.log(`Property ID: ${property.id}`);
+            // console.log(`Days Passed: ${daysPassed}, Days Remaining: ${daysRemaining}`);
+            // console.log(`Percent Passed: ${property.percentPassed}%, Percent Remaining: ${property.percentRemaining}%`);
+        }
+    }
+
 
     
     const handleVacantChange = (e) =>{
@@ -115,6 +158,7 @@ export default function Properties (){
                         <th>Vacancy</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {(isVacantChecked === isOccupiedChecked) && sortedProperties.map((property, index) => (
                         <tr key={index}
@@ -123,7 +167,40 @@ export default function Properties (){
                             <td>{property.address}</td>
                             <td>{property.rent}</td>
                             <td>{property.num_tenants}</td>
-                            <td> <span className={property.is_vacant ? "vacant" : "occupied"}>{property.is_vacant ? "Vacant" : "Occupied"}</span> </td>
+                            <td> 
+                                {property.is_vacant 
+                                ? <div className='vacant-bar'>Vacant</div> 
+                                : <div 
+                                    className='occupied-track-bar'
+                                    title={`${property.daysRemaining} days remaining`}
+                                    >
+                            
+                                <span
+                                    className="percentPassed"
+                                    style={{
+
+                                        width: `${property?.percentPassed}%`,
+                                        display: 'block',
+                                    }}
+                                ></span>
+                            
+                            
+                                <span
+                                    className="percentRemaining"
+                                    style={{
+                                        
+                                        width: `${property?.percentRemaining}%`,
+                                        display: 'block',
+                                    }}
+                                ></span>
+                                <div className='occupied-label'>
+                                    Occupied
+
+                                </div>
+                            </div>
+                            
+                                }
+                            </td>
                         </tr>
                     ))}
                     {(isVacantChecked && !isOccupiedChecked) && vacantProperties.map((property, index) => (
@@ -133,7 +210,37 @@ export default function Properties (){
                             <td>{property.address}</td>
                             <td>{property.rent}</td>
                             <td>{property.num_tenants}</td>
-                            <td> <span className={property.is_vacant ? "vacant" : "occupied"}>{property.is_vacant ? "Vacant" : "Occupied"}</span> </td>
+                            <td> 
+                                {property.is_vacant 
+                                ? <div className='vacant-bar'>Vacant</div> 
+                                : <div className='occupied-track-bar' title={`${property.daysRemaining} days remaining`}>
+                            
+                                <span
+                                    className="percentPassed"
+                                    style={{
+
+                                        width: `${property?.percentPassed}%`,
+                                        display: 'block',
+                                    }}
+                                ></span>
+                            
+                                {/* Bar representing percent remaining */}
+                                <span
+                                    className="percentRemaining"
+                                    style={{
+                                        
+                                        width: `${property?.percentRemaining}%`,
+                                        display: 'block',
+                                    }}
+                                ></span>
+                                <div className='occupied-label'>
+                                    Occupied
+
+                                </div>
+                            </div>
+                            
+                                }
+                            </td>
                         </tr>
                     ))}
                     {(isOccupiedChecked && !isVacantChecked) && occupiedProperties.map((property, index) => (
@@ -143,7 +250,37 @@ export default function Properties (){
                             <td>{property.address}</td>
                             <td>{property.rent}</td>
                             <td>{property.num_tenants}</td>
-                            <td> <span className={property.is_vacant ? "vacant" : "occupied"}>{property.is_vacant ? "Vacant" : "Occupied"}</span> </td>
+                            <td> 
+                                {property.is_vacant 
+                                ? <div className='vacant-bar'>Vacant</div> 
+                                : <div className='occupied-track-bar' title={`${property.daysRemaining} days remaining`}>
+                            
+                                <span
+                                    className="percentPassed"
+                                    style={{
+
+                                        width: `${property?.percentPassed}%`,
+                                        display: 'block',
+                                    }}
+                                ></span>
+                            
+                                {/* Bar representing percent remaining */}
+                                <span
+                                    className="percentRemaining"
+                                    style={{
+                                        
+                                        width: `${property?.percentRemaining}%`,
+                                        display: 'block',
+                                    }}
+                                ></span>
+                                <div className='occupied-label'>
+                                    Occupied
+
+                                </div>
+                            </div>
+                            
+                                }
+                            </td>
                         </tr>
                     ))}
                 </tbody>

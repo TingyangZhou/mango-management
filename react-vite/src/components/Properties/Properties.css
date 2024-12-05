@@ -119,7 +119,7 @@ th {
 
 /* Cell styling */
 td {
-  padding: 7px; /* Adds padding to table cells */
+  padding: 12px; /* Adds padding to table cells */
   text-align: center; /* Aligns text to the center */
   vertical-align: middle; /* Centers content vertically */
   font-size: 16px; /* Adjusted for a clean, modern look */
@@ -153,6 +153,25 @@ tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
+.occupied, 
+.percentPassed,
+.percentRemaining {
+  background-color:#a9dfbf; /* Background color */
+  opacity: 0.8;
+  color: black; /* Text color */
+
+  text-align: center; /* Center the text */
+}
+
+.vacant {
+  background-color:#f5b7b1;  /* Background color */
+  opacity: 0.8;
+  color: black; /* Text color */
+  padding: 8px 10px; /* Padding for button-like shape */
+  border-radius: 15px; /* Rounded corners */
+  display: inline-block; /* Ensures proper display */
+  text-align: center; /* Center the text */
+}
 .occupied {
   background-color: orange; /* Background color */
   opacity: 0.8;
@@ -163,14 +182,55 @@ tbody tr:nth-child(even) {
   text-align: center; /* Center the text */
 }
 
-.vacant {
-  background-color:#3498db; /* Background color */
-  opacity: 0.8;
-  color: white; /* Text color */
-  padding: 8px 10px; /* Padding for button-like shape */
-  border-radius: 15px; /* Rounded corners */
-  display: inline-block; /* Ensures proper display */
-  text-align: center; /* Center the text */
+.vacant-bar {
+  width: 100%; /* Fills the entire cell */
+  height: 30px; /* Same height as the occupied-track-bar */
+  background-color: #f5b7b1; /* Light red for vacant status */
+  position: relative; /* Ensures proper text alignment */
+  border-radius: 5px; /* Rounded corners for a professional look */
+  overflow: hidden; /* Ensures content stays within the bar */
+  line-height: 30px; /* Aligns text vertically */
+  text-align: center; /* Centers the text horizontally */
+  font-weight: bold; /* Makes the text stand out */
+  font-size: 14px; /* Adjust font size to match the occupied bar */
+  color: black; /* Black text for readability */
+}
+
+/* Parent container for the track bar */
+.occupied-track-bar {
+  display: flex; /* Ensures bars are displayed side-by-side */
+  width: 100%; /* Fills the entire cell */
+  height: 30px; /* Desired height of the track bar */
+  position: relative; /* For overlay positioning */
+  border-radius: 5px; /* Optional: rounded corners */
+  overflow: hidden; /* Ensures no child elements spill outside */
+  line-height: 30px;
+  text-align: center;
+}
+
+
+/* Percent Passed (Green Bar) */
+.percentPassed {
+  background-color:  #f9d6a5; /* Light green for percent passed */
+  height: 100%; /* Full height of the track bar */
+}
+
+/* Percent Remaining (Blue Bar) */
+.percentRemaining {
+  background-color: #f5a962;   /* Blue for percent remaining */
+  height: 100%; /* Full height of the track bar */
+}
+
+/* Overlay Label (Optional) */
+.occupied-label {
+  position: absolute; /* Position the label over the track bar */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: black; /* Black text for readability */
+  font-weight: bold; /* Emphasize the text */
+  line-height: 30px; /* Aligns text vertically */
+  font-size: 14px; /* Adjust font size as needed */
 }
 
 

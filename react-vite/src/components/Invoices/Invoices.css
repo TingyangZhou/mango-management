@@ -113,3 +113,25 @@ td.paid {
   padding: 0.5rem 2rem 0.5rem 2.2rem;
 }
 
+.occupied-track-bar::after {
+  content: attr(data-days-remaining); /* Use the data attribute for content */
+  position: absolute;
+  top: -35px; /* Position tooltip above the bar */
+  left: 50%; /* Center the tooltip */
+  transform: translateX(-50%);
+  background-color: #333; /* Dark background for contrast */
+  color: white; /* White text for readability */
+  padding: 5px 10px; /* Padding for tooltip */
+  border-radius: 5px; /* Rounded corners for a clean look */
+  font-size: 12px; /* Smaller font size */
+  white-space: nowrap; /* Prevent text from wrapping */
+  opacity: 0; /* Initially hidden */
+  visibility: hidden; /* Prevent it from taking space */
+  transition: opacity 0.2s ease-in-out; /* Smooth fade-in effect */
+}
+
+/* Show tooltip on hover */
+.occupied-track-bar:hover::after {
+  opacity: 1; /* Make tooltip visible */
+  visibility: visible; /* Show the tooltip */
+}
