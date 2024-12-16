@@ -211,13 +211,14 @@ tbody tr:nth-child(even) {
 
 /* Percent Passed (Green Bar) */
 .percentPassed {
-  background-color:  #f5a962 ; /* Light green for percent passed */
+  background-color:#f9d6a5; 
+   /* Light green for percent passed */
   height: 100%; /* Full height of the track bar */
 }
 
 /* Percent Remaining (Blue Bar) */
 .percentRemaining {
-  background-color:#f9d6a5;   /* Blue for percent remaining */
+  background-color:  #f5a962 ;
   height: 100%; /* Full height of the track bar */
 }
 
