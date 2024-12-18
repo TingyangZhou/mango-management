@@ -27,6 +27,7 @@ class Property(db.Model):
     bedrooms = db.Column(db.Integer(), nullable=True)
     bathrooms = db.Column(db.Integer(), nullable=True)
     square_feet = db.Column(db.Integer(), nullable=True)
+    is_archived = db.Column(db.Boolean, nullable = False, default = False)
     created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc), 
     onupdate=lambda: datetime.now(timezone.utc)
@@ -44,6 +45,7 @@ class Property(db.Model):
             "bedrooms": self.bedrooms,
             "bathrooms": self.bathrooms,
             "square_feet": self.square_feet,
+            "is_archived": self.is_archived,
             "created_at": self.created_at,
             "updated_at": self.updated_at
             

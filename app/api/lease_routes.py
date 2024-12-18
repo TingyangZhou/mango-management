@@ -24,17 +24,15 @@ def get_active_lease(propertyId):
         return jsonify({"message": "You are not authorized to access this property"}), 403
         
     # Check if the lease exists
-    active_lease = Lease.query.filter(db.and_(Lease.property_id == propertyId,
-                                Lease.end_date >= datetime.now().date())).first()
-    if not active_lease:
+    active_leases = Lease.query.filter(db.and_(Lease.property_id == propertyId,
+                                Lease.end_date >= datetime.now().date())).all()
+    if not active_leases:
          return jsonify({"active_lease":None}), 200
-    if not active_lease.is_active:
-        active_lease.is_active = True
-        db.session.commit()
 
-    active_lease_dict = active_lease.to_dict_basic()  
 
-    return jsonify({"active_lease":active_lease_dict}), 200
+    active_leases_dict = [lease.to_dict_basic() for lease in active_leases] 
+
+    return jsonify({"active_leases":active_leases_dict}), 200
 
 
 # Get all expired leases

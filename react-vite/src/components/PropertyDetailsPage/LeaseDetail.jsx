@@ -24,9 +24,17 @@ const LeaseDetail = ({propertyId}) => {
     const navigate = useNavigate();
     const [ errors, setErrors ] = useState({});
 
-    const activeLease = useSelector(state => state.leases.activeLease)
+    const activeLeases = useSelector(state => state.leases.activeLeases)
     const expiredLeases = useSelector(state => state.leases.expiredLeases)
+    const activeLeases_arr = Object.values(activeLeases)
     const expiredLeases_arr = Object.values(expiredLeases)
+
+    const sortedActiveLeases = activeLeases_arr.sort((a, b) => {
+        const dateA = new Date(a.start_date);
+        const dateB = new Date(b.start_date);
+            return dateA - dateB;
+
+    });
     const sortedExpiredLeases = expiredLeases_arr.sort((a, b) => {
         const dateA = new Date(a.created_at);
         const dateB = new Date(b.created_at);
@@ -35,15 +43,18 @@ const LeaseDetail = ({propertyId}) => {
     });
 
     const currentDate = new Date(); // Get the current date
-    const endDate = new Date(activeLease?.end_date);
-    let daysRemaining = 0;
-    if (activeLease?.end_date){
-        const timeDifference = endDate - currentDate; // Difference in milliseconds
-        daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-    }
-    const fileUrl = activeLease?.lease_doc;
+
+    sortedActiveLeases.map(activeLease =>{
+        const endDate = new Date(activeLease?.end_date);
+        if (activeLease?.end_date){
+            const timeDifference = endDate - currentDate; // Difference in milliseconds
+            activeLease.daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+        }
     
-  
+        activeLease.fileUrl = activeLease?.lease_doc;
+    })
+    
+          
 
     const [isExpanded, setIsExpanded] = useState(false);
     const toggleExpand = () => {
@@ -52,12 +63,12 @@ const LeaseDetail = ({propertyId}) => {
 
     
     useEffect(()=>{
-      
         dispatch(getActiveLeaseThunk(propertyId))
             .catch((error) => {
                 // console.log("Error from thunk:", error); // Debugging
                 setErrors(error);
             })
+        
     }, [dispatch, propertyId])
 
     useEffect(()=>{
@@ -90,144 +101,151 @@ const LeaseDetail = ({propertyId}) => {
         <>
         <div className="active-lease-page">
             <div className='active-lease-container'>
-                {!activeLease?
-                <div className="no-active-lease-container">
-                    <h2 className="current-lease-title">Current Lease </h2>
-                    <table className="no-lease-info-table">
-                        <tbody>
-                            <tr>
-                                <td style={{ textAlign: "center"}}>No active lease is found for this property</td>
-                            </tr>
-                        </tbody>
-                            
-                    </table> 
-                    <button 
-                        className={activeLease? 'hidden':'new-lease-button'}
-                        onClick={handleCreateLease}
-                        >
-                            New Lease
-                    </button>
-                </div>
-                :
-                <div className="have-active-lease-container">
-                    <div className="current-lease-section">
-                        <h2 className="current-lease-title">Current Lease ID: {activeLease?.id}</h2>
-                        <h2 className="days-remaining">Days Remaining: {daysRemaining}</h2>
-                    </div>
-
-                    <div className="table-button-container">
-                                
-                        <table className="lease-info-table">
+                {sortedActiveLeases.length === 0 ?
+                    <div className="no-active-lease-container">
+                        <h2 className="current-lease-title">Current Lease </h2>
+                        <table className="no-lease-info-table">
                             <tbody>
-                            <tr>
+                                <tr>
+                                    <td style={{ textAlign: "center"}}>No active lease is found for this property</td>
+                                </tr>
+                            </tbody>
                                 
-                                <td> <CiCalendarDate /> <span style={{ fontWeight: "bold" }}>Start:</span> {new Date(activeLease?.start_date).toLocaleDateString('en-US', {
-                                    timeZone: 'UTC',
-                                    month: 'short',  // Abbreviated month (e.g., "Nov")
-                                    day: 'numeric',  // Day of the month (e.g., "13")
-                                    year: 'numeric'  // Full year (e.g., "2024")
-                                })}</td>
-                                <td> <CiCalendarDate /> <span style={{ fontWeight: "bold" }}>End:</span> {new Date(activeLease?.end_date).toLocaleDateString('en-US', {
-                                    timeZone: 'UTC',
-                                    month: 'short',  // Abbreviated month (e.g., "Nov")
-                                    day: 'numeric',  // Day of the month (e.g., "13")
-                                    year: 'numeric'  // Full year (e.g., "2024")
-                                })}</td>
-                               
-                            </tr>
+                        </table> 
+                        <button 
+                            className={sortedActiveLeases.length !== 0? 'hidden':'new-lease-button'}
+                            onClick={handleCreateLease}
+                            >
+                                New Lease
+                        </button>
+                    </div>
+                    :
+                    sortedActiveLeases.map((activeLease, index) =>(
+                        <div className="have-active-lease-container">
+                        <div className="current-lease-section">
+                            <h2 className="current-lease-title">Current Lease ID: {activeLease?.id}</h2>
+                            <h2 className="days-remaining">Days Remaining: {activeLease?.daysRemaining}</h2>
+                        </div>
 
-                            <tr>
-                                <td> <AiFillDollarCircle /> <span style={{ fontWeight: "bold" }}>Rent: </span> ${activeLease?.rent} </td>
+                        <div className="table-button-container">
+                                    
+                            <table className="lease-info-table">
+                                <tbody>
                                 
+                            
+                                <tr key={index}>
+                                    
+                                    <td> <CiCalendarDate /> <span style={{ fontWeight: "bold" }}>Start:</span> {new Date(activeLease?.start_date).toLocaleDateString('en-US', {
+                                        timeZone: 'UTC',
+                                        month: 'short',  // Abbreviated month (e.g., "Nov")
+                                        day: 'numeric',  // Day of the month (e.g., "13")
+                                        year: 'numeric'  // Full year (e.g., "2024")
+                                    })}</td>
+                                    <td> <CiCalendarDate /> <span style={{ fontWeight: "bold" }}>End:</span> {new Date(activeLease?.end_date).toLocaleDateString('en-US', {
+                                        timeZone: 'UTC',
+                                        month: 'short',  // Abbreviated month (e.g., "Nov")
+                                        day: 'numeric',  // Day of the month (e.g., "13")
+                                        year: 'numeric'  // Full year (e.g., "2024")
+                                    })}</td>
+                                
+                                </tr>
+
+                                <tr>
+                                    <td> <AiFillDollarCircle /> <span style={{ fontWeight: "bold" }}>Rent: </span> ${activeLease?.rent} </td>
+                                    
+                                    <td>
+                                        <TbCalendarDue /> <span style={{ fontWeight: "bold" }}>Rent Due: </span>
+                                        {activeLease?.rent_due_day === 1
+                                            ? "1st of every month"
+                                            : `${activeLease?.rent_due_day}${getOrdinalSuffix(activeLease?.rent_due_day)} of every month`}
+                                    </td>
+                                </tr>
+                                
+                                
+                                <tr>
+                                    <td> <AiFillDollarCircle /> <span style={{ fontWeight: "bold" }}>Deposit: </span> ${activeLease?.deposit} </td>
+
+                                    <td> <CiCalendarDate /> <span style={{ fontWeight: "bold" }}>Deposit Due: </span> {new Date(activeLease?.deposit_due_date).toLocaleDateString('en-US', {
+                                        timeZone: 'UTC',
+                                        month: 'short',  // Abbreviated month (e.g., "Nov")
+                                        day: 'numeric',  // Day of the month (e.g., "13")
+                                        year: 'numeric'  // Full year (e.g., "2024")
+                                    })}</td>
+                                                            
+                                </tr>
+
+                                {activeLease?.fileUrl ? (
+                            <tr className='lease-doc'>
                                 <td>
-                                    <TbCalendarDue /> <span style={{ fontWeight: "bold" }}>Rent Due: </span>
-                                    {activeLease?.rent_due_day === 1
-                                        ? "1st of every month"
-                                        : `${activeLease?.rent_due_day}${getOrdinalSuffix(activeLease?.rent_due_day)} of every month`}
+                                <a className="lease-link" href={activeLease?.fileUrl} target="_blank" rel="noopener noreferrer">
+                                    Review Lease Contract
+                                </a>
+                                </td>
+                                <td>
+                                    <OpenModalButton
+                                        className = "delete-contract-button"
+                                        buttonText = 'Remove Contract'
+                                        modalComponent={<ConfirmDeleteContractModal propertyId = {propertyId}/>}
+                                        onModalClose = {()=> navigate(`/properties/${propertyId}`)}
+                                    />
+                                    
                                 </td>
                             </tr>
-                            
-                            
+                            ) : 
                             <tr>
-                                <td> <AiFillDollarCircle /> <span style={{ fontWeight: "bold" }}>Deposit: </span> ${activeLease?.deposit} </td>
-
-                                <td> <CiCalendarDate /> <span style={{ fontWeight: "bold" }}>Deposit Due: </span> {new Date(activeLease?.deposit_due_date).toLocaleDateString('en-US', {
-                                    timeZone: 'UTC',
-                                    month: 'short',  // Abbreviated month (e.g., "Nov")
-                                    day: 'numeric',  // Day of the month (e.g., "13")
-                                    year: 'numeric'  // Full year (e.g., "2024")
-                                })}</td>
-                                                           
-                            </tr>
-
-                            {fileUrl ? (
-                        <tr className='lease-doc'>
-                            <td>
-                            <a className="lease-link" href={fileUrl} target="_blank" rel="noopener noreferrer">
-                                Review Lease Contract
-                            </a>
-                            </td>
-                            <td>
+                                <td colSpan='2'>
                                 <OpenModalButton
-                                    className = "delete-contract-button"
-                                    buttonText = 'Remove Contract'
-                                    modalComponent={<ConfirmDeleteContractModal propertyId = {propertyId}/>}
+                                        className = "add-lease-button"
+                                        buttonText = 'Add Lease Contract'
+                                        modalComponent={<DragAndDropUploadModal propertyId = {propertyId}/>}
+                                        onModalClose = {()=> navigate(`/properties/${propertyId}`)}
+                                    />                            
+                                </td>
+                            </tr>
+                            }
+                        
+                    
+                                </tbody>
+                            </table>
+                    
+
+                            <div className = "active-lease-buttons">
+                                
+
+                                <button 
+                                    className='edit-lease-button'
+                                    onClick={handleEditLease}
+                                    >
+                                        Edit Lease
+                                </button> 
+
+                            
+                                <OpenModalButton
+                                    className = "open-modal-button"
+                                    buttonText = 'Terminate'
+                                    modalComponent={<ConfirmTerminateLeaseModal propertyId = {propertyId}/>}
                                     onModalClose = {()=> navigate(`/properties/${propertyId}`)}
                                 />
                                 
-                            </td>
-                        </tr>
-                        ) : 
-                        <tr>
-                            <td colSpan='2'>
-                            <OpenModalButton
-                                    className = "add-lease-button"
-                                    buttonText = 'Add Lease Contract'
-                                    modalComponent={<DragAndDropUploadModal propertyId = {propertyId}/>}
+                            
+                                <OpenModalButton
+                                    className = "open-modal-button"
+                                    buttonText = 'Delete'
+                                    modalComponent={<ConfirmDeleteLeaseModal 
+                                                    propertyId = {propertyId}
+                                                    leaseId = {activeLease?.id}/>}
                                     onModalClose = {()=> navigate(`/properties/${propertyId}`)}
-                                />                            
-                            </td>
-                        </tr>
-                        }
-                          
-                            </tbody>
-                        </table>
-                 
-
-                        <div className = "active-lease-buttons">
-                            
-
-                            <button 
-                                className='edit-lease-button'
-                                onClick={handleEditLease}
-                                >
-                                    Edit Lease
-                            </button> 
-
+                                />
                         
-                            <OpenModalButton
-                                className = "open-modal-button"
-                                buttonText = 'Terminate'
-                                modalComponent={<ConfirmTerminateLeaseModal propertyId = {propertyId}/>}
-                                onModalClose = {()=> navigate(`/properties/${propertyId}`)}
-                            />
-                            
+                            </div>
                         
-                            <OpenModalButton
-                                className = "open-modal-button"
-                                buttonText = 'Delete'
-                                modalComponent={<ConfirmDeleteLeaseModal 
-                                                propertyId = {propertyId}
-                                                leaseId = {activeLease?.id}/>}
-                                onModalClose = {()=> navigate(`/properties/${propertyId}`)}
-                            />
-                    
-                         </div>
-                       
+                        </div>
+                        <TenantDetail propertyId={propertyId} lease={activeLease}/>
                     </div>
-                    <TenantDetail propertyId={propertyId} lease={activeLease}/>
-                </div>
-                }
+                    ))
+                             
+    
+                } 
 
                 
 

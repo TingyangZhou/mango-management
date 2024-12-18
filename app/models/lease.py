@@ -21,6 +21,7 @@ class Lease(db.Model):
     deposit = db.Column(db.Numeric(precision=10, scale=2), nullable = True)
     deposit_due_date = db.Column(db.Date, nullable = False)
     lease_doc = db.Column(db.String, nullable=True)
+    is_archived = db.Column(db.Boolean, nullable = False, default = False)
     is_active = db.Column(db.Boolean, nullable = False, default = True)
     created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc))
 
@@ -39,6 +40,7 @@ class Lease(db.Model):
             "deposit": self.deposit,
             "deposit_due_date":self.deposit_due_date.strftime('%Y-%m-%d') if self.deposit_due_date else None,
             "is_active": self.is_active,
+            "is_archived": self.is_archived,
             "lease_doc": self.lease_doc,
             "created_at": self.created_at,
             

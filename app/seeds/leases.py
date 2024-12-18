@@ -63,7 +63,19 @@ def seed_leases():
         is_active=False
     )
 
-    db.session.add_all([lease1, lease2, lease3, lease4, lease5])
+    lease6 = Lease(
+  
+        property_id=1,
+        start_date=datetime(2025, 1, 1).date(),
+        end_date=datetime(2025, 12, 31).date(),
+        rent=1200.00,
+        rent_due_day=1,
+        deposit=1200.00,
+        deposit_due_date=datetime(2024, 12, 15).date(),
+        is_active=True
+    )
+
+    db.session.add_all([lease1, lease2, lease3, lease4, lease5, lease6])
     db.session.commit()
 
 def undo_leases():

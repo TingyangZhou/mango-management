@@ -259,3 +259,24 @@ def remove_property(propertyId):
     db.session.commit()
 
     return jsonify(	{"message": "Successfully deleted"}), 200
+
+
+# # Archive A Property
+# @property_routes.route("/<int:propertyId>/archive", methods=['PATCH'])
+# @login_required
+# def archive_property(propertyId):
+#     user = User.query.get(current_user.id)
+   
+#     #Check if the property exists
+#     property = Property.query.get(propertyId)
+#     if not property:
+#         return jsonify({"message": "Property couldn't be found"}), 404
+     
+#     # Check if the user is authorized to access this property
+#     if property.user_id != user.id:
+#         return jsonify({"message": "You are not authorized to access this property"}), 403
+    
+#     try: 
+#         property.is_archived = False
+        
+

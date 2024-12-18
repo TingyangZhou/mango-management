@@ -1,7 +1,7 @@
 // react-vite/src/redux/lease.js
 import { normalizer } from './utils';
 
-const GET_ACTIVE_LEASE = 'leases/getActiveLease';
+const GET_ACTIVE_LEASES = 'leases/getActiveLeases';
 const GET_EXPIRED_LEASES = 'leases/getExpiredLeases';
 const ADD_LEASE = 'leases/addLease';
 const UPDATE_LEASE = 'leases/updateLease';
@@ -14,7 +14,7 @@ const ADD_LEASE_CONTRACT = 'leases/addLeaseContract';
 // Action Creators
 export const getActiveLease = (leases) => {
     return {
-        type: GET_ACTIVE_LEASE,
+        type: GET_ACTIVE_LEASES,
         payload: leases
     };
 };
@@ -79,7 +79,8 @@ export const getActiveLeaseThunk = (propertyId) => async (dispatch) => {
     const res = await fetch(`/api/properties/${propertyId}/leases/active`);
     if (res.ok) {
         const data = await res.json();
-        dispatch(getActiveLease(data.active_lease));
+        dispatch(getActiveLease(data.active_leases));
+        // console.log('activeLeases:', data)
     } else {
         const errors = await res.json();
         throw errors;
@@ -95,7 +96,6 @@ export const getExpiredLeaseThunk = (propertyId) => async (dispatch) => {
         const data = await res.json();
         dispatch(getExpiredLease(data.expired_leases));
     } else {
-        
         const errors = await res.json();
         throw errors;
     }
@@ -118,7 +118,7 @@ export const addLeaseThunk = (propertyId, formData) => async (dispatch) => {
     } else{
       
         const error = await res.json();
-        console.log('=============error:', error)
+   
         throw error;
     }
 };
@@ -214,14 +214,14 @@ export const removeLeaseThunk = (leaseId) => async (dispatch) => {
 // Reducers
 
 const initialState ={
-    activeLease: {},
+    activeLeases: {},
     expiredLeases:{}
 }
 
 const leaseReducer = (state = initialState, {type, payload}) => {
     switch (type) {
-        case GET_ACTIVE_LEASE:
-            return {...state, activeLease: payload};
+        case GET_ACTIVE_LEASES:
+            return {...state, activeLeases: normalizer(payload)};
         case GET_EXPIRED_LEASES:
             return {...state, expiredLeases: normalizer(payload)};
         case ADD_LEASE:

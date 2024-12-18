@@ -15,6 +15,7 @@ class Invoice(db.Model):
     due_date = db.Column(db.Date, nullable = False)
     amount = db.Column(db.Numeric(precision=10, scale=2), nullable = False)
     payment_date = db.Column(db.Date, nullable = True, default = None)
+    is_archived = db.Column(db.Boolean, nullable = False, default = False)
     created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc))
 
     
@@ -27,6 +28,7 @@ class Invoice(db.Model):
             "due_date": self.due_date,
             "amount": self.amount,
             "payment_date": self.payment_date,
+            "is_archived": self.is_archived,
             "created_at": self.created_at,
             
         }
