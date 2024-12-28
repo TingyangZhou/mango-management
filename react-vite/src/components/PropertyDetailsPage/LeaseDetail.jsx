@@ -123,8 +123,38 @@ const LeaseDetail = ({propertyId}) => {
                     sortedActiveLeases.map((activeLease, index) =>(
                         <div className="have-active-lease-container">
                         <div className="current-lease-section">
-                            <h2 className="current-lease-title">Current Lease ID: {activeLease?.id}</h2>
+                            <h2 className="current-lease-title">Lease ID: {activeLease?.id}</h2>
                             <h2 className="days-remaining">Days Remaining: {activeLease?.daysRemaining}</h2>
+                            <div className = "active-lease-buttons">
+                                
+
+                                <button 
+                                    className='edit-lease-button'
+                                    onClick={handleEditLease}
+                                    >
+                                        Edit Lease
+                                </button> 
+
+                            
+                                <OpenModalButton
+                                    className = "open-modal-button"
+                                    buttonText = 'Terminate'
+                                    modalComponent={<ConfirmTerminateLeaseModal propertyId = {propertyId}/>}
+                                    onModalClose = {()=> navigate(`/properties/${propertyId}`)}
+                                />
+                                
+                            
+                                <OpenModalButton
+                                    className = "open-modal-button"
+                                    buttonText = 'Delete'
+                                    modalComponent={<ConfirmDeleteLeaseModal 
+                                                    propertyId = {propertyId}
+                                                    leaseId = {activeLease?.id}/>}
+                                    onModalClose = {()=> navigate(`/properties/${propertyId}`)}
+                                />
+                        
+                            </div>
+                           
                         </div>
 
                         <div className="table-button-container">
@@ -173,7 +203,6 @@ const LeaseDetail = ({propertyId}) => {
                                     })}</td>
                                                             
                                 </tr>
-
                                 {activeLease?.fileUrl ? (
                             <tr className='lease-doc'>
                                 <td>
@@ -203,44 +232,32 @@ const LeaseDetail = ({propertyId}) => {
                                 </td>
                             </tr>
                             }
+                            <tr>
+                                <td>
+                                <div className="tenants-title-section">
+                                    <p className="current-tenants-title">Tenants</p>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colSpan={2}>
+                                    <TenantDetail propertyId={propertyId} lease={activeLease}/>
+                                </td>
+                                
+                            </tr>
+                                
+
+                                
                         
                     
                                 </tbody>
                             </table>
                     
 
-                            <div className = "active-lease-buttons">
-                                
-
-                                <button 
-                                    className='edit-lease-button'
-                                    onClick={handleEditLease}
-                                    >
-                                        Edit Lease
-                                </button> 
-
                             
-                                <OpenModalButton
-                                    className = "open-modal-button"
-                                    buttonText = 'Terminate'
-                                    modalComponent={<ConfirmTerminateLeaseModal propertyId = {propertyId}/>}
-                                    onModalClose = {()=> navigate(`/properties/${propertyId}`)}
-                                />
-                                
-                            
-                                <OpenModalButton
-                                    className = "open-modal-button"
-                                    buttonText = 'Delete'
-                                    modalComponent={<ConfirmDeleteLeaseModal 
-                                                    propertyId = {propertyId}
-                                                    leaseId = {activeLease?.id}/>}
-                                    onModalClose = {()=> navigate(`/properties/${propertyId}`)}
-                                />
-                        
-                            </div>
                         
                         </div>
-                        <TenantDetail propertyId={propertyId} lease={activeLease}/>
+                       
                     </div>
                     ))
                              

@@ -40,7 +40,7 @@ const TenantDetail = ({propertyId}) => {
     return (
         <>
         {Object.keys(errors).length !== 0 ? (<p className='hint'>{errors.message}</p>):
-        <>
+        
     
             <div className='tenants-container'>
                 {tenants_arr.length === 0 ? 
@@ -62,9 +62,7 @@ const TenantDetail = ({propertyId}) => {
                 : 
                 <>
                    <div className="title-button-container">
-                    <div className="tenants-title-section">
-                            <p className="current-tenants-title">Current Tenant(s) on Lease</p>
-                        </div>
+                        
                         <div className = "new-tenant-button-container">
                         <OpenModalButton
                             className="new-tenant-modal-button"
@@ -114,7 +112,7 @@ const TenantDetail = ({propertyId}) => {
             </div>
        
            
-        </>     
+          
         }       
     </>
     )

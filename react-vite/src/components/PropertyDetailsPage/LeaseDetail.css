@@ -6,6 +6,7 @@
 
 .active-lease-container {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center; /* Align items to the top */
     border: 1px solid #ddd; /* Light border around the container */
@@ -14,13 +15,15 @@
     margin-top: 20px; /* Add spacing from the top */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
     background-color: #f9f9f9; /* Softer background color for contrast */
+    /* border: red 1px solid; */
  
 }
 
 .active-lease-buttons {
     display: flex;
+    flex-direction: row;
     font-size: 18px;
-    flex-direction: column; /* Stack buttons vertically */
+
     justify-content: flex-start; /* Align buttons to the top */
     align-items: center; /* Center buttons horizontally */
     gap: 15px; /* Add spacing between buttons */
@@ -80,6 +83,9 @@
 
 .have-active-lease-container{
     width:100%;
+    
+    /* border: solid 1px red; */
+    padding-top: 10px;
 }
 
 
