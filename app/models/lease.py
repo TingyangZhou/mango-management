@@ -39,6 +39,7 @@ class Lease(db.Model):
             "rent_due_day": self.rent_due_day,
             "deposit": self.deposit,
             "deposit_due_date":self.deposit_due_date.strftime('%Y-%m-%d') if self.deposit_due_date else None,
+            
             "is_active": self.is_active,
             "is_archived": self.is_archived,
             "lease_doc": self.lease_doc,

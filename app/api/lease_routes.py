@@ -5,6 +5,7 @@ from flask_login  import login_required, current_user
 from datetime import datetime, timedelta
 from app.models import Lease, Property, User, db
 from app.forms import CreateLeaseForm
+from sqlalchemy.orm import joinedload
 from app.api.aws import (get_unique_filename, upload_file_to_s3, remove_file_from_s3)
 
 lease_routes = Blueprint('leases', __name__, url_prefix="/api")
@@ -25,14 +26,20 @@ def get_active_lease(propertyId):
         
     # Check if the lease exists
     active_leases = Lease.query.filter(db.and_(Lease.property_id == propertyId,
-                                Lease.end_date >= datetime.now().date())).all()
+                                Lease.end_date >= datetime.now().date())) \
+                                .options(joinedload(Lease.tenants)) \
+                                .all()
     if not active_leases:
          return jsonify({"active_lease":None}), 200
 
 
-    active_leases_dict = [lease.to_dict_basic() for lease in active_leases] 
-
-    return jsonify({"active_leases":active_leases_dict}), 200
+    active_leases_dict = []
+    for lease in active_leases:
+        lease_dict = lease.to_dict_basic()  # Convert lease to a dictionary
+        lease_dict['tenants'] = [tenant.to_dict_basic() for tenant in lease.tenants]  # Add tenants
+        active_leases_dict.append(lease_dict)
+    
+    return jsonify({'active_leases': active_leases_dict}),200
 
 
 # Get all expired leases
