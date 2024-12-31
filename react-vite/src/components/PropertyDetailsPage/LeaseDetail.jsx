@@ -160,9 +160,7 @@ const LeaseDetail = ({propertyId}) => {
                         <div className="table-button-container">
                                     
                             <table className="lease-info-table">
-                                <tbody>
-                                
-                            
+                                <tbody>                         
                                 <tr key={index}>
                                     
                                     <td> <CiCalendarDate /> <span style={{ fontWeight: "bold" }}>Start:</span> {new Date(activeLease?.start_date).toLocaleDateString('en-US', {
@@ -177,10 +175,6 @@ const LeaseDetail = ({propertyId}) => {
                                         day: 'numeric',  // Day of the month (e.g., "13")
                                         year: 'numeric'  // Full year (e.g., "2024")
                                     })}</td>
-                                
-                                </tr>
-
-                                <tr>
                                     <td> <AiFillDollarCircle /> <span style={{ fontWeight: "bold" }}>Rent: </span> ${activeLease?.rent} </td>
                                     
                                     <td>
@@ -189,9 +183,11 @@ const LeaseDetail = ({propertyId}) => {
                                             ? "1st of every month"
                                             : `${activeLease?.rent_due_day}${getOrdinalSuffix(activeLease?.rent_due_day)} of every month`}
                                     </td>
+
+                                
                                 </tr>
-                                
-                                
+
+                                                            
                                 <tr>
                                     <td> <AiFillDollarCircle /> <span style={{ fontWeight: "bold" }}>Deposit: </span> ${activeLease?.deposit} </td>
 
@@ -201,9 +197,8 @@ const LeaseDetail = ({propertyId}) => {
                                         day: 'numeric',  // Day of the month (e.g., "13")
                                         year: 'numeric'  // Full year (e.g., "2024")
                                     })}</td>
-                                                            
-                                </tr>
-                                {activeLease?.fileUrl ? (
+
+{activeLease?.fileUrl ? (
                             <tr className='lease-doc'>
                                 <td>
                                 <a className="lease-link" href={activeLease?.fileUrl} target="_blank" rel="noopener noreferrer">
@@ -231,25 +226,16 @@ const LeaseDetail = ({propertyId}) => {
                                     />                            
                                 </td>
                             </tr>
-                            }
-                            <tr>
-                                <td>
-                                <div className="tenants-title-section">
-                                    <p className="current-tenants-title">Tenants</p>
-                                </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colSpan={2}>
-                                    <TenantDetail propertyId={propertyId} lease={activeLease}/>
-                                </td>
-                                
-                            </tr>
-                                
+                            }   
 
-                                
-                        
-                    
+                                    <td colSpan={2} rowSpan={2}>
+                                        <TenantDetail propertyId={propertyId} lease={activeLease}/>
+                                    </td>
+                                                            
+                                </tr>
+
+                                                 
+
                                 </tbody>
                             </table>
                     

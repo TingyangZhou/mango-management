@@ -43,6 +43,7 @@ const TenantDetail = ({propertyId}) => {
         
     
             <div className='tenants-container'>
+                 
                 {tenants_arr.length === 0 ? 
                 <div className="no-tenant-container">
                     <h2 className="no-tenant-title">Add your first tenant!</h2>
@@ -62,7 +63,9 @@ const TenantDetail = ({propertyId}) => {
                 : 
                 <>
                    <div className="title-button-container">
-                        
+                        <div className="tenants-title-section">
+                            <p className="current-tenants-title">Tenants</p>
+                        </div>
                         <div className = "new-tenant-button-container">
                         <OpenModalButton
                             className="new-tenant-modal-button"
