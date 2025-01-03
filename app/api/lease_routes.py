@@ -30,7 +30,7 @@ def get_active_lease(propertyId):
                                 .options(joinedload(Lease.tenants)) \
                                 .all()
     if not active_leases:
-         return jsonify({"active_lease":None}), 200
+         return jsonify({"active_leases":None}), 200
 
 
     active_leases_dict = []
