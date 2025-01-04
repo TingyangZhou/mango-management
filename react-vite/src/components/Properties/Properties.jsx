@@ -17,6 +17,7 @@ export default function Properties (){
     const [ vacantProperties, setVacantProperties ] = useState([]);
     const [ occupiedProperties, setOccupiedProperties ] = useState([]);
 
+    const activeLeases = useSelector((state) => state.leases.activeLeases);
     const properties = useSelector((state) => state.properties.properties);
     // const num_properties = useSelector((state) => state.properties.num_properties);
     

@@ -185,7 +185,7 @@ tbody tr:nth-child(even) {
 .vacant-bar {
   width: 100%; /* Fills the entire cell */
   height: 30px; /* Same height as the occupied-track-bar */
-  background-color: #f5b7b1; /* Light red for vacant status */
+  background-color: #f8a69f; /* Light red for vacant status */
   position: relative; /* Ensures proper text alignment */
   border-radius: 5px; /* Rounded corners for a professional look */
   overflow: hidden; /* Ensures content stays within the bar */
@@ -211,14 +211,14 @@ tbody tr:nth-child(even) {
 
 /* Percent Passed (Green Bar) */
 .percentPassed {
-  background-color:#f9d6a5; 
+  background-color:rgb(243, 243, 57) ; 
    /* Light green for percent passed */
   height: 100%; /* Full height of the track bar */
 }
 
 /* Percent Remaining (Blue Bar) */
 .percentRemaining {
-  background-color:  #f5a962 ;
+  background-color: #4CAF50 ;
   height: 100%; /* Full height of the track bar */
 }
 
