@@ -65,68 +65,56 @@
 .edit-property-button,
 .delete-property-button {
     padding: 10px 10px;
-    font-size: 15px; /* Updated font size */
+    font-size: 16px; /* Updated font size */
     font-weight:700;
     border-radius: 25px; 
-    border: 1px solid #FF8C00;
+    border: 1px solid orange;
+
     cursor: pointer;
     transition: all 0.3s ease;
     width: 150px;;
     text-align: center;
-    background-color: white;
-    color: #FF8C00;
+    background-color: orange;
+    color: black;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 
 .new-property-button{
-    padding: 8px 15px;
-    font-weight:700;
-    font-size: 15px; 
-    border-radius: 25px; 
-    border: #4CAF50 solid 1px;
+    padding: 10px 15px;
+    font-size: 16px; /* Updated font size */
+    border-radius: 30px; /* Slightly less rounded corners for a professional look */
+    border: none;
     cursor: pointer;
     transition: all 0.3s ease;
     width: 150px;
     text-align: center;
-    background-color: white;
-    color: #4CAF50;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color:#4CAF50; /* Default muted gray background */
+    margin-right: 0px;;
+    font-weight: bold;
 }
 
 .new-property-button:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
-    transform: translateY(-4px); /* Slightly higher lift effect */
-    background: linear-gradient(90deg, #4CAF50, #4CAF50); /* Gradient effect */
-    color: white; /* Change text color on hover for contrast */
-    border-color: #4CAF50; /* Slightly lighter border */
-    transition: all 0.2s ease-in-out; /* Smooth and responsive transition */
-
-}
-
-
-
+    background-color: #388E3C; /* Darker green for hover */
+    transform: scale(1.01); /* Slightly enlarge the button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly larger shadow for emphasis */
+  }
 
 
 /* Edit Property Button */
 
 
-.edit-property-button:hover {
+.edit-property-button:hover, .delete-property-button:hover {
    
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
-    transform: translateY(-4px); /* Slightly higher lift effect */
+    transform: scale(1.01); /* Slightly enlarge the button */
     background: linear-gradient(90deg, #FF8C00, #FFA500); /* Gradient effect */
-    color: white; /* Change text color on hover for contrast */
     border-color: #FFA500; /* Slightly lighter border */
     transition: all 0.2s ease-in-out; 
 }
 
-
-.delete-property-button:hover {
-    background-color: #C9302C; /* Slightly darker red on hover */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transform: translateY(-1px);
-}
 
 /* Styling for the property-info table */
 .property-info-table {
@@ -201,6 +189,27 @@
   }
   
   
+.vacant {
+    background-color:#f5b7b1;  /* Background color */
+    opacity: 0.8;
+    color: black; /* Text color */
+    padding: 8px 15px; /* Padding for button-like shape */
+    border-radius: 15px; /* Rounded corners */
+    display: inline-block; /* Ensures proper display */
+    text-align: center; /* Center the text */
+    font-weight: bold;
+  }
+  .occupied {
+    background-color: orange; /* Background color */
+    opacity: 0.8;
+    color: white; /* Text color */
+    padding: 8px 15px; /* Add padding to give it a button-like appearance */
+    border-radius: 15px; /* Rounded corners to create a pill shape */
+    display: inline-block; /* Ensures the element respects padding and rounded corners */
+    text-align: center; /* Center the text */
+    color: black;
+    font-weight:bold;
+  }
   
   
   /* Button styles */

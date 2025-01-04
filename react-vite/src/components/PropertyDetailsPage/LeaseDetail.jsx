@@ -158,7 +158,7 @@ const LeaseDetail = ({propertyId}) => {
                         </div>
 
                         <div className="table-button-container">
-                                    
+                            <div className='lease-section'> 
                             <table className="lease-info-table">
                                 <tbody>                         
                                 <tr key={index}>
@@ -169,22 +169,25 @@ const LeaseDetail = ({propertyId}) => {
                                         day: 'numeric',  // Day of the month (e.g., "13")
                                         year: 'numeric'  // Full year (e.g., "2024")
                                     })}</td>
+
                                     <td> <CiCalendarDate /> <span style={{ fontWeight: "bold" }}>End:</span> {new Date(activeLease?.end_date).toLocaleDateString('en-US', {
                                         timeZone: 'UTC',
                                         month: 'short',  // Abbreviated month (e.g., "Nov")
                                         day: 'numeric',  // Day of the month (e.g., "13")
                                         year: 'numeric'  // Full year (e.g., "2024")
                                     })}</td>
-                                    <td> <AiFillDollarCircle /> <span style={{ fontWeight: "bold" }}>Rent: </span> ${activeLease?.rent} </td>
-                                    
-                                    <td>
-                                        <TbCalendarDue /> <span style={{ fontWeight: "bold" }}>Rent Due: </span>
-                                        {activeLease?.rent_due_day === 1
-                                            ? "1st of every month"
-                                            : `${activeLease?.rent_due_day}${getOrdinalSuffix(activeLease?.rent_due_day)} of every month`}
-                                    </td>
-
                                 
+                                    </tr>
+
+                                    <tr>
+                                        <td> <AiFillDollarCircle /> <span style={{ fontWeight: "bold" }}>Rent: </span> ${activeLease?.rent} </td>
+                                        
+                                        <td>
+                                            <TbCalendarDue /> <span style={{ fontWeight: "bold" }}>Rent Due: </span>
+                                            {activeLease?.rent_due_day === 1
+                                                ? "1st of every month"
+                                                : `${activeLease?.rent_due_day}${getOrdinalSuffix(activeLease?.rent_due_day)} of every month`}
+                                        </td>                                
                                 </tr>
 
                                                             
@@ -198,39 +201,9 @@ const LeaseDetail = ({propertyId}) => {
                                         year: 'numeric'  // Full year (e.g., "2024")
                                     })}</td>
 
-{activeLease?.fileUrl ? (
-                            <tr className='lease-doc'>
-                                <td>
-                                <a className="lease-link" href={activeLease?.fileUrl} target="_blank" rel="noopener noreferrer">
-                                    Review Lease Contract
-                                </a>
-                                </td>
-                                <td>
-                                    <OpenModalButton
-                                        className = "delete-contract-button"
-                                        buttonText = 'Remove Contract'
-                                        modalComponent={<ConfirmDeleteContractModal propertyId = {propertyId}/>}
-                                        onModalClose = {()=> navigate(`/properties/${propertyId}`)}
-                                    />
-                                    
-                                </td>
-                            </tr>
-                            ) : 
-                            <tr>
-                                <td colSpan='2'>
-                                <OpenModalButton
-                                        className = "add-lease-button"
-                                        buttonText = 'Add Lease Contract'
-                                        modalComponent={<DragAndDropUploadModal propertyId = {propertyId}/>}
-                                        onModalClose = {()=> navigate(`/properties/${propertyId}`)}
-                                    />                            
-                                </td>
-                            </tr>
-                            }   
+                           
 
-                                    <td colSpan={2} rowSpan={2}>
-                                        <TenantDetail propertyId={propertyId} lease={activeLease}/>
-                                    </td>
+                                   
                                                             
                                 </tr>
 
@@ -238,6 +211,51 @@ const LeaseDetail = ({propertyId}) => {
 
                                 </tbody>
                             </table>
+                            {activeLease?.fileUrl ? (
+                                <div className='lease-doc'>
+                                    
+                                    <a className="lease-link" href={activeLease?.fileUrl} target="_blank" rel="noopener noreferrer">
+                                        Review Lease Contract
+                                    </a>
+                                    
+                                        <OpenModalButton
+                                            className = "delete-contract-button"
+                                            buttonText = 'Remove Contract'
+                                            modalComponent={<ConfirmDeleteContractModal propertyId = {propertyId}/>}
+                                            onModalClose = {()=> navigate(`/properties/${propertyId}`)}
+                                        />
+                                        
+                                    
+                                </div>
+                                ) : 
+                              
+                                   <div>
+                                    <OpenModalButton
+                                            className = "add-lease-button"
+                                            buttonText = 'Add Lease Contract'
+                                            modalComponent={<DragAndDropUploadModal propertyId = {propertyId}/>}
+                                            onModalClose = {()=> navigate(`/properties/${propertyId}`)}
+                                        />                            
+                                    </div>
+                                }   
+
+
+                            </div>
+
+
+                            <div className='tenant-section'> 
+                                <div className='tenants'>
+                                    <TenantDetail propertyId={propertyId} lease={activeLease}/>
+                                </div>
+                                 
+                                    
+                                
+                               
+                              
+                                
+                            </div>
+
+
                     
 
                             

@@ -220,7 +220,7 @@
 }
 
 /* Styling for the property-info table */
-.lease-info-table {
+.lease-info-table, .tenant-info-table {
     width: 100%;
     margin: 0;
     border-collapse: collapse;
@@ -237,7 +237,8 @@
     padding: 15px;
     vertical-align: middle;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border: none;
+    background-color: white;
 }
 
 
@@ -342,7 +343,7 @@
 
 .table-button-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
 }
 

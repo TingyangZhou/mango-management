@@ -35,18 +35,18 @@ input[type="checkbox"] {
   transition: all 0.3s ease;
   width: 150px;
   text-align: center;
-  background-color: #666; /* Default muted gray background */
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  background-color: #4CAF50; /* Default muted gray background */
+  background-color:#4CAF50; /* Default muted gray background */
   margin-right: 0px;;
+  font-weight: bold;
 }
 
 /* Hover effect */
-.create-property-button-listPage:hover {
-    background-color: #388E3C; /* Slightly darker green on hover */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
-    transform: translateY(-1px); /* Subtle lift effect */
+.create-property-button-on-listPage:hover {
+  background-color: #388E3C; /* Darker green for hover */
+  transform: scale(1.01); /* Slightly enlarge the button */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly larger shadow for emphasis */
 }
 
 
@@ -61,12 +61,16 @@ input[type="checkbox"] {
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 16px; /* Label text size */
+  font-size: 18px; /* Label text size */
   color: #333;
   cursor: pointer;
 }
 
 
+.lease-section, .tenant-section {
+
+  width:50%;
+}
 
 .property-list-header {
   display: flex;
@@ -115,6 +119,7 @@ th {
   padding: 12px; /* Adds padding for better spacing */
   font-size: 18px;
   border-bottom: 1px solid #004080; /* Bold bottom border for emphasis */
+
 }
 
 /* Cell styling */
@@ -122,8 +127,9 @@ td {
   padding: 12px; /* Adds padding to table cells */
   text-align: center; /* Aligns text to the center */
   vertical-align: middle; /* Centers content vertically */
-  font-size: 16px; /* Adjusted for a clean, modern look */
+  font-size: 18px; /* Adjusted for a clean, modern look */
   border-bottom: 1px solid #ddd; /* Light row borders */
+  
 }
 
 /* Row striping */
@@ -163,24 +169,6 @@ tbody tr:nth-child(even) {
   text-align: center; /* Center the text */
 }
 
-.vacant {
-  background-color:#f5b7b1;  /* Background color */
-  opacity: 0.8;
-  color: black; /* Text color */
-  padding: 8px 10px; /* Padding for button-like shape */
-  border-radius: 15px; /* Rounded corners */
-  display: inline-block; /* Ensures proper display */
-  text-align: center; /* Center the text */
-}
-.occupied {
-  background-color: orange; /* Background color */
-  opacity: 0.8;
-  color: white; /* Text color */
-  padding: 8px 10px; /* Add padding to give it a button-like appearance */
-  border-radius: 15px; /* Rounded corners to create a pill shape */
-  display: inline-block; /* Ensures the element respects padding and rounded corners */
-  text-align: center; /* Center the text */
-}
 
 .vacant-bar {
   width: 100%; /* Fills the entire cell */
@@ -192,7 +180,7 @@ tbody tr:nth-child(even) {
   line-height: 30px; /* Aligns text vertically */
   text-align: center; /* Centers the text horizontally */
   font-weight: bold; /* Makes the text stand out */
-  font-size: 14px; /* Adjust font size to match the occupied bar */
+  font-size: 18px; /* Adjust font size to match the occupied bar */
   color: black; /* Black text for readability */
 }
 
@@ -211,7 +199,7 @@ tbody tr:nth-child(even) {
 
 /* Percent Passed (Green Bar) */
 .percentPassed {
-  background-color:rgb(243, 243, 57) ; 
+  background-color:orange ; 
    /* Light green for percent passed */
   height: 100%; /* Full height of the track bar */
 }
@@ -231,7 +219,7 @@ tbody tr:nth-child(even) {
   color: black; /* Black text for readability */
   font-weight: bold; /* Emphasize the text */
   line-height: 30px; /* Aligns text vertically */
-  font-size: 14px; /* Adjust font size as needed */
+  font-size: 18px; /* Adjust font size as needed */
 }
 
 

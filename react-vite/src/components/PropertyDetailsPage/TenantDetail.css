@@ -42,6 +42,7 @@
     display:flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
 }
 
 .no-tenant-title{
@@ -68,7 +69,7 @@
     padding: 10px; /* Add padding for spacing */
     margin-top: 10px; /* Add spacing from the top */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
-    background-color: #f9f9f9; /* Softer background color for contrast */
+    background-color: white; /* Softer background color for contrast */
     margin-bottom: 10px;
  
 }

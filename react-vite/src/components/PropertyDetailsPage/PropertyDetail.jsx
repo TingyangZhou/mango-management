@@ -95,7 +95,7 @@ const PropertyDetailsPage = () => {
                                 Edit Property
                         </button>
                         <OpenModalButton
-                            className = "open-modal-button"
+                            className = "delete-property-button"
                             buttonText = 'Delete'
                             modalComponent={<ConfirmDeleteFormModal propertyId = {propertyId}/>}
                             onModalClose = {()=> navigate(`/properties/${propertyId}`)}
