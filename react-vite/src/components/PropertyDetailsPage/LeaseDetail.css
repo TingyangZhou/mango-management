@@ -45,6 +45,7 @@
     background-color: white;
     color: #4CAF50;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+
   }
 
   .add-contract-button:hover{
@@ -137,15 +138,15 @@
  {
     padding: 10px 15px;
     font-weight:700;
-    font-size: 15px; 
+    font-size: 16px; 
     border-radius: 25px; 
-    border: #FF8C00 solid 1px;
+    border: orange solid 1px;
     cursor: pointer;
     transition: all 0.3s ease;
     width: 150px;
     text-align: center;
-    background-color: white;
-    color: #FF8C00;
+    background-color: orange;
+    color: black;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
@@ -184,12 +185,11 @@
 
 .edit-lease-button:hover {
   
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
-    transform: translateY(-4px); /* Slightly higher lift effect */
-    background: linear-gradient(90deg, #FF8C00, #FFA500); /* Gradient effect */
-    color: white; /* Change text color on hover for contrast */
-    border-color: #FFA500; /* Slightly lighter border */
-    transition: all 0.2s ease-in-out; /* Smooth and responsive transition */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+  transform: scale(1.01); /* Slightly enlarge the button */
+  background: linear-gradient(90deg, #FF8C00, #FFA500); /* Gradient effect */
+  border-color: #FFA500; /* Slightly lighter border */
+  transition: all 0.2s ease-in-out; 
 }
 
 /* Delete Property Button */
@@ -386,19 +386,17 @@
     transition: all 0.3s ease;
     width: 200px;
     text-align: center;
-    background-color: white;
-    color: #4CAF50;
+    background-color: #4CAF50;;
+    color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top:10px;
+    margin-left:60%;
 }
 
 .add-lease-button:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
-    transform: translateY(-4px); /* Slightly higher lift effect */
-    background: linear-gradient(90deg, #4CAF50, #4CAF50); /* Gradient effect */
-    color: white; /* Change text color on hover for contrast */
-    border-color: #4CAF50; /* Slightly lighter border */
-    transition: all 0.2s ease-in-out; /* Smooth and responsive transition */
-
+  background-color: #388E3C; /* Darker green for hover */
+  transform: scale(1.01); /* Slightly enlarge the button */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly larger shadow for emphasis */
 }
 
   .upload-button {

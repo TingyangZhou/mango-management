@@ -80,9 +80,11 @@ const TenantDetail = ({propertyId}) => {
                    </div>
                     
                     
-                    <ul className="tenant-list-section">
+                    <table className="tenant-list-section">
+                    <tbody>
                         {tenants_arr.map(tenant => (
-                            <li key={tenant.id} className = "tenant-list">
+                            <tr key={tenant.id} className = "tenant-list">
+                               
                                 <MdContactMail style={{ marginRight: '10px' }} /> 
                                 <div className ="tenant-info"> 
                                     <div style={{ fontWeight: "bold" }}>{tenant.first_name} {tenant.last_name} </div> 
@@ -105,9 +107,11 @@ const TenantDetail = ({propertyId}) => {
                                         onModalClose = {()=> navigate(`/properties/${propertyId}`)}
                                     />
                                </div>
-                            </li>
+                               
+                            </tr>
                         ))}
-                    </ul>                
+                    </tbody>
+                    </table>                
                 
                 </>
                 }
